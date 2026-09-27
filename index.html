@@ -191,7 +191,7 @@ body{
 }
 
 .progress-mini{
-    margin-top:6px;
+    margin-top:7px;
     height:5px;
     background:#eee;
     border-radius:10px;
@@ -250,9 +250,9 @@ button{
 }
 
 .complete-button{
-    border:1px solid #d7a0b0;
-    background:#f5e7eb;
-    color:#b9788d;
+    border:1px solid var(--pink);
+    background:var(--pink-light);
+    color:var(--pink-dark);
     border-radius:8px;
     padding:7px 10px;
     cursor:pointer;
@@ -263,6 +263,33 @@ button{
 
 .complete-button:hover{
     background:#ecd5dc;
+}
+
+.progress-button{
+    border:1px solid #ddd;
+    background:white;
+    color:#666;
+    border-radius:8px;
+    padding:7px 10px;
+    cursor:pointer;
+    font-size:12px;
+    white-space:nowrap;
+}
+
+.progress-button:hover{
+    background:var(--pink-light);
+    border-color:var(--pink);
+}
+
+.move-button{
+    border:1px solid #ddd;
+    background:white;
+    color:#777;
+    border-radius:8px;
+    padding:7px 10px;
+    cursor:pointer;
+    font-size:12px;
+    white-space:nowrap;
 }
 
 .danger{
@@ -563,6 +590,13 @@ select:focus{
     margin-bottom:6px;
 }
 
+.modal-help{
+    color:#888;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:5px;
+}
+
 .modal-actions{
     display:flex;
     justify-content:flex-end;
@@ -596,6 +630,14 @@ select:focus{
 
 .mobile-nav{
     display:none;
+}
+
+@media(max-width:1100px){
+
+    .task{
+        flex-wrap:wrap;
+    }
+
 }
 
 @media(max-width:900px){
@@ -705,7 +747,7 @@ select:focus{
 
 <main class="main">
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 
 <section id="home" class="page active">
 
@@ -830,7 +872,7 @@ select:focus{
 </section>
 
 
-<!-- TASKS -->
+<!-- ================= TASKS ================= -->
 
 <section id="tasks" class="page">
 
@@ -924,7 +966,7 @@ select:focus{
 </section>
 
 
-<!-- PLAN -->
+<!-- ================= PLAN ================= -->
 
 <section id="plan" class="page">
 
@@ -997,6 +1039,9 @@ select:focus{
 
     </div>
 
+
+    <!-- TIMER -->
+
     <div
         class="timer"
         id="timerPanel"
@@ -1067,6 +1112,8 @@ select:focus{
 </main>
 
 
+<!-- ================= MOBILE NAV ================= -->
+
 <nav class="mobile-nav">
 
     <button
@@ -1086,7 +1133,7 @@ select:focus{
 </nav>
 
 
-<!-- EDIT MODAL -->
+<!-- ================= EDIT MODAL ================= -->
 
 <div class="modal" id="editModal">
 
@@ -1154,27 +1201,93 @@ select:focus{
 </div>
 
 
+<!-- ================= SAVE PROGRESS MODAL ================= -->
+
+<div class="modal" id="progressModal">
+
+    <div class="modal-box">
+
+        <h2>Save study progress</h2>
+
+        <p
+            id="progressTaskName"
+            style="font-size:14px;margin-bottom:18px">
+        </p>
+
+        <div class="modal-field">
+
+            <label>
+                How many additional minutes did you work?
+            </label>
+
+            <input
+                id="progressMinutes"
+                type="number"
+                min="1"
+                placeholder="e.g. 30"
+                style="width:100%">
+
+            <div class="modal-help">
+
+                Enter the amount you actually studied since
+                the last time you saved progress.
+
+            </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button
+                class="small-button"
+                onclick="closeProgressModal()">
+                Cancel
+            </button>
+
+            <button
+                class="primary"
+                onclick="saveManualProgress()">
+                Save progress
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* =========================================
+/* =====================================================
    DATA
-========================================= */
+===================================================== */
 
 let tasks =
-    JSON.parse(localStorage.getItem("studyTasksV2") || "[]");
+    JSON.parse(
+        localStorage.getItem("studyTasksV2") || "[]"
+    );
 
 let plans =
-    JSON.parse(localStorage.getItem("studyPlansV2") || "{}");
+    JSON.parse(
+        localStorage.getItem("studyPlansV2") || "{}"
+    );
 
 let studySessions =
-    JSON.parse(localStorage.getItem("studySessionsV2") || "{}");
+    JSON.parse(
+        localStorage.getItem("studySessionsV2") || "{}"
+    );
 
 let completedHistory =
-    JSON.parse(localStorage.getItem("completedHistoryV2") || "[]");
+    JSON.parse(
+        localStorage.getItem("completedHistoryV2") || "[]"
+    );
 
 let currentFilter = "all";
 
 let editingTaskId = null;
+
+let progressTaskId = null;
 
 let timerInterval = null;
 
@@ -1187,9 +1300,9 @@ let timerMode = "focus";
 let sessionStartedAt = null;
 
 
-/* =========================================
+/* =====================================================
    SAVE
-========================================= */
+===================================================== */
 
 function save(){
 
@@ -1216,9 +1329,9 @@ function save(){
 }
 
 
-/* =========================================
+/* =====================================================
    HELPERS
-========================================= */
+===================================================== */
 
 function todayKey(){
 
@@ -1236,9 +1349,11 @@ function formatMinutes(minutes){
     if(minutes < 60)
         return minutes + " min";
 
-    let hours = Math.floor(minutes / 60);
+    let hours =
+        Math.floor(minutes / 60);
 
-    let mins = minutes % 60;
+    let mins =
+        minutes % 60;
 
     if(mins === 0)
         return hours + " hr";
@@ -1250,16 +1365,17 @@ function formatMinutes(minutes){
 
 function formatDate(date){
 
-    return new Date(date + "T00:00:00")
-        .toLocaleDateString(
-            "en-AU",
-            {
-                weekday:"long",
-                day:"numeric",
-                month:"long",
-                year:"numeric"
-            }
-        );
+    return new Date(
+        date + "T00:00:00"
+    ).toLocaleDateString(
+        "en-AU",
+        {
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
 
 }
 
@@ -1276,9 +1392,9 @@ function escapeHTML(text){
 }
 
 
-/* =========================================
+/* =====================================================
    NAVIGATION
-========================================= */
+===================================================== */
 
 function showPage(page){
 
@@ -1292,6 +1408,7 @@ function showPage(page){
         .getElementById(page)
         .classList.add("active");
 
+
     document
         .querySelectorAll(
             ".nav button,.mobile-nav button"
@@ -1300,6 +1417,7 @@ function showPage(page){
             b.classList.remove("active")
         );
 
+
     document
         .querySelectorAll(
             `[onclick="showPage('${page}')"]`
@@ -1307,6 +1425,7 @@ function showPage(page){
         .forEach(b =>
             b.classList.add("active")
         );
+
 
     if(page === "home")
         renderHome();
@@ -1320,9 +1439,9 @@ function showPage(page){
 }
 
 
-/* =========================================
+/* =====================================================
    ADD TASK
-========================================= */
+===================================================== */
 
 function addTask(){
 
@@ -1344,6 +1463,7 @@ function addTask(){
                 .value
         );
 
+
     if(!title || !minutes){
 
         alert(
@@ -1353,6 +1473,7 @@ function addTask(){
         return;
 
     }
+
 
     tasks.push({
 
@@ -1374,13 +1495,15 @@ function addTask(){
 
     });
 
+
     document
         .getElementById("taskTitle")
-        .value="";
+        .value = "";
 
     document
         .getElementById("taskMinutes")
-        .value="";
+        .value = "";
+
 
     save();
 
@@ -1393,29 +1516,175 @@ function addTask(){
 }
 
 
-/* =========================================
-   MANUALLY COMPLETE TASK
-========================================= */
+/* =====================================================
+   MANUAL SAVE PROGRESS
+===================================================== */
+
+function openProgressModal(id){
+
+    let task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if(!task || task.completed)
+        return;
+
+
+    progressTaskId = id;
+
+
+    document
+        .getElementById("progressTaskName")
+        .innerText =
+        `${task.title} — ${task.remaining} min remaining`;
+
+
+    document
+        .getElementById("progressMinutes")
+        .value = "";
+
+
+    document
+        .getElementById("progressModal")
+        .classList.add("show");
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById("progressMinutes")
+            .focus();
+
+    },100);
+
+}
+
+
+function closeProgressModal(){
+
+    progressTaskId = null;
+
+    document
+        .getElementById("progressModal")
+        .classList.remove("show");
+
+}
+
+
+function saveManualProgress(){
+
+    let task =
+        tasks.find(
+            t => t.id === progressTaskId
+        );
+
+
+    if(!task){
+
+        closeProgressModal();
+
+        return;
+
+    }
+
+
+    let minutes =
+        Number(
+            document
+                .getElementById("progressMinutes")
+                .value
+        );
+
+
+    if(!minutes || minutes <= 0){
+
+        alert(
+            "Please enter how many minutes you studied."
+        );
+
+        return;
+
+    }
+
+
+    if(minutes > task.remaining){
+
+        alert(
+            `This task only has ${task.remaining} minutes remaining.`
+        );
+
+        return;
+
+    }
+
+
+    /* Add actual study time */
+
+    if(!studySessions[todayKey()])
+        studySessions[todayKey()] = 0;
+
+
+    studySessions[todayKey()] += minutes;
+
+
+    /* Add progress to task */
+
+    task.remaining =
+        Math.max(
+            0,
+            task.remaining - minutes
+        );
+
+
+    /* If that finished the task */
+
+    if(task.remaining === 0){
+
+        finishTask(task);
+
+    }
+
+
+    save();
+
+    closeProgressModal();
+
+    renderTasks();
+
+    renderHome();
+
+    renderPlan();
+
+}
+
+
+/* =====================================================
+   COMPLETE TASK
+===================================================== */
 
 function completeTask(id){
 
     let task =
-        tasks.find(t => t.id === id);
+        tasks.find(
+            t => t.id === id
+        );
+
 
     if(!task || task.completed)
         return;
+
 
     if(!confirm(
         "Mark this task as completed?"
     ))
         return;
 
+
     /*
-       IMPORTANT:
-       We do NOT add the remaining estimated
-       time to study statistics here.
-       Only time actually recorded by the
-       timer counts as study time.
+       This does NOT add the remaining estimated
+       time to study statistics.
     */
 
     task.remaining = 0;
@@ -1423,44 +1692,25 @@ function completeTask(id){
     task.completed = true;
 
 
-    completedHistory.push({
-
-        id:task.id,
-
-        title:task.title,
-
-        subject:task.subject,
-
-        minutes:task.estimated,
-
-        actualMinutes:
-            task.estimated - task.remaining,
-
-        date:todayKey()
-
-    });
+    addToHistory(task);
 
 
-    /* Remove it from every future plan */
+    removeTaskFromPlans(task.id);
 
-    Object.keys(plans)
-        .forEach(date => {
-
-            plans[date] =
-                plans[date]
-                    .filter(
-                        taskId =>
-                        taskId !== task.id
-                    );
-
-        });
-
-
-    /* Stop timer if this task was active */
 
     if(timerTaskId === id){
 
-        pauseTimer();
+        if(timerInterval){
+
+            clearInterval(
+                timerInterval
+            );
+
+            timerInterval = null;
+
+        }
+
+        sessionStartedAt = null;
 
         timerTaskId = null;
 
@@ -1478,30 +1728,119 @@ function completeTask(id){
 }
 
 
-/* =========================================
+/* =====================================================
+   FINISH TASK AFTER ACTUAL STUDY
+===================================================== */
+
+function finishTask(task){
+
+    if(task.completed)
+        return;
+
+
+    task.remaining = 0;
+
+    task.completed = true;
+
+
+    addToHistory(task);
+
+    removeTaskFromPlans(task.id);
+
+}
+
+
+function addToHistory(task){
+
+    /*
+       Prevent duplicate history entries.
+    */
+
+    let alreadyThere =
+        completedHistory.some(
+            item =>
+            item.id === task.id
+        );
+
+
+    if(alreadyThere)
+        return;
+
+
+    let actualMinutes =
+        task.estimated -
+        task.remaining;
+
+
+    completedHistory.push({
+
+        id:task.id,
+
+        title:task.title,
+
+        subject:task.subject,
+
+        minutes:task.estimated,
+
+        actualMinutes:actualMinutes,
+
+        date:todayKey()
+
+    });
+
+}
+
+
+function removeTaskFromPlans(id){
+
+    Object.keys(plans)
+        .forEach(date => {
+
+            plans[date] =
+                plans[date]
+                    .filter(
+                        taskId =>
+                        taskId !== id
+                    );
+
+        });
+
+}
+
+
+/* =====================================================
    EDIT TASK
-========================================= */
+===================================================== */
 
 function openEdit(id){
 
     let task =
-        tasks.find(t => t.id === id);
+        tasks.find(
+            t => t.id === id
+        );
 
-    if(!task) return;
+
+    if(!task)
+        return;
+
 
     editingTaskId = id;
+
 
     document
         .getElementById("editTitle")
         .value = task.title;
 
+
     document
         .getElementById("editSubject")
         .value = task.subject;
 
+
     document
         .getElementById("editMinutes")
         .value = task.estimated;
+
 
     document
         .getElementById("editModal")
@@ -1528,7 +1867,10 @@ function saveEdit(){
             t => t.id === editingTaskId
         );
 
-    if(!task) return;
+
+    if(!task)
+        return;
+
 
     let newTitle =
         document
@@ -1536,10 +1878,12 @@ function saveEdit(){
             .value
             .trim();
 
+
     let newSubject =
         document
             .getElementById("editSubject")
             .value;
+
 
     let newEstimated =
         Number(
@@ -1548,31 +1892,50 @@ function saveEdit(){
                 .value
         );
 
+
     if(!newTitle || !newEstimated){
 
-        alert("Please enter all fields.");
+        alert(
+            "Please enter all fields."
+        );
 
         return;
 
     }
 
+
     let alreadyCompleted =
-        task.estimated - task.remaining;
+        task.estimated -
+        task.remaining;
 
-    task.title = newTitle;
 
-    task.subject = newSubject;
+    task.title =
+        newTitle;
 
-    task.estimated = newEstimated;
+    task.subject =
+        newSubject;
+
+    task.estimated =
+        newEstimated;
 
     task.remaining =
         Math.max(
             0,
-            newEstimated - alreadyCompleted
+            newEstimated -
+            alreadyCompleted
         );
 
-    if(task.remaining <= 0)
+
+    if(task.remaining <= 0){
+
         task.completed = true;
+
+        addToHistory(task);
+
+        removeTaskFromPlans(task.id);
+
+    }
+
 
     save();
 
@@ -1587,37 +1950,36 @@ function saveEdit(){
 }
 
 
-/* =========================================
+/* =====================================================
    DELETE
-========================================= */
+===================================================== */
 
 function deleteTask(id){
 
     let task =
-        tasks.find(t => t.id === id);
+        tasks.find(
+            t => t.id === id
+        );
 
-    if(!task) return;
+
+    if(!task)
+        return;
+
 
     if(!confirm(
         "Delete this task?"
     ))
         return;
 
+
     tasks =
         tasks.filter(
             t => t.id !== id
         );
 
-    Object.keys(plans).forEach(date => {
 
-        plans[date] =
-            plans[date]
-                .filter(
-                    taskId =>
-                    taskId !== id
-                );
+    removeTaskFromPlans(id);
 
-    });
 
     save();
 
@@ -1630,9 +1992,9 @@ function deleteTask(id){
 }
 
 
-/* =========================================
+/* =====================================================
    PRIORITY
-========================================= */
+===================================================== */
 
 function togglePriority(id){
 
@@ -1641,10 +2003,14 @@ function togglePriority(id){
             t => t.id === id
         );
 
-    if(!task) return;
+
+    if(!task)
+        return;
+
 
     task.priority =
         !task.priority;
+
 
     save();
 
@@ -1655,13 +2021,15 @@ function togglePriority(id){
 }
 
 
-/* =========================================
+/* =====================================================
    FILTER
-========================================= */
+===================================================== */
 
 function filterTasks(filter,button){
 
-    currentFilter = filter;
+    currentFilter =
+        filter;
+
 
     document
         .querySelectorAll(".filter")
@@ -1669,30 +2037,45 @@ function filterTasks(filter,button){
             b.classList.remove("active")
         );
 
+
     button.classList.add("active");
+
 
     renderTasks();
 
 }
 
 
-/* =========================================
-   TASK LIST
-========================================= */
+/* =====================================================
+   RENDER TASKS
+===================================================== */
 
 function renderTasks(){
 
     let container =
-        document.getElementById("taskList");
+        document
+            .getElementById("taskList");
+
 
     let list =
         tasks.filter(task => {
 
-            if(currentFilter === "priority")
+            if(
+                currentFilter ===
+                "priority"
+            )
                 return task.priority;
 
-            if(currentFilter !== "all")
-                return task.subject === currentFilter;
+
+            if(
+                currentFilter !==
+                "all"
+            )
+                return (
+                    task.subject ===
+                    currentFilter
+                );
+
 
             return true;
 
@@ -1701,13 +2084,25 @@ function renderTasks(){
 
     list.sort((a,b) => {
 
-        if(a.completed !== b.completed)
-            return Number(a.completed) -
-                   Number(b.completed);
+        if(
+            a.completed !==
+            b.completed
+        )
+            return (
+                Number(a.completed) -
+                Number(b.completed)
+            );
 
-        if(a.priority !== b.priority)
-            return Number(b.priority) -
-                   Number(a.priority);
+
+        if(
+            a.priority !==
+            b.priority
+        )
+            return (
+                Number(b.priority) -
+                Number(a.priority)
+            );
+
 
         return a.id - b.id;
 
@@ -1733,11 +2128,15 @@ function renderTasks(){
                 task.estimated -
                 task.remaining;
 
+
             let percentage =
                 task.estimated
                 ? Math.min(
                     100,
-                    (done / task.estimated) * 100
+                    (
+                        done /
+                        task.estimated
+                    ) * 100
                 )
                 : 0;
 
@@ -1793,11 +2192,23 @@ function renderTasks(){
                 ${
                     !task.completed
                     ? `
+
+                    <button
+                        class="progress-button"
+                        onclick="openProgressModal(${task.id})">
+
+                        + Save progress
+
+                    </button>
+
                     <button
                         class="complete-button"
                         onclick="completeTask(${task.id})">
+
                         ✓ Complete
+
                     </button>
+
                     `
                     : ""
                 }
@@ -1806,14 +2217,18 @@ function renderTasks(){
                 <button
                     class="small-button"
                     onclick="openEdit(${task.id})">
+
                     Edit
+
                 </button>
 
 
                 <button
                     class="small-button danger"
                     onclick="deleteTask(${task.id})">
+
                     Delete
+
                 </button>
 
             </div>
@@ -1825,14 +2240,15 @@ function renderTasks(){
 }
 
 
-/* =========================================
-   PLAN
-========================================= */
+/* =====================================================
+   PLAN DATA
+===================================================== */
 
 function getPlan(date){
 
     if(!plans[date])
         plans[date] = [];
+
 
     return plans[date];
 
@@ -1846,11 +2262,14 @@ function addToPlan(id){
             .getElementById("planDate")
             .value;
 
+
     let plan =
         getPlan(date);
 
+
     if(!plan.includes(id))
         plan.push(id);
+
 
     save();
 
@@ -1866,12 +2285,14 @@ function removeFromPlan(id){
             .getElementById("planDate")
             .value;
 
+
     plans[date] =
         getPlan(date)
             .filter(
                 taskId =>
                 taskId !== id
             );
+
 
     save();
 
@@ -1883,40 +2304,105 @@ function removeFromPlan(id){
 function changePlanDate(amount){
 
     let input =
-        document.getElementById("planDate");
+        document
+            .getElementById("planDate");
+
 
     let date =
         new Date(
-            input.value + "T00:00:00"
+            input.value +
+            "T00:00:00"
         );
 
+
     date.setDate(
-        date.getDate() + amount
+        date.getDate() +
+        amount
     );
 
+
     input.value =
-        date.toISOString()
+        date
+            .toISOString()
             .split("T")[0];
+
 
     renderPlan();
 
 }
 
 
-/* =========================================
-   PLAN RENDER
-========================================= */
+/* =====================================================
+   MOVE REMAINING TO TOMORROW
+===================================================== */
+
+function moveTomorrow(id){
+
+    let task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if(!task || task.completed)
+        return;
+
+
+    let tomorrow =
+        new Date();
+
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
+    );
+
+
+    let date =
+        tomorrow
+            .toISOString()
+            .split("T")[0];
+
+
+    if(!plans[date])
+        plans[date] = [];
+
+
+    if(!plans[date].includes(id))
+        plans[date].push(id);
+
+
+    save();
+
+
+    alert(
+        `${task.remaining} minutes of "${task.title}" moved to tomorrow.`
+    );
+
+
+    renderPlan();
+
+}
+
+
+/* =====================================================
+   RENDER PLAN
+===================================================== */
 
 function renderPlan(){
 
     let input =
-        document.getElementById("planDate");
+        document
+            .getElementById("planDate");
+
 
     if(!input.value)
-        input.value = todayKey();
+        input.value =
+            todayKey();
+
 
     let date =
         input.value;
+
 
     document
         .getElementById("planDateLabel")
@@ -1978,6 +2464,15 @@ function renderPlan(){
                     task.remaining;
 
 
+                let percentage =
+                    task.estimated
+                    ? (
+                        done /
+                        task.estimated
+                    ) * 100
+                    : 0;
+
+
                 return `
 
                 <div class="task">
@@ -1993,7 +2488,8 @@ function renderPlan(){
                             ${task.subject} ·
                             ${done} / ${task.estimated}
                             min completed ·
-                            ${task.remaining} min remaining
+                            ${task.remaining}
+                            min remaining
 
                         </div>
 
@@ -2001,11 +2497,7 @@ function renderPlan(){
 
                             <div
                                 class="progress-mini-fill"
-                                style="width:${
-                                    task.estimated
-                                    ? (done/task.estimated)*100
-                                    : 0
-                                }%">
+                                style="width:${percentage}%">
                             </div>
 
                         </div>
@@ -2023,10 +2515,28 @@ function renderPlan(){
 
 
                     <button
+                        class="progress-button"
+                        onclick="openProgressModal(${task.id})">
+
+                        Save progress
+
+                    </button>
+
+
+                    <button
                         class="complete-button"
                         onclick="completeTask(${task.id})">
 
                         ✓ Complete
+
+                    </button>
+
+
+                    <button
+                        class="move-button"
+                        onclick="moveTomorrow(${task.id})">
+
+                        Tomorrow
 
                     </button>
 
@@ -2108,13 +2618,24 @@ function renderPlan(){
                         <div class="task-subject">
 
                             ${task.subject} ·
-                            ${done} / ${task.estimated}
+                            ${done} /
+                            ${task.estimated}
                             min completed ·
-                            ${task.remaining} min left
+                            ${task.remaining}
+                            min left
 
                         </div>
 
                     </div>
+
+
+                    <button
+                        class="progress-button"
+                        onclick="openProgressModal(${task.id})">
+
+                        Save progress
+
+                    </button>
 
 
                     <button
@@ -2136,9 +2657,9 @@ function renderPlan(){
 }
 
 
-/* =========================================
+/* =====================================================
    TIMER
-========================================= */
+===================================================== */
 
 function openTimer(id){
 
@@ -2147,11 +2668,18 @@ function openTimer(id){
             t => t.id === id
         );
 
-    if(!task) return;
 
-    timerTaskId = id;
+    if(!task)
+        return;
 
-    timerMode = "focus";
+
+    timerTaskId =
+        id;
+
+
+    timerMode =
+        "focus";
+
 
     timerSeconds =
         Math.min(
@@ -2159,20 +2687,27 @@ function openTimer(id){
             task.remaining
         ) * 60;
 
+
     document
         .getElementById("timerMode")
-        .innerText = "Focus";
+        .innerText =
+        "Focus";
+
 
     document
         .getElementById("timerTask")
         .innerText =
         `${task.title} · ${task.remaining} min remaining`;
 
+
     document
         .getElementById("timerPanel")
-        .style.display = "block";
+        .style.display =
+        "block";
+
 
     updateTimerDisplay();
+
 
     document
         .getElementById("timerPanel")
@@ -2198,13 +2733,16 @@ function startTimer(){
 
                 updateTimerDisplay();
 
+
                 if(timerSeconds <= 0){
 
                     clearInterval(
                         timerInterval
                     );
 
-                    timerInterval = null;
+                    timerInterval =
+                        null;
+
 
                     alert(
                         "Break finished! Ready to study?"
@@ -2213,6 +2751,7 @@ function startTimer(){
                 }
 
             },1000);
+
 
         return;
 
@@ -2230,15 +2769,19 @@ function startTimer(){
 
             updateTimerDisplay();
 
+
             if(timerSeconds <= 0){
 
                 recordActualStudy();
+
 
                 clearInterval(
                     timerInterval
                 );
 
-                timerInterval = null;
+                timerInterval =
+                    null;
+
 
                 timerFinished();
 
@@ -2254,14 +2797,18 @@ function pauseTimer(){
     if(!timerInterval)
         return;
 
+
     if(timerMode === "focus")
         recordActualStudy();
+
 
     clearInterval(
         timerInterval
     );
 
-    timerInterval = null;
+
+    timerInterval =
+        null;
 
 }
 
@@ -2289,7 +2836,8 @@ function recordActualStudy(){
 
     if(minutes <= 0){
 
-        sessionStartedAt = null;
+        sessionStartedAt =
+            null;
 
         return;
 
@@ -2308,57 +2856,28 @@ function recordActualStudy(){
 
         let task =
             tasks.find(
-                t => t.id === timerTaskId
+                t =>
+                t.id ===
+                timerTaskId
             );
 
 
         if(task){
 
-            let wasRemaining =
-                task.remaining;
-
-
             task.remaining =
                 Math.max(
                     0,
-                    task.remaining - minutes
+                    task.remaining -
+                    minutes
                 );
 
 
-            if(task.remaining === 0 &&
-               !task.completed){
+            if(
+                task.remaining === 0 &&
+                !task.completed
+            ){
 
-                task.completed = true;
-
-                completedHistory.push({
-
-                    id:task.id,
-
-                    title:task.title,
-
-                    subject:task.subject,
-
-                    minutes:task.estimated,
-
-                    actualMinutes:
-                        task.estimated,
-
-                    date:todayKey()
-
-                });
-
-
-                Object.keys(plans)
-                    .forEach(date => {
-
-                        plans[date] =
-                            plans[date]
-                                .filter(
-                                    id =>
-                                    id !== task.id
-                                );
-
-                    });
+                finishTask(task);
 
             }
 
@@ -2367,7 +2886,9 @@ function recordActualStudy(){
     }
 
 
-    sessionStartedAt = null;
+    sessionStartedAt =
+        null;
+
 
     save();
 
@@ -2396,7 +2917,9 @@ function timerFinished(){
 
     }
 
-    timerTaskId = null;
+
+    timerTaskId =
+        null;
 
 }
 
@@ -2405,10 +2928,45 @@ function resetTimer(){
 
     pauseTimer();
 
-    timerSeconds =
-        timerMode === "break"
-        ? 5 * 60
-        : 25 * 60;
+
+    if(timerMode === "break"){
+
+        timerSeconds =
+            5 * 60;
+
+    }else{
+
+        let minutes = 25;
+
+
+        if(timerTaskId){
+
+            let task =
+                tasks.find(
+                    t =>
+                    t.id ===
+                    timerTaskId
+                );
+
+
+            if(task){
+
+                minutes =
+                    Math.min(
+                        25,
+                        task.remaining
+                    );
+
+            }
+
+        }
+
+
+        timerSeconds =
+            minutes * 60;
+
+    }
+
 
     updateTimerDisplay();
 
@@ -2418,6 +2976,7 @@ function resetTimer(){
 function setPomodoro(minutes){
 
     pauseTimer();
+
 
     timerMode =
         minutes <= 15
@@ -2432,8 +2991,11 @@ function setPomodoro(minutes){
 
         let task =
             tasks.find(
-                t => t.id === timerTaskId
+                t =>
+                t.id ===
+                timerTaskId
             );
+
 
         if(task){
 
@@ -2491,9 +3053,9 @@ function updateTimerDisplay(){
 }
 
 
-/* =========================================
+/* =====================================================
    HOME
-========================================= */
+===================================================== */
 
 function renderHome(){
 
@@ -2509,13 +3071,15 @@ function renderHome(){
 
     let completed =
         tasks.filter(
-            t => t.completed
+            t =>
+            t.completed
         );
 
 
     let remaining =
         tasks.filter(
-            t => !t.completed
+            t =>
+            !t.completed
         );
 
 
@@ -2556,7 +3120,8 @@ function renderHome(){
             .map(
                 id =>
                 tasks.find(
-                    t => t.id === id
+                    t =>
+                    t.id === id
                 )
             )
             .filter(Boolean);
@@ -2568,7 +3133,8 @@ function renderHome(){
 
     let done =
         todayTasks.filter(
-            t => t.completed
+            t =>
+            t.completed
         ).length;
 
 
@@ -2618,12 +3184,14 @@ function renderHomeTasks(){
             .map(
                 id =>
                 tasks.find(
-                    t => t.id === id
+                    t =>
+                    t.id === id
                 )
             )
             .filter(Boolean)
             .filter(
-                t => !t.completed
+                t =>
+                !t.completed
             );
 
 
@@ -2657,7 +3225,7 @@ function renderHomeTasks(){
                 ? (
                     done /
                     task.estimated
-                  ) * 100
+                ) * 100
                 : 0;
 
 
@@ -2674,9 +3242,11 @@ function renderHomeTasks(){
                     <div class="task-subject">
 
                         ${task.subject} ·
-                        ${done} / ${task.estimated}
-                        min ·
-                        ${task.remaining} min left
+                        ${done} /
+                        ${task.estimated}
+                        min completed ·
+                        ${task.remaining}
+                        min left
 
                     </div>
 
@@ -2690,6 +3260,15 @@ function renderHomeTasks(){
                     </div>
 
                 </div>
+
+
+                <button
+                    class="progress-button"
+                    onclick="openProgressModal(${task.id})">
+
+                    Save progress
+
+                </button>
 
 
                 <button
@@ -2709,9 +3288,9 @@ function renderHomeTasks(){
 }
 
 
-/* =========================================
-   WEEK
-========================================= */
+/* =====================================================
+   WEEKLY STUDY
+===================================================== */
 
 function getWeeklyMinutes(){
 
@@ -2775,8 +3354,9 @@ function renderWeeklyChart(){
 
 
         let key =
-            d.toISOString()
-             .split("T")[0];
+            d
+                .toISOString()
+                .split("T")[0];
 
 
         values.push({
@@ -2800,7 +3380,8 @@ function renderWeeklyChart(){
     let max =
         Math.max(
             ...values.map(
-                v => v.minutes
+                v =>
+                v.minutes
             ),
             1
         );
@@ -2811,7 +3392,10 @@ function renderWeeklyChart(){
 
             let height =
                 Math.max(
-                    (v.minutes / max) * 150,
+                    (
+                        v.minutes /
+                        max
+                    ) * 150,
                     3
                 );
 
@@ -2842,9 +3426,9 @@ function renderWeeklyChart(){
 }
 
 
-/* =========================================
+/* =====================================================
    CALENDAR
-========================================= */
+===================================================== */
 
 function renderCalendar(){
 
@@ -2954,16 +3538,20 @@ function renderCalendar(){
 
 
         if(minutes >= 120)
-            intensity = "intensity-4";
+            intensity =
+                "intensity-4";
 
         else if(minutes >= 90)
-            intensity = "intensity-3";
+            intensity =
+                "intensity-3";
 
         else if(minutes >= 45)
-            intensity = "intensity-2";
+            intensity =
+                "intensity-2";
 
         else if(minutes > 0)
-            intensity = "intensity-1";
+            intensity =
+                "intensity-1";
 
 
         cells += `
@@ -2997,9 +3585,9 @@ function renderCalendar(){
 }
 
 
-/* =========================================
+/* =====================================================
    HISTORY
-========================================= */
+===================================================== */
 
 function renderHistory(){
 
@@ -3047,7 +3635,12 @@ function renderHistory(){
 
             <div class="task-time">
 
-                ${item.actualMinutes || item.minutes} min
+                ${
+                    item.actualMinutes !== undefined
+                    ? item.actualMinutes
+                    : item.minutes
+                }
+                min studied
 
             </div>
 
@@ -3067,9 +3660,9 @@ function toggleHistory(){
 }
 
 
-/* =========================================
+/* =====================================================
    START
-========================================= */
+===================================================== */
 
 document
     .getElementById("planDate")
