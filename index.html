@@ -6,646 +6,687 @@
 <title>study.planner</title>
 
 <style>
-:root {
-    --pink: #d9a0b0;
-    --pink-light: #f4e5e9;
-    --pink-dark: #b9788c;
-    --bg: #f7f7f7;
-    --white: #ffffff;
-    --grey: #777;
-    --dark: #252525;
-    --border: #e8e8e8;
-    --radius: 14px;
+:root{
+    --pink:#d7a0b0;
+    --pink-dark:#b9788d;
+    --pink-light:#f5e7eb;
+    --bg:#f7f7f7;
+    --white:#fff;
+    --dark:#282828;
+    --grey:#777;
+    --light-grey:#e8e8e8;
+    --radius:14px;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--dark);
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--dark);
 }
 
-/* ---------- SIDEBAR ---------- */
+/* SIDEBAR */
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 230px;
-    background: white;
-    border-right: 1px solid var(--border);
-    padding: 30px 18px;
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:230px;
+    background:white;
+    border-right:1px solid var(--light-grey);
+    padding:30px 18px;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 0 12px 35px;
+.logo{
+    font-size:20px;
+    font-weight:700;
+    padding:0 12px 35px;
 }
 
-.logo span {
-    color: var(--pink-dark);
+.logo span{
+    color:var(--pink-dark);
 }
 
-.nav button {
-    width: 100%;
-    border: none;
-    background: transparent;
-    padding: 13px 14px;
-    margin-bottom: 5px;
-    text-align: left;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    color: #666;
+.nav button{
+    width:100%;
+    border:0;
+    background:transparent;
+    padding:13px 14px;
+    margin-bottom:5px;
+    text-align:left;
+    border-radius:10px;
+    font-size:15px;
+    cursor:pointer;
+    color:#666;
 }
 
-.nav button:hover {
-    background: #f7f7f7;
+.nav button:hover,
+.nav button.active{
+    background:var(--pink-light);
+    color:var(--pink-dark);
 }
 
-.nav button.active {
-    background: var(--pink-light);
-    color: var(--pink-dark);
-    font-weight: 600;
-}
-
-/* ---------- MAIN ---------- */
+/* MAIN */
 
-.main {
-    margin-left: 230px;
-    padding: 40px;
-    max-width: 1500px;
+.main{
+    margin-left:230px;
+    padding:40px;
+    max-width:1500px;
 }
 
-.page {
-    display: none;
+.page{
+    display:none;
 }
 
-.page.active {
-    display: block;
+.page.active{
+    display:block;
 }
 
-.page-header {
-    margin-bottom: 30px;
+.page-header{
+    margin-bottom:28px;
 }
 
-.page-header h1 {
-    font-size: 30px;
-    margin-bottom: 7px;
+.page-header h1{
+    font-size:30px;
+    margin-bottom:7px;
 }
 
-.page-header p {
-    color: var(--grey);
+.page-header p{
+    color:var(--grey);
 }
 
-/* ---------- CARDS ---------- */
+/* CARDS */
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
+.card{
+    background:white;
+    border:1px solid var(--light-grey);
+    border-radius:var(--radius);
+    padding:22px;
 }
 
-.card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
 }
 
-.stat-label {
-    color: var(--grey);
-    font-size: 13px;
-    margin-bottom: 9px;
+.stat-label{
+    color:var(--grey);
+    font-size:13px;
+    margin-bottom:9px;
 }
 
-.stat-number {
-    font-size: 27px;
-    font-weight: 650;
+.stat-number{
+    font-size:27px;
+    font-weight:650;
 }
 
-/* ---------- PROGRESS ---------- */
+/* PROGRESS */
 
-.progress-card {
-    margin-bottom: 20px;
+.progress-card{
+    margin-bottom:20px;
 }
 
-.progress-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
 }
 
-.progress-bar {
-    height: 10px;
-    background: #eeeeee;
-    border-radius: 20px;
-    overflow: hidden;
+.progress-bar{
+    height:10px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
 }
 
-.progress-fill {
-    height: 100%;
-    background: var(--pink);
-    width: 0%;
-    transition: width .3s;
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--pink);
+    transition:.3s;
 }
 
-/* ---------- GRID ---------- */
+/* GRID */
 
-.two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-.section-title {
-    font-size: 18px;
-    margin-bottom: 17px;
+.section-title{
+    font-size:18px;
+    margin-bottom:17px;
 }
 
-/* ---------- TASKS ---------- */
+/* TASK */
 
-.task {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 13px 0;
-    border-bottom: 1px solid #eee;
+.task{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
 }
 
-.task:last-child {
-    border-bottom: none;
+.task:last-child{
+    border-bottom:0;
 }
 
-.checkbox {
-    width: 19px;
-    height: 19px;
-    border: 1.5px solid #bbb;
-    border-radius: 6px;
-    cursor: pointer;
-    flex-shrink: 0;
+.task-info{
+    flex:1;
 }
 
-.checkbox.done {
-    background: var(--pink);
-    border-color: var(--pink);
-    position: relative;
+.task-title{
+    font-size:14px;
 }
 
-.checkbox.done::after {
-    content: "✓";
-    color: white;
-    position: absolute;
-    font-size: 13px;
-    left: 3px;
-    top: -1px;
+.task-subject{
+    color:#999;
+    font-size:12px;
+    margin-top:4px;
 }
 
-.task-info {
-    flex: 1;
+.task-time{
+    font-size:12px;
+    color:#888;
+    white-space:nowrap;
 }
 
-.task-title {
-    font-size: 14px;
+.progress-mini{
+    margin-top:6px;
+    height:5px;
+    background:#eee;
+    border-radius:10px;
+    overflow:hidden;
+    width:100%;
 }
 
-.task-title.completed {
-    text-decoration: line-through;
-    color: #aaa;
+.progress-mini-fill{
+    height:100%;
+    background:var(--pink);
 }
 
-.task-subject {
-    color: #999;
-    font-size: 12px;
-    margin-top: 3px;
+/* STAR */
+
+.star{
+    border:0;
+    background:none;
+    font-size:21px;
+    color:#ccc;
+    cursor:pointer;
 }
 
-.task-time {
-    font-size: 12px;
-    color: #888;
+.star.priority{
+    color:var(--pink-dark);
 }
+
+/* BUTTONS */
 
-/* ---------- STAR ---------- */
+button{
+    font-family:inherit;
+}
 
-.star {
-    border: none;
-    background: none;
-    font-size: 21px;
-    color: #ccc;
-    cursor: pointer;
+.primary{
+    border:0;
+    background:var(--pink);
+    color:white;
+    border-radius:9px;
+    padding:11px 15px;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.star.priority {
-    color: var(--pink-dark);
+.primary:hover{
+    background:var(--pink-dark);
 }
 
-/* ---------- ADD TASK ---------- */
+.small-button{
+    border:1px solid #ddd;
+    background:white;
+    border-radius:8px;
+    padding:7px 10px;
+    cursor:pointer;
+    font-size:12px;
+}
 
-.add-task {
-    display: grid;
-    grid-template-columns: 1fr 140px 100px 100px;
-    gap: 10px;
-    margin-bottom: 20px;
+.small-button:hover{
+    background:var(--pink-light);
+    border-color:var(--pink);
 }
 
-input, select {
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 9px;
-    padding: 12px;
-    font-size: 14px;
-    outline: none;
+.danger{
+    color:#b76f7e;
 }
 
-input:focus, select:focus {
-    border-color: var(--pink);
+/* ADD TASK */
+
+.add-task{
+    display:grid;
+    grid-template-columns:1fr 140px 100px 100px;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-button.primary {
-    border: none;
-    background: var(--pink);
-    color: white;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: 600;
+input,
+select{
+    border:1px solid #ddd;
+    background:white;
+    border-radius:9px;
+    padding:12px;
+    font-size:14px;
+    outline:none;
 }
 
-button.primary:hover {
-    background: var(--pink-dark);
+input:focus,
+select:focus{
+    border-color:var(--pink);
 }
 
-/* ---------- FILTERS ---------- */
+/* FILTER */
 
-.filters {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
+.filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:15px;
 }
 
-.filter {
-    border: 1px solid #ddd;
-    background: white;
-    padding: 8px 13px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
+.filter{
+    border:1px solid #ddd;
+    background:white;
+    padding:8px 13px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:12px;
 }
 
-.filter.active {
-    background: var(--pink-light);
-    color: var(--pink-dark);
-    border-color: var(--pink-light);
+.filter.active{
+    background:var(--pink-light);
+    color:var(--pink-dark);
+    border-color:var(--pink-light);
 }
+
+/* CALENDAR */
 
-/* ---------- CALENDAR ---------- */
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
 
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
 }
 
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+.day-name{
+    text-align:center;
+    font-size:11px;
+    color:#999;
+    padding-bottom:5px;
 }
 
-.day-name {
-    text-align: center;
-    font-size: 11px;
-    color: #999;
-    padding-bottom: 5px;
+.day{
+    min-height:62px;
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:8px;
+    padding:6px;
+    font-size:11px;
 }
 
-.day {
-    min-height: 62px;
-    background: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 6px;
-    font-size: 11px;
+.intensity-1{background:#f8eef1}
+.intensity-2{background:#f0dce2}
+.intensity-3{background:#e6c2cd}
+.intensity-4{
+    background:#d7a0b0;
+    color:white;
 }
 
-.day-number {
-    font-weight: 600;
+.study-minutes{
+    color:#999;
+    font-size:10px;
+    margin-top:6px;
 }
+
+/* CHART */
 
-.study-minutes {
-    color: #999;
-    font-size: 10px;
-    margin-top: 6px;
+.chart{
+    height:220px;
+    display:flex;
+    align-items:end;
+    justify-content:space-around;
+    gap:10px;
+    padding:20px 5px 0;
 }
 
-.intensity-1 {
-    background: #f7edf0;
+.bar-container{
+    height:100%;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    align-items:center;
 }
 
-.intensity-2 {
-    background: #f0dce2;
+.bar{
+    width:65%;
+    max-width:45px;
+    background:var(--pink);
+    border-radius:6px 6px 0 0;
+    min-height:2px;
 }
 
-.intensity-3 {
-    background: #e7c4ce;
+.bar-label,
+.bar-value{
+    font-size:10px;
+    color:#888;
 }
 
-.intensity-4 {
-    background: #d9a0b0;
-    color: white;
+.bar-value{
+    margin-bottom:4px;
 }
 
-/* ---------- BAR CHART ---------- */
+/* PLAN */
 
-.chart {
-    height: 220px;
-    display: flex;
-    align-items: end;
-    justify-content: space-around;
-    gap: 10px;
-    padding: 20px 5px 0;
+.plan-controls{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-.bar-container {
-    height: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
+.plan-controls button{
+    width:40px;
+    border:1px solid #ddd;
+    background:white;
+    border-radius:9px;
+    cursor:pointer;
 }
 
-.bar {
-    width: 65%;
-    max-width: 45px;
-    background: var(--pink);
-    border-radius: 6px 6px 0 0;
-    min-height: 2px;
+.plan-summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--pink-light);
+    padding:18px;
+    border-radius:var(--radius);
+    margin-bottom:20px;
 }
 
-.bar-label {
-    font-size: 10px;
-    color: #888;
-    margin-top: 7px;
+.plan-total{
+    font-size:20px;
+    font-weight:650;
+    color:var(--pink-dark);
 }
 
-.bar-value {
-    font-size: 10px;
-    color: #888;
-    margin-bottom: 4px;
+.available-task{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px;
+    border:1px solid var(--light-grey);
+    border-radius:10px;
+    margin-bottom:9px;
+    background:white;
 }
 
-/* ---------- PLAN ---------- */
+.add-button{
+    border:1px solid var(--pink);
+    color:var(--pink-dark);
+    background:white;
+    border-radius:8px;
+    padding:7px 11px;
+    cursor:pointer;
+}
 
-.plan-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.remove-button{
+    border:0;
+    background:none;
+    color:#999;
+    cursor:pointer;
+    font-size:12px;
 }
 
-.plan-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--pink-light);
-    padding: 18px;
-    border-radius: var(--radius);
-    margin-bottom: 20px;
+.start-button{
+    border:0;
+    background:var(--pink);
+    color:white;
+    padding:7px 12px;
+    border-radius:7px;
+    cursor:pointer;
 }
+
+/* TIMER */
 
-.plan-total {
-    font-size: 20px;
-    font-weight: 650;
-    color: var(--pink-dark);
+.timer{
+    text-align:center;
+    padding:30px;
+    background:white;
+    border:1px solid var(--light-grey);
+    border-radius:var(--radius);
+    margin-top:20px;
 }
 
-.plan-list {
-    margin-bottom: 25px;
+.timer-mode{
+    color:var(--pink-dark);
+    font-size:14px;
+    font-weight:600;
 }
 
-.available-task {
-    display: flex;
-    align-items: center;
-    padding: 14px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 9px;
-    background: white;
+.timer-task{
+    color:#888;
+    font-size:13px;
+    margin-top:5px;
 }
 
-.available-task .task-info {
-    flex: 1;
+.timer-display{
+    font-size:58px;
+    font-weight:600;
+    letter-spacing:2px;
+    margin:15px;
 }
 
-.add-button {
-    border: 1px solid var(--pink);
-    color: var(--pink-dark);
-    background: white;
-    border-radius: 8px;
-    padding: 7px 11px;
-    cursor: pointer;
+.timer-buttons{
+    display:flex;
+    justify-content:center;
+    gap:8px;
 }
 
-.add-button:hover {
-    background: var(--pink-light);
+.timer-buttons button{
+    border:1px solid #ddd;
+    background:white;
+    padding:9px 15px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-.remove-button {
-    border: none;
-    background: none;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 12px;
+.timer-buttons button:first-child{
+    background:var(--pink);
+    border-color:var(--pink);
+    color:white;
 }
 
-.start-button {
-    border: none;
-    background: var(--pink);
-    color: white;
-    padding: 7px 12px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 12px;
+.pomodoro{
+    margin-top:22px;
 }
 
-/* ---------- TIMER ---------- */
+.pomodoro button{
+    border:1px solid #ddd;
+    background:white;
+    border-radius:8px;
+    padding:8px 11px;
+    cursor:pointer;
+    margin:3px;
+}
 
-.timer {
-    text-align: center;
-    padding: 30px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-top: 20px;
+.pomodoro button:hover{
+    background:var(--pink-light);
 }
+
+/* EDIT MODAL */
 
-.timer-task {
-    color: #888;
-    font-size: 13px;
-    margin-bottom: 10px;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:20px;
 }
 
-.timer-display {
-    font-size: 52px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin: 15px;
+.modal.show{
+    display:flex;
 }
 
-.timer-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:450px;
+    border-radius:18px;
+    padding:25px;
 }
 
-.timer-buttons button {
-    border: 1px solid #ddd;
-    background: white;
-    padding: 9px 15px;
-    border-radius: 8px;
-    cursor: pointer;
+.modal-box h2{
+    margin-bottom:20px;
 }
 
-.timer-buttons button:first-child {
-    background: var(--pink);
-    border-color: var(--pink);
-    color: white;
+.modal-field{
+    margin-bottom:14px;
 }
 
-.pomodoro {
-    margin-top: 20px;
+.modal-field label{
+    display:block;
+    font-size:12px;
+    color:#777;
+    margin-bottom:6px;
 }
 
-.pomodoro button {
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 8px;
-    padding: 7px 10px;
-    cursor: pointer;
-    margin: 3px;
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:20px;
 }
 
-/* ---------- HISTORY ---------- */
+/* HISTORY */
 
-.history-toggle {
-    border: none;
-    background: none;
-    color: var(--pink-dark);
-    cursor: pointer;
-    margin-top: 15px;
+.history-toggle{
+    border:0;
+    background:none;
+    color:var(--pink-dark);
+    cursor:pointer;
+    margin-top:15px;
 }
 
-.history {
-    display: none;
-    margin-top: 15px;
+.history{
+    display:none;
+    margin-top:15px;
 }
 
-.history.show {
-    display: block;
+.history.show{
+    display:block;
 }
 
-/* ---------- EMPTY ---------- */
-
-.empty {
-    color: #aaa;
-    text-align: center;
-    padding: 25px;
-    font-size: 14px;
+.empty{
+    color:#aaa;
+    text-align:center;
+    padding:25px;
+    font-size:14px;
 }
 
-/* ---------- MOBILE NAV ---------- */
+/* MOBILE */
 
-.mobile-nav {
-    display: none;
+.mobile-nav{
+    display:none;
 }
-
-/* ---------- RESPONSIVE ---------- */
 
-@media (max-width: 900px) {
+@media(max-width:900px){
 
-    .sidebar {
-        display: none;
+    .sidebar{
+        display:none;
     }
 
-    .main {
-        margin-left: 0;
-        padding: 25px 18px 90px;
+    .main{
+        margin-left:0;
+        padding:25px 18px 90px;
     }
 
-    .mobile-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65px;
-        background: white;
-        border-top: 1px solid var(--border);
-        z-index: 100;
+    .mobile-nav{
+        display:flex;
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        height:65px;
+        background:white;
+        border-top:1px solid var(--light-grey);
+        z-index:100;
     }
 
-    .mobile-nav button {
-        flex: 1;
-        border: none;
-        background: white;
-        color: #888;
-        font-size: 12px;
+    .mobile-nav button{
+        flex:1;
+        border:0;
+        background:white;
+        color:#888;
+        font-size:12px;
     }
 
-    .mobile-nav button.active {
-        color: var(--pink-dark);
-        font-weight: 600;
+    .mobile-nav button.active{
+        color:var(--pink-dark);
+        font-weight:600;
     }
 
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .two-column {
-        grid-template-columns: 1fr;
+    .two-column{
+        grid-template-columns:1fr;
     }
 
-    .add-task {
-        grid-template-columns: 1fr 1fr;
+    .add-task{
+        grid-template-columns:1fr 1fr;
     }
 
-    .add-task input:first-child {
-        grid-column: 1 / -1;
+    .add-task input:first-child{
+        grid-column:1/-1;
     }
 
-    .page-header h1 {
-        font-size: 25px;
-    }
 }
 
-@media (max-width: 500px) {
+@media(max-width:500px){
 
-    .stats {
-        gap: 9px;
+    .stats{
+        gap:9px;
     }
 
-    .card {
-        padding: 16px;
+    .card{
+        padding:16px;
     }
 
-    .stat-number {
-        font-size: 22px;
+    .stat-number{
+        font-size:22px;
     }
 
-    .day {
-        min-height: 52px;
+    .timer-display{
+        font-size:45px;
     }
 
-    .timer-display {
-        font-size: 42px;
+    .task{
+        flex-wrap:wrap;
     }
 }
 </style>
@@ -653,30 +694,45 @@ button.primary:hover {
 
 <body>
 
-<!-- SIDEBAR -->
-
 <aside class="sidebar">
-    <div class="logo">study<span>.</span>planner</div>
+
+    <div class="logo">
+        study<span>.</span>planner
+    </div>
 
     <nav class="nav">
-        <button class="active" onclick="showPage('home', this)">⌂ &nbsp; Home</button>
-        <button onclick="showPage('tasks', this)">☷ &nbsp; Tasks</button>
-        <button onclick="showPage('plan', this)">□ &nbsp; Plan</button>
+
+        <button class="active" onclick="showPage('home')">
+            ⌂ &nbsp; Home
+        </button>
+
+        <button onclick="showPage('tasks')">
+            ☷ &nbsp; Tasks
+        </button>
+
+        <button onclick="showPage('plan')">
+            □ &nbsp; Plan
+        </button>
+
     </nav>
+
 </aside>
 
-<!-- MAIN -->
 
 <main class="main">
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
 <section id="home" class="page active">
 
     <div class="page-header">
+
         <h1>Good afternoon 👋</h1>
+
         <p id="todayText"></p>
+
     </div>
+
 
     <div class="stats">
 
@@ -702,181 +758,341 @@ button.primary:hover {
 
     </div>
 
+
     <div class="card progress-card">
 
         <div class="progress-top">
+
             <strong>Today's progress</strong>
-            <span id="progressText">0 / 0 tasks completed</span>
+
+            <span id="progressText">
+                0 / 0 tasks completed
+            </span>
+
         </div>
 
         <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
         </div>
 
     </div>
+
 
     <div class="two-column">
 
-        <!-- TODAY'S TASKS -->
-
         <div class="card">
-            <h2 class="section-title">Today's tasks</h2>
+
+            <h2 class="section-title">
+                Today's tasks
+            </h2>
+
             <div id="homeTasks"></div>
+
         </div>
 
-        <!-- WEEK GRAPH -->
 
         <div class="card">
-            <h2 class="section-title">Study this week</h2>
+
+            <h2 class="section-title">
+                Study this week
+            </h2>
+
             <div class="chart" id="weeklyChart"></div>
+
         </div>
 
     </div>
 
+
     <br>
 
-    <!-- CALENDAR -->
 
     <div class="card">
 
         <div class="calendar-header">
-            <h2 class="section-title" style="margin:0">Study calendar</h2>
+
+            <h2 class="section-title" style="margin:0">
+                Study calendar
+            </h2>
+
             <span id="calendarMonth"></span>
+
         </div>
 
-        <div class="calendar-grid" id="calendar"></div>
+        <div
+            class="calendar-grid"
+            id="calendar">
+        </div>
 
     </div>
 
-    <button class="history-toggle" onclick="toggleHistory()">
+
+    <button
+        class="history-toggle"
+        onclick="toggleHistory()">
+
         View completed activity history →
+
     </button>
 
+
     <div class="history card" id="history">
-        <h2 class="section-title">Completed activities</h2>
+
+        <h2 class="section-title">
+            Completed activities
+        </h2>
+
         <div id="historyList"></div>
+
     </div>
 
 </section>
 
 
-<!-- ================= TASKS ================= -->
+<!-- TASKS -->
 
 <section id="tasks" class="page">
 
     <div class="page-header">
+
         <h1>Tasks</h1>
-        <p>Add everything you need to get done.</p>
+
+        <p>
+            Add everything you need to get done.
+        </p>
+
     </div>
+
 
     <div class="add-task">
 
-        <input id="taskTitle" placeholder="What do you need to do?">
+        <input
+            id="taskTitle"
+            placeholder="What do you need to do?">
 
         <select id="taskSubject">
+
             <option>English</option>
             <option>Maths</option>
             <option>Biology</option>
             <option>HHD</option>
+
         </select>
 
-        <input id="taskMinutes" type="number" min="1" placeholder="Minutes">
+        <input
+            id="taskMinutes"
+            type="number"
+            min="1"
+            placeholder="Minutes">
 
-        <button class="primary" onclick="addTask()">Add task</button>
+        <button
+            class="primary"
+            onclick="addTask()">
+
+            Add task
+
+        </button>
 
     </div>
+
 
     <div class="filters">
 
-        <button class="filter active" onclick="filterTasks('all', this)">All</button>
-        <button class="filter" onclick="filterTasks('priority', this)">★ Priority</button>
-        <button class="filter" onclick="filterTasks('English', this)">English</button>
-        <button class="filter" onclick="filterTasks('Maths', this)">Maths</button>
-        <button class="filter" onclick="filterTasks('Biology', this)">Biology</button>
-        <button class="filter" onclick="filterTasks('HHD', this)">HHD</button>
+        <button
+            class="filter active"
+            onclick="filterTasks('all',this)">
+            All
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterTasks('priority',this)">
+            ★ Priority
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterTasks('English',this)">
+            English
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterTasks('Maths',this)">
+            Maths
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterTasks('Biology',this)">
+            Biology
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterTasks('HHD',this)">
+            HHD
+        </button>
 
     </div>
 
+
     <div class="card">
+
         <div id="taskList"></div>
+
     </div>
 
 </section>
 
 
-<!-- ================= PLAN ================= -->
+<!-- PLAN -->
 
 <section id="plan" class="page">
 
     <div class="page-header">
+
         <h1>Plan</h1>
-        <p>Choose what you want to work on.</p>
+
+        <p>
+            Choose what you want to work on.
+        </p>
+
     </div>
+
 
     <div class="plan-controls">
 
-        <button onclick="changePlanDate(-1)">←</button>
+        <button onclick="changePlanDate(-1)">
+            ←
+        </button>
 
-        <input type="date" id="planDate" onchange="renderPlan()">
+        <input
+            type="date"
+            id="planDate"
+            onchange="renderPlan()">
 
-        <button onclick="changePlanDate(1)">→</button>
+        <button onclick="changePlanDate(1)">
+            →
+        </button>
 
     </div>
+
 
     <div class="plan-summary">
 
         <div>
-            <div style="font-size:12px;color:#888">Planned study time</div>
-            <div class="plan-total" id="planTotal">0 min</div>
+
+            <div style="font-size:12px;color:#888">
+                Planned study time
+            </div>
+
+            <div
+                class="plan-total"
+                id="planTotal">
+                0 min
+            </div>
+
         </div>
 
         <div id="planDateLabel"></div>
 
     </div>
 
+
     <div class="card">
 
-        <h2 class="section-title">Today's plan</h2>
+        <h2 class="section-title">
+            Planned tasks
+        </h2>
 
         <div id="plannedTasks"></div>
 
     </div>
 
+
     <br>
+
 
     <div class="card">
 
-        <h2 class="section-title">Available tasks</h2>
+        <h2 class="section-title">
+            Available tasks
+        </h2>
 
         <div id="availableTasks"></div>
 
     </div>
 
-    <div class="timer" id="timerPanel" style="display:none">
 
-        <div class="timer-task" id="timerTask"></div>
+    <!-- TIMER -->
 
-        <div class="timer-display" id="timerDisplay">
+    <div
+        class="timer"
+        id="timerPanel"
+        style="display:none">
+
+        <div
+            class="timer-mode"
+            id="timerMode">
+            Focus
+        </div>
+
+        <div
+            class="timer-task"
+            id="timerTask">
+        </div>
+
+        <div
+            class="timer-display"
+            id="timerDisplay">
             25:00
         </div>
 
         <div class="timer-buttons">
 
-            <button onclick="startTimer()">Start</button>
-            <button onclick="pauseTimer()">Pause</button>
-            <button onclick="resetTimer()">Reset</button>
+            <button onclick="startTimer()">
+                Start
+            </button>
+
+            <button onclick="pauseTimer()">
+                Pause
+            </button>
+
+            <button onclick="resetTimer()">
+                Reset
+            </button>
 
         </div>
 
+
         <div class="pomodoro">
 
-            <div style="font-size:12px;color:#888;margin-bottom:5px">
-                Pomodoro presets
+            <div
+                style="font-size:12px;color:#888;margin-bottom:5px">
+                Pomodoro
             </div>
 
-            <button onclick="setTimer(25)">25 min focus</button>
-            <button onclick="setTimer(5)">5 min break</button>
-            <button onclick="setTimer(50)">50 min focus</button>
+            <button onclick="setPomodoro(25)">
+                25 min focus
+            </button>
+
+            <button onclick="setPomodoro(5)">
+                5 min break
+            </button>
+
+            <button onclick="setPomodoro(15)">
+                15 min break
+            </button>
+
+            <button onclick="setPomodoro(50)">
+                50 min focus
+            </button>
 
         </div>
 
@@ -891,980 +1107,205 @@ button.primary:hover {
 
 <nav class="mobile-nav">
 
-    <button class="active" onclick="showPage('home', this)">
+    <button
+        class="active"
+        onclick="showPage('home')">
         ⌂<br>Home
     </button>
 
-    <button onclick="showPage('tasks', this)">
+    <button onclick="showPage('tasks')">
         ☷<br>Tasks
     </button>
 
-    <button onclick="showPage('plan', this)">
+    <button onclick="showPage('plan')">
         □<br>Plan
     </button>
 
 </nav>
 
 
+<!-- EDIT MODAL -->
+
+<div class="modal" id="editModal">
+
+    <div class="modal-box">
+
+        <h2>Edit task</h2>
+
+        <div class="modal-field">
+
+            <label>Task</label>
+
+            <input
+                id="editTitle"
+                style="width:100%">
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>Subject</label>
+
+            <select
+                id="editSubject"
+                style="width:100%">
+
+                <option>English</option>
+                <option>Maths</option>
+                <option>Biology</option>
+                <option>HHD</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>Total estimated minutes</label>
+
+            <input
+                id="editMinutes"
+                type="number"
+                min="1"
+                style="width:100%">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="small-button"
+                onclick="closeEdit()">
+                Cancel
+            </button>
+
+            <button
+                class="primary"
+                onclick="saveEdit()">
+                Save changes
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* =====================================================
+/* =========================================
    DATA
-===================================================== */
+========================================= */
 
-let tasks = JSON.parse(localStorage.getItem("studyTasks") || "[]");
+let tasks =
+    JSON.parse(localStorage.getItem("studyTasksV2") || "[]");
 
-let plans = JSON.parse(localStorage.getItem("studyPlans") || "{}");
+let plans =
+    JSON.parse(localStorage.getItem("studyPlansV2") || "{}");
 
 let studySessions =
-    JSON.parse(localStorage.getItem("studySessions") || "{}");
+    JSON.parse(localStorage.getItem("studySessionsV2") || "{}");
 
 let completedHistory =
-    JSON.parse(localStorage.getItem("completedHistory") || "[]");
+    JSON.parse(localStorage.getItem("completedHistoryV2") || "[]");
 
 let currentFilter = "all";
 
-let timerSeconds = 25 * 60;
+let editingTaskId = null;
+
 let timerInterval = null;
+
+let timerSeconds = 25 * 60;
+
 let timerTaskId = null;
 
+let timerMode = "focus";
 
-/* =====================================================
+let sessionStartedAt = null;
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function save(){
+
+    localStorage.setItem(
+        "studyTasksV2",
+        JSON.stringify(tasks)
+    );
+
+    localStorage.setItem(
+        "studyPlansV2",
+        JSON.stringify(plans)
+    );
+
+    localStorage.setItem(
+        "studySessionsV2",
+        JSON.stringify(studySessions)
+    );
+
+    localStorage.setItem(
+        "completedHistoryV2",
+        JSON.stringify(completedHistory)
+    );
+
+}
+
+
+/* =========================================
    HELPERS
-===================================================== */
+========================================= */
 
-function save() {
+function todayKey(){
 
-    localStorage.setItem("studyTasks", JSON.stringify(tasks));
-    localStorage.setItem("studyPlans", JSON.stringify(plans));
-    localStorage.setItem("studySessions", JSON.stringify(studySessions));
-    localStorage.setItem("completedHistory", JSON.stringify(completedHistory));
-
-}
-
-
-function todayKey() {
-
-    return new Date().toISOString().split("T")[0];
+    return new Date()
+        .toISOString()
+        .split("T")[0];
 
 }
 
 
-function formatMinutes(minutes) {
+function formatMinutes(minutes){
 
-    if (minutes < 60) return minutes + " min";
+    minutes = Math.round(minutes);
+
+    if(minutes < 60)
+        return minutes + " min";
 
     let hours = Math.floor(minutes / 60);
+
     let mins = minutes % 60;
 
-    if (mins === 0) return hours + " hr";
+    if(mins === 0)
+        return hours + " hr";
 
     return hours + " hr " + mins + " min";
 
 }
 
 
-function formatDate(date) {
+function formatDate(date){
 
-    return new Date(date + "T00:00:00").toLocaleDateString(
-        "en-AU",
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
-    );
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function showPage(page, button) {
-
-    document.querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
-
-    document.getElementById(page)
-        .classList.add("active");
-
-    document.querySelectorAll(".nav button, .mobile-nav button")
-        .forEach(b => b.classList.remove("active"));
-
-    document.querySelectorAll(
-        `.nav button[onclick*="'${page}'"], 
-         .mobile-nav button[onclick*="'${page}'"]`
-    ).forEach(b => b.classList.add("active"));
-
-    if (page === "home") renderHome();
-
-    if (page === "tasks") renderTasks();
-
-    if (page === "plan") renderPlan();
-
-}
-
-
-/* =====================================================
-   TASKS
-===================================================== */
-
-function addTask() {
-
-    let title = document.getElementById("taskTitle").value.trim();
-    let subject = document.getElementById("taskSubject").value;
-    let minutes = Number(document.getElementById("taskMinutes").value);
-
-    if (!title || !minutes) {
-        alert("Please enter a task and estimated time.");
-        return;
-    }
-
-    tasks.push({
-        id: Date.now(),
-        title,
-        subject,
-        minutes,
-        priority: false,
-        completed: false,
-        completedDate: null
-    });
-
-    document.getElementById("taskTitle").value = "";
-    document.getElementById("taskMinutes").value = "";
-
-    save();
-    renderTasks();
-    renderHome();
-
-}
-
-
-function togglePriority(id) {
-
-    let task = tasks.find(t => t.id === id);
-
-    if (!task) return;
-
-    task.priority = !task.priority;
-
-    save();
-
-    renderTasks();
-    renderHome();
-    renderPlan();
-
-}
-
-
-function completeTask(id) {
-
-    let task = tasks.find(t => t.id === id);
-
-    if (!task || task.completed) return;
-
-    task.completed = true;
-    task.completedDate = todayKey();
-
-    completedHistory.push({
-        id: task.id,
-        title: task.title,
-        subject: task.subject,
-        minutes: task.minutes,
-        date: todayKey()
-    });
-
-    if (!studySessions[todayKey()])
-        studySessions[todayKey()] = 0;
-
-    studySessions[todayKey()] += task.minutes;
-
-    save();
-
-    renderTasks();
-    renderHome();
-    renderPlan();
-
-}
-
-
-function filterTasks(filter, button) {
-
-    currentFilter = filter;
-
-    document.querySelectorAll(".filter")
-        .forEach(b => b.classList.remove("active"));
-
-    button.classList.add("active");
-
-    renderTasks();
-
-}
-
-
-function renderTasks() {
-
-    let container = document.getElementById("taskList");
-
-    let list = tasks.filter(task => {
-
-        if (currentFilter === "priority")
-            return task.priority && !task.completed;
-
-        if (currentFilter !== "all")
-            return task.subject === currentFilter && !task.completed;
-
-        return !task.completed;
-
-    });
-
-    list.sort((a,b) => {
-
-        if (a.priority !== b.priority)
-            return b.priority - a.priority;
-
-        return a.id - b.id;
-
-    });
-
-    if (!list.length) {
-
-        container.innerHTML =
-            `<div class="empty">No tasks here yet.</div>`;
-
-        return;
-
-    }
-
-    container.innerHTML = list.map(task => `
-
-        <div class="task">
-
-            <button
-                class="star ${task.priority ? "priority" : ""}"
-                onclick="togglePriority(${task.id})">
-                ★
-            </button>
-
-            <div
-                class="checkbox"
-                onclick="completeTask(${task.id})">
-            </div>
-
-            <div class="task-info">
-
-                <div class="task-title">
-                    ${escapeHTML(task.title)}
-                </div>
-
-                <div class="task-subject">
-                    ${task.subject}
-                </div>
-
-            </div>
-
-            <div class="task-time">
-                ${task.minutes} min
-            </div>
-
-        </div>
-
-    `).join("");
-
-}
-
-
-/* =====================================================
-   PLAN
-===================================================== */
-
-function getPlan(date) {
-
-    if (!plans[date]) plans[date] = [];
-
-    return plans[date];
-
-}
-
-
-function addToPlan(id) {
-
-    let date = document.getElementById("planDate").value;
-
-    let plan = getPlan(date);
-
-    if (!plan.includes(id)) {
-
-        plan.push(id);
-
-    }
-
-    save();
-    renderPlan();
-
-}
-
-
-function removeFromPlan(id) {
-
-    let date = document.getElementById("planDate").value;
-
-    plans[date] = getPlan(date)
-        .filter(taskId => taskId !== id);
-
-    save();
-    renderPlan();
-
-}
-
-
-function changePlanDate(amount) {
-
-    let input = document.getElementById("planDate");
-
-    let date = new Date(input.value + "T00:00:00");
-
-    date.setDate(date.getDate() + amount);
-
-    input.value = date.toISOString().split("T")[0];
-
-    renderPlan();
-
-}
-
-
-function renderPlan() {
-
-    let input = document.getElementById("planDate");
-
-    if (!input.value)
-        input.value = todayKey();
-
-    let date = input.value;
-
-    document.getElementById("planDateLabel")
-        .innerText = formatDate(date);
-
-    let plan = getPlan(date);
-
-    let plannedTasks = plan
-        .map(id => tasks.find(t => t.id === id))
-        .filter(Boolean)
-        .filter(t => !t.completed);
-
-    let total = plannedTasks
-        .reduce((sum, task) => sum + task.minutes, 0);
-
-    document.getElementById("planTotal")
-        .innerText = formatMinutes(total);
-
-    let plannedContainer =
-        document.getElementById("plannedTasks");
-
-    if (!plannedTasks.length) {
-
-        plannedContainer.innerHTML =
-            `<div class="empty">
-                Nothing planned yet. Add tasks below.
-            </div>`;
-
-    } else {
-
-        plannedContainer.innerHTML =
-            plannedTasks.map(task => `
-
-            <div class="task">
-
-                <div class="task-info">
-
-                    <div class="task-title">
-                        ${escapeHTML(task.title)}
-                    </div>
-
-                    <div class="task-subject">
-                        ${task.subject} · ${task.minutes} min
-                    </div>
-
-                </div>
-
-                <button
-                    class="start-button"
-                    onclick="openTimer(${task.id})">
-                    Start
-                </button>
-
-                <button
-                    class="remove-button"
-                    onclick="removeFromPlan(${task.id})">
-                    Remove
-                </button>
-
-            </div>
-
-        `).join("");
-
-    }
-
-
-    let available =
-        tasks.filter(task =>
-            !task.completed &&
-            !plan.includes(task.id)
-        );
-
-    available.sort((a,b) =>
-        Number(b.priority) - Number(a.priority)
-    );
-
-    let availableContainer =
-        document.getElementById("availableTasks");
-
-    if (!available.length) {
-
-        availableContainer.innerHTML =
-            `<div class="empty">
-                No more available tasks.
-            </div>`;
-
-    } else {
-
-        availableContainer.innerHTML =
-            available.map(task => `
-
-            <div class="available-task">
-
-                <button
-                    class="star ${task.priority ? "priority" : ""}"
-                    onclick="togglePriority(${task.id})">
-                    ★
-                </button>
-
-                <div class="task-info">
-
-                    <div class="task-title">
-                        ${escapeHTML(task.title)}
-                    </div>
-
-                    <div class="task-subject">
-                        ${task.subject} · ${task.minutes} min
-                    </div>
-
-                </div>
-
-                <button
-                    class="add-button"
-                    onclick="addToPlan(${task.id})">
-                    + Add
-                </button>
-
-            </div>
-
-        `).join("");
-
-    }
-
-}
-
-
-/* =====================================================
-   TIMER
-===================================================== */
-
-function openTimer(id) {
-
-    let task = tasks.find(t => t.id === id);
-
-    if (!task) return;
-
-    timerTaskId = id;
-
-    document.getElementById("timerPanel")
-        .style.display = "block";
-
-    document.getElementById("timerTask")
-        .innerText = task.title;
-
-    setTimer(
-        Math.min(task.minutes, 25)
-    );
-
-    document.getElementById("timerPanel")
-        .scrollIntoView({behavior:"smooth"});
-
-}
-
-
-function setTimer(minutes) {
-
-    pauseTimer();
-
-    timerSeconds = minutes * 60;
-
-    updateTimerDisplay();
-
-}
-
-
-function startTimer() {
-
-    if (timerInterval) return;
-
-    timerInterval = setInterval(() => {
-
-        timerSeconds--;
-
-        updateTimerDisplay();
-
-        if (timerSeconds <= 0) {
-
-            clearInterval(timerInterval);
-            timerInterval = null;
-
-            timerFinished();
-
-        }
-
-    }, 1000);
-
-}
-
-
-function pauseTimer() {
-
-    if (timerInterval) {
-
-        clearInterval(timerInterval);
-        timerInterval = null;
-
-    }
-
-}
-
-
-function resetTimer() {
-
-    pauseTimer();
-
-    timerSeconds = 25 * 60;
-
-    updateTimerDisplay();
-
-}
-
-
-function updateTimerDisplay() {
-
-    let minutes =
-        Math.floor(timerSeconds / 60)
-            .toString()
-            .padStart(2,"0");
-
-    let seconds =
-        (timerSeconds % 60)
-            .toString()
-            .padStart(2,"0");
-
-    document.getElementById("timerDisplay")
-        .innerText = `${minutes}:${seconds}`;
-
-}
-
-
-function timerFinished() {
-
-    if (!timerTaskId) return;
-
-    let task = tasks.find(t => t.id === timerTaskId);
-
-    if (task && !task.completed) {
-
-        completeTask(task.id);
-
-        alert("Timer finished! Task marked as completed.");
-
-    }
-
-    timerTaskId = null;
-
-}
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-function renderHome() {
-
-    let today = todayKey();
-
-    document.getElementById("todayText")
-        .innerText = formatDate(today);
-
-    let completedToday =
-        tasks.filter(t =>
-            t.completed &&
-            t.completedDate === today
-        );
-
-    let remaining =
-        tasks.filter(t => !t.completed);
-
-    document.getElementById("completedStat")
-        .innerText = completedToday.length;
-
-    document.getElementById("remainingStat")
-        .innerText = remaining.length;
-
-    document.getElementById("todayStudyStat")
-        .innerText =
-        formatMinutes(studySessions[today] || 0);
-
-    document.getElementById("weekStudyStat")
-        .innerText =
-        formatMinutes(getWeeklyMinutes());
-
-
-    let totalToday =
-        tasks.filter(t => {
-            return !t.completed ||
-                t.completedDate === today;
-        }).length;
-
-    let completedCount =
-        completedToday.length;
-
-    let percentage =
-        totalToday ?
-        Math.round((completedCount / totalToday) * 100)
-        : 0;
-
-    document.getElementById("progressText")
-        .innerText =
-        `${completedCount} / ${totalToday} tasks completed`;
-
-    document.getElementById("progressFill")
-        .style.width = percentage + "%";
-
-
-    renderHomeTasks();
-    renderWeeklyChart();
-    renderCalendar();
-    renderHistory();
-
-}
-
-
-function renderHomeTasks() {
-
-    let today = todayKey();
-
-    let plannedIds = getPlan(today);
-
-    let list = plannedIds
-        .map(id => tasks.find(t => t.id === id))
-        .filter(Boolean);
-
-    if (!list.length) {
-
-        list = tasks
-            .filter(t => !t.completed)
-            .slice(0,5);
-
-    }
-
-    let container =
-        document.getElementById("homeTasks");
-
-    if (!list.length) {
-
-        container.innerHTML =
-            `<div class="empty">No tasks for today 🎉</div>`;
-
-        return;
-
-    }
-
-    container.innerHTML =
-        list.map(task => `
-
-        <div class="task">
-
-            <div
-                class="checkbox"
-                onclick="completeTask(${task.id})">
-            </div>
-
-            <div class="task-info">
-
-                <div class="task-title">
-                    ${escapeHTML(task.title)}
-                </div>
-
-                <div class="task-subject">
-                    ${task.subject}
-                </div>
-
-            </div>
-
-            <div class="task-time">
-                ${task.minutes} min
-            </div>
-
-        </div>
-
-    `).join("");
-
-}
-
-
-/* =====================================================
-   WEEKLY GRAPH
-===================================================== */
-
-function getWeeklyMinutes() {
-
-    let total = 0;
-    let date = new Date();
-
-    for (let i = 0; i < 7; i++) {
-
-        let key =
-            date.toISOString().split("T")[0];
-
-        total += studySessions[key] || 0;
-
-        date.setDate(date.getDate() - 1);
-
-    }
-
-    return total;
-
-}
-
-
-function renderWeeklyChart() {
-
-    let container =
-        document.getElementById("weeklyChart");
-
-    let values = [];
-
-    let date = new Date();
-
-    for (let i = 6; i >= 0; i--) {
-
-        let d = new Date();
-
-        d.setDate(date.getDate() - i);
-
-        let key =
-            d.toISOString().split("T")[0];
-
-        values.push({
-            key,
-            minutes: studySessions[key] || 0,
-            day: d.toLocaleDateString(
-                "en-AU",
-                {weekday:"short"}
-            )
-        });
-
-    }
-
-    let max =
-        Math.max(...values.map(v => v.minutes), 1);
-
-    container.innerHTML =
-        values.map(v => {
-
-            let height =
-                Math.max((v.minutes / max) * 150, 3);
-
-            return `
-
-                <div class="bar-container">
-
-                    <div class="bar-value">
-                        ${v.minutes}
-                    </div>
-
-                    <div
-                        class="bar"
-                        style="height:${height}px">
-                    </div>
-
-                    <div class="bar-label">
-                        ${v.day}
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-
-function renderCalendar() {
-
-    let container =
-        document.getElementById("calendar");
-
-    let now = new Date();
-
-    document.getElementById("calendarMonth")
-        .innerText =
-        now.toLocaleDateString(
+    return new Date(date + "T00:00:00")
+        .toLocaleDateString(
             "en-AU",
-            {month:"long", year:"numeric"}
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
         );
 
-    let year = now.getFullYear();
-    let month = now.getMonth();
-
-    let first =
-        new Date(year, month, 1);
-
-    let last =
-        new Date(year, month + 1, 0);
-
-    let startDay =
-        first.getDay();
-
-    let cells = "";
-
-    ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-        .forEach(day => {
-
-            cells +=
-                `<div class="day-name">${day}</div>`;
-
-        });
-
-
-    for (let i = 0; i < startDay; i++) {
-
-        cells += `<div></div>`;
-
-    }
-
-
-    for (let day = 1; day <= last.getDate(); day++) {
-
-        let date =
-            new Date(year, month, day);
-
-        let key =
-            date.toISOString().split("T")[0];
-
-        let minutes =
-            studySessions[key] || 0;
-
-        let intensity = "";
-
-        if (minutes >= 120) intensity = "intensity-4";
-        else if (minutes >= 90) intensity = "intensity-3";
-        else if (minutes >= 45) intensity = "intensity-2";
-        else if (minutes > 0) intensity = "intensity-1";
-
-        cells += `
-
-            <div class="day ${intensity}">
-
-                <div class="day-number">
-                    ${day}
-                </div>
-
-                <div class="study-minutes">
-                    ${minutes ? formatMinutes(minutes) : "—"}
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-    container.innerHTML = cells;
-
 }
 
 
-/* =====================================================
-   HISTORY
-===================================================== */
-
-function renderHistory() {
-
-    let container =
-        document.getElementById("historyList");
-
-    if (!completedHistory.length) {
-
-        container.innerHTML =
-            `<div class="empty">
-                No completed activities yet.
-            </div>`;
-
-        return;
-
-    }
-
-    let history =
-        [...completedHistory].reverse();
-
-    container.innerHTML =
-        history.map(item => `
-
-        <div class="task">
-
-            <div class="checkbox done"></div>
-
-            <div class="task-info">
-
-                <div class="task-title completed">
-                    ${escapeHTML(item.title)}
-                </div>
-
-                <div class="task-subject">
-                    ${item.subject} · ${formatDate(item.date)}
-                </div>
-
-            </div>
-
-            <div class="task-time">
-                ${item.minutes} min
-            </div>
-
-        </div>
-
-    `).join("");
-
-}
-
-
-function toggleHistory() {
-
-    document
-        .getElementById("history")
-        .classList.toggle("show");
-
-}
-
-
-/* =====================================================
-   SECURITY / TEXT
-===================================================== */
-
-function escapeHTML(text) {
+function escapeHTML(text){
 
     return text
         .replaceAll("&","&amp;")
@@ -1876,12 +1317,1561 @@ function escapeHTML(text) {
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================
+   NAVIGATION
+========================================= */
 
-document.getElementById("planDate").value =
-    todayKey();
+function showPage(page){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p =>
+            p.classList.remove("active")
+        );
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(
+            ".nav button,.mobile-nav button"
+        )
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(
+            `[onclick="showPage('${page}')"]`
+        )
+        .forEach(b =>
+            b.classList.add("active")
+        );
+
+    if(page === "home")
+        renderHome();
+
+    if(page === "tasks")
+        renderTasks();
+
+    if(page === "plan")
+        renderPlan();
+
+}
+
+
+/* =========================================
+   ADD TASK
+========================================= */
+
+function addTask(){
+
+    let title =
+        document
+            .getElementById("taskTitle")
+            .value
+            .trim();
+
+    let subject =
+        document
+            .getElementById("taskSubject")
+            .value;
+
+    let minutes =
+        Number(
+            document
+                .getElementById("taskMinutes")
+                .value
+        );
+
+    if(!title || !minutes){
+
+        alert(
+            "Please enter a task and estimated time."
+        );
+
+        return;
+
+    }
+
+    tasks.push({
+
+        id:Date.now(),
+
+        title:title,
+
+        subject:subject,
+
+        estimated:minutes,
+
+        remaining:minutes,
+
+        completed:false,
+
+        priority:false,
+
+        created:todayKey()
+
+    });
+
+    document
+        .getElementById("taskTitle")
+        .value="";
+
+    document
+        .getElementById("taskMinutes")
+        .value="";
+
+    save();
+
+    renderTasks();
+
+    renderHome();
+
+    renderPlan();
+
+}
+
+
+/* =========================================
+   EDIT TASK
+========================================= */
+
+function openEdit(id){
+
+    let task =
+        tasks.find(t => t.id === id);
+
+    if(!task) return;
+
+    editingTaskId = id;
+
+    document
+        .getElementById("editTitle")
+        .value = task.title;
+
+    document
+        .getElementById("editSubject")
+        .value = task.subject;
+
+    document
+        .getElementById("editMinutes")
+        .value = task.estimated;
+
+    document
+        .getElementById("editModal")
+        .classList.add("show");
+
+}
+
+
+function closeEdit(){
+
+    editingTaskId = null;
+
+    document
+        .getElementById("editModal")
+        .classList.remove("show");
+
+}
+
+
+function saveEdit(){
+
+    let task =
+        tasks.find(t => t.id === editingTaskId);
+
+    if(!task) return;
+
+    let newTitle =
+        document
+            .getElementById("editTitle")
+            .value
+            .trim();
+
+    let newSubject =
+        document
+            .getElementById("editSubject")
+            .value;
+
+    let newEstimated =
+        Number(
+            document
+                .getElementById("editMinutes")
+                .value
+        );
+
+    if(!newTitle || !newEstimated){
+
+        alert("Please enter all fields.");
+
+        return;
+
+    }
+
+    let alreadyCompleted =
+        task.estimated - task.remaining;
+
+    task.title = newTitle;
+
+    task.subject = newSubject;
+
+    task.estimated = newEstimated;
+
+    task.remaining =
+        Math.max(
+            0,
+            newEstimated - alreadyCompleted
+        );
+
+    if(task.remaining <= 0)
+        task.completed = true;
+
+    save();
+
+    closeEdit();
+
+    renderTasks();
+
+    renderHome();
+
+    renderPlan();
+
+}
+
+
+/* =========================================
+   DELETE TASK
+========================================= */
+
+function deleteTask(id){
+
+    let task =
+        tasks.find(t => t.id === id);
+
+    if(!task) return;
+
+    if(
+        !confirm(
+            "Delete this task?"
+        )
+    ) return;
+
+    tasks =
+        tasks.filter(t => t.id !== id);
+
+    Object.keys(plans).forEach(date => {
+
+        plans[date] =
+            plans[date]
+                .filter(taskId =>
+                    taskId !== id
+                );
+
+    });
+
+    save();
+
+    renderTasks();
+
+    renderHome();
+
+    renderPlan();
+
+}
+
+
+/* =========================================
+   PRIORITY
+========================================= */
+
+function togglePriority(id){
+
+    let task =
+        tasks.find(t => t.id === id);
+
+    if(!task) return;
+
+    task.priority = !task.priority;
+
+    save();
+
+    renderTasks();
+
+    renderPlan();
+
+}
+
+
+/* =========================================
+   FILTER
+========================================= */
+
+function filterTasks(filter,button){
+
+    currentFilter = filter;
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderTasks();
+
+}
+
+
+/* =========================================
+   RENDER TASKS
+========================================= */
+
+function renderTasks(){
+
+    let container =
+        document.getElementById("taskList");
+
+    let list =
+        tasks.filter(task => {
+
+            if(currentFilter === "priority")
+                return task.priority;
+
+            if(
+                currentFilter !== "all"
+            )
+                return task.subject === currentFilter;
+
+            return true;
+
+        });
+
+    list.sort((a,b) => {
+
+        if(a.completed !== b.completed)
+            return Number(a.completed) -
+                   Number(b.completed);
+
+        if(a.priority !== b.priority)
+            return Number(b.priority) -
+                   Number(a.priority);
+
+        return a.id - b.id;
+
+    });
+
+
+    if(!list.length){
+
+        container.innerHTML =
+            `<div class="empty">
+                No tasks yet.
+            </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list.map(task => {
+
+            let done =
+                task.estimated -
+                task.remaining;
+
+            let percentage =
+                task.estimated
+                ? Math.min(
+                    100,
+                    (done / task.estimated) * 100
+                  )
+                : 0;
+
+            return `
+
+            <div class="task">
+
+                <button
+                    class="star ${
+                        task.priority
+                        ? "priority"
+                        : ""
+                    }"
+                    onclick="togglePriority(${task.id})">
+                    ★
+                </button>
+
+
+                <div class="task-info">
+
+                    <div class="task-title">
+
+                        ${escapeHTML(task.title)}
+
+                    </div>
+
+                    <div class="task-subject">
+
+                        ${task.subject}
+
+                    </div>
+
+                    <div class="progress-mini">
+
+                        <div
+                            class="progress-mini-fill"
+                            style="width:${percentage}%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="task-time">
+
+                    ${
+                        task.completed
+                        ? "Completed"
+                        : task.remaining + " min left"
+                    }
+
+                </div>
+
+
+                <button
+                    class="small-button"
+                    onclick="openEdit(${task.id})">
+                    Edit
+                </button>
+
+
+                <button
+                    class="small-button danger"
+                    onclick="deleteTask(${task.id})">
+                    Delete
+                </button>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   PLAN DATA
+========================================= */
+
+function getPlan(date){
+
+    if(!plans[date])
+        plans[date] = [];
+
+    return plans[date];
+
+}
+
+
+function addToPlan(id){
+
+    let date =
+        document
+            .getElementById("planDate")
+            .value;
+
+    let plan =
+        getPlan(date);
+
+    if(!plan.includes(id))
+        plan.push(id);
+
+    save();
+
+    renderPlan();
+
+}
+
+
+function removeFromPlan(id){
+
+    let date =
+        document
+            .getElementById("planDate")
+            .value;
+
+    plans[date] =
+        getPlan(date)
+            .filter(taskId =>
+                taskId !== id
+            );
+
+    save();
+
+    renderPlan();
+
+}
+
+
+function changePlanDate(amount){
+
+    let input =
+        document.getElementById("planDate");
+
+    let date =
+        new Date(
+            input.value + "T00:00:00"
+        );
+
+    date.setDate(
+        date.getDate() + amount
+    );
+
+    input.value =
+        date.toISOString()
+            .split("T")[0];
+
+    renderPlan();
+
+}
+
+
+/* =========================================
+   RENDER PLAN
+========================================= */
+
+function renderPlan(){
+
+    let input =
+        document.getElementById("planDate");
+
+    if(!input.value)
+        input.value = todayKey();
+
+    let date = input.value;
+
+    document
+        .getElementById("planDateLabel")
+        .innerText = formatDate(date);
+
+
+    let plan =
+        getPlan(date);
+
+
+    let planned =
+        plan
+            .map(id =>
+                tasks.find(t => t.id === id)
+            )
+            .filter(Boolean)
+            .filter(t => !t.completed);
+
+
+    let total =
+        planned.reduce(
+            (sum,t) =>
+                sum + t.remaining,
+            0
+        );
+
+
+    document
+        .getElementById("planTotal")
+        .innerText =
+        formatMinutes(total);
+
+
+    let plannedContainer =
+        document
+            .getElementById("plannedTasks");
+
+
+    if(!planned.length){
+
+        plannedContainer.innerHTML =
+            `<div class="empty">
+                Nothing planned yet.
+            </div>`;
+
+    }else{
+
+        plannedContainer.innerHTML =
+            planned.map(task => `
+
+            <div class="task">
+
+                <div class="task-info">
+
+                    <div class="task-title">
+                        ${escapeHTML(task.title)}
+                    </div>
+
+                    <div class="task-subject">
+
+                        ${task.subject} ·
+                        ${task.remaining} min remaining
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="start-button"
+                    onclick="openTimer(${task.id})">
+
+                    Start
+
+                </button>
+
+
+                <button
+                    class="remove-button"
+                    onclick="removeFromPlan(${task.id})">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+            `).join("");
+
+    }
+
+
+    let available =
+        tasks.filter(task =>
+            !task.completed &&
+            !plan.includes(task.id)
+        );
+
+
+    available.sort(
+        (a,b) =>
+            Number(b.priority) -
+            Number(a.priority)
+    );
+
+
+    let availableContainer =
+        document
+            .getElementById("availableTasks");
+
+
+    if(!available.length){
+
+        availableContainer.innerHTML =
+            `<div class="empty">
+                No more available tasks.
+            </div>`;
+
+    }else{
+
+        availableContainer.innerHTML =
+            available.map(task => `
+
+            <div class="available-task">
+
+                <button
+                    class="star ${
+                        task.priority
+                        ? "priority"
+                        : ""
+                    }"
+                    onclick="togglePriority(${task.id})">
+                    ★
+                </button>
+
+
+                <div class="task-info">
+
+                    <div class="task-title">
+                        ${escapeHTML(task.title)}
+                    </div>
+
+                    <div class="task-subject">
+
+                        ${task.subject} ·
+                        ${task.remaining} min remaining
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="add-button"
+                    onclick="addToPlan(${task.id})">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+            `).join("");
+
+    }
+
+}
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+function openTimer(id){
+
+    let task =
+        tasks.find(t => t.id === id);
+
+    if(!task) return;
+
+    timerTaskId = id;
+
+    timerMode = "focus";
+
+    setPomodoro(
+        Math.min(
+            25,
+            task.remaining
+        )
+    );
+
+    document
+        .getElementById("timerTask")
+        .innerText = task.title;
+
+    document
+        .getElementById("timerPanel")
+        .style.display = "block";
+
+    document
+        .getElementById("timerPanel")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/*
+    Timer works in real time.
+
+    Every time the timer is paused,
+    the actual amount of time studied
+    is added to the task.
+*/
+
+function startTimer(){
+
+    if(timerInterval)
+        return;
+
+    if(timerMode === "break"){
+
+        timerInterval =
+            setInterval(() => {
+
+                timerSeconds--;
+
+                updateTimerDisplay();
+
+                if(timerSeconds <= 0){
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    timerInterval = null;
+
+                    alert(
+                        "Break finished! Ready to study?"
+                    );
+
+                }
+
+            },1000);
+
+        return;
+
+    }
+
+
+    sessionStartedAt =
+        Date.now();
+
+    timerInterval =
+        setInterval(() => {
+
+            timerSeconds--;
+
+            updateTimerDisplay();
+
+            if(timerSeconds <= 0){
+
+                recordActualStudy();
+
+                clearInterval(
+                    timerInterval
+                );
+
+                timerInterval = null;
+
+                timerFinished();
+
+            }
+
+        },1000);
+
+}
+
+
+function pauseTimer(){
+
+    if(!timerInterval)
+        return;
+
+    if(timerMode === "focus")
+        recordActualStudy();
+
+    clearInterval(
+        timerInterval
+    );
+
+    timerInterval = null;
+
+}
+
+
+function recordActualStudy(){
+
+    if(!sessionStartedAt)
+        return;
+
+    let elapsed =
+        Math.floor(
+            (Date.now() -
+             sessionStartedAt)
+            / 1000
+        );
+
+    let minutes =
+        Math.floor(elapsed / 60);
+
+    if(minutes <= 0){
+
+        sessionStartedAt = null;
+
+        return;
+
+    }
+
+
+    if(!studySessions[todayKey()])
+        studySessions[todayKey()] = 0;
+
+    studySessions[todayKey()] += minutes;
+
+
+    if(timerTaskId){
+
+        let task =
+            tasks.find(
+                t => t.id === timerTaskId
+            );
+
+        if(task){
+
+            task.remaining =
+                Math.max(
+                    0,
+                    task.remaining - minutes
+                );
+
+
+            if(task.remaining === 0){
+
+                task.completed = true;
+
+                completedHistory.push({
+
+                    id:task.id,
+
+                    title:task.title,
+
+                    subject:task.subject,
+
+                    minutes:task.estimated,
+
+                    date:todayKey()
+
+                });
+
+
+                Object.keys(plans)
+                    .forEach(date => {
+
+                        plans[date] =
+                            plans[date]
+                                .filter(
+                                    id =>
+                                    id !== task.id
+                                );
+
+                    });
+
+            }
+
+        }
+
+    }
+
+
+    sessionStartedAt = null;
+
+    save();
+
+    renderHome();
+
+    renderTasks();
+
+    renderPlan();
+
+}
+
+
+function timerFinished(){
+
+    if(timerMode === "focus"){
+
+        alert(
+            "Focus session finished! 🎉"
+        );
+
+    }else{
+
+        alert(
+            "Break finished! Time to get back to it."
+        );
+
+    }
+
+    timerTaskId = null;
+
+}
+
+
+function resetTimer(){
+
+    pauseTimer();
+
+    timerSeconds =
+        timerMode === "break"
+        ? 5 * 60
+        : 25 * 60;
+
+    updateTimerDisplay();
+
+}
+
+
+function setPomodoro(minutes){
+
+    pauseTimer();
+
+    timerMode =
+        minutes <= 15
+        ? "break"
+        : "focus";
+
+    timerSeconds =
+        minutes * 60;
+
+    document
+        .getElementById("timerMode")
+        .innerText =
+        timerMode === "focus"
+        ? "Focus"
+        : "Break";
+
+    updateTimerDisplay();
+
+}
+
+
+function updateTimerDisplay(){
+
+    let mins =
+        Math.floor(
+            timerSeconds / 60
+        )
+        .toString()
+        .padStart(2,"0");
+
+    let secs =
+        (timerSeconds % 60)
+        .toString()
+        .padStart(2,"0");
+
+    document
+        .getElementById("timerDisplay")
+        .innerText =
+        `${mins}:${secs}`;
+
+}
+
+
+/* =========================================
+   HOME
+========================================= */
+
+function renderHome(){
+
+    let today = todayKey();
+
+    document
+        .getElementById("todayText")
+        .innerText =
+        formatDate(today);
+
+
+    let completed =
+        tasks.filter(
+            t =>
+            t.completed &&
+            t.created <= today
+        );
+
+
+    let remaining =
+        tasks.filter(
+            t =>
+            !t.completed
+        );
+
+
+    document
+        .getElementById("completedStat")
+        .innerText =
+        completed.length;
+
+
+    document
+        .getElementById("remainingStat")
+        .innerText =
+        remaining.length;
+
+
+    document
+        .getElementById("todayStudyStat")
+        .innerText =
+        formatMinutes(
+            studySessions[today] || 0
+        );
+
+
+    document
+        .getElementById("weekStudyStat")
+        .innerText =
+        formatMinutes(
+            getWeeklyMinutes()
+        );
+
+
+    let todayTasks =
+        tasks.filter(
+            t =>
+            t.created <= today
+        );
+
+
+    let total =
+        todayTasks.length;
+
+
+    let done =
+        todayTasks.filter(
+            t => t.completed
+        ).length;
+
+
+    let percentage =
+        total
+        ? Math.round(
+            (done / total) * 100
+          )
+        : 0;
+
+
+    document
+        .getElementById("progressText")
+        .innerText =
+        `${done} / ${total} tasks completed`;
+
+
+    document
+        .getElementById("progressFill")
+        .style.width =
+        percentage + "%";
+
+
+    renderHomeTasks();
+
+    renderWeeklyChart();
+
+    renderCalendar();
+
+    renderHistory();
+
+}
+
+
+function renderHomeTasks(){
+
+    let today = todayKey();
+
+    let plannedIds =
+        getPlan(today);
+
+
+    let list =
+        plannedIds
+            .map(id =>
+                tasks.find(
+                    t => t.id === id
+                )
+            )
+            .filter(Boolean)
+            .filter(t => !t.completed);
+
+
+    if(!list.length){
+
+        list =
+            tasks
+                .filter(
+                    t => !t.completed
+                )
+                .slice(0,5);
+
+    }
+
+
+    let container =
+        document
+            .getElementById("homeTasks");
+
+
+    if(!list.length){
+
+        container.innerHTML =
+            `<div class="empty">
+                No tasks for today 🎉
+            </div>`;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list.map(task => {
+
+            let done =
+                task.estimated -
+                task.remaining;
+
+            let percentage =
+                task.estimated
+                ? (done / task.estimated) * 100
+                : 0;
+
+
+            return `
+
+            <div class="task">
+
+                <div class="task-info">
+
+                    <div class="task-title">
+
+                        ${escapeHTML(task.title)}
+
+                    </div>
+
+                    <div class="task-subject">
+
+                        ${task.subject} ·
+                        ${task.remaining} min left
+
+                    </div>
+
+                    <div class="progress-mini">
+
+                        <div
+                            class="progress-mini-fill"
+                            style="width:${percentage}%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   WEEKLY STUDY
+========================================= */
+
+function getWeeklyMinutes(){
+
+    let total = 0;
+
+    let date = new Date();
+
+    for(let i=0;i<7;i++){
+
+        let key =
+            date
+                .toISOString()
+                .split("T")[0];
+
+        total +=
+            studySessions[key] || 0;
+
+        date.setDate(
+            date.getDate() - 1
+        );
+
+    }
+
+    return total;
+
+}
+
+
+function renderWeeklyChart(){
+
+    let container =
+        document
+            .getElementById("weeklyChart");
+
+
+    let values = [];
+
+    for(let i=6;i>=0;i--){
+
+        let d = new Date();
+
+        d.setDate(
+            d.getDate() - i
+        );
+
+        let key =
+            d.toISOString()
+             .split("T")[0];
+
+
+        values.push({
+
+            minutes:
+                studySessions[key] || 0,
+
+            day:
+                d.toLocaleDateString(
+                    "en-AU",
+                    {weekday:"short"}
+                )
+
+        });
+
+    }
+
+
+    let max =
+        Math.max(
+            ...values.map(
+                v => v.minutes
+            ),
+            1
+        );
+
+
+    container.innerHTML =
+        values.map(v => {
+
+            let height =
+                Math.max(
+                    (v.minutes / max) * 150,
+                    3
+                );
+
+
+            return `
+
+            <div class="bar-container">
+
+                <div class="bar-value">
+                    ${v.minutes}
+                </div>
+
+                <div
+                    class="bar"
+                    style="height:${height}px">
+                </div>
+
+                <div class="bar-label">
+                    ${v.day}
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   CALENDAR
+========================================= */
+
+function renderCalendar(){
+
+    let container =
+        document
+            .getElementById("calendar");
+
+
+    let now = new Date();
+
+    document
+        .getElementById("calendarMonth")
+        .innerText =
+        now.toLocaleDateString(
+            "en-AU",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    let year =
+        now.getFullYear();
+
+    let month =
+        now.getMonth();
+
+
+    let first =
+        new Date(
+            year,
+            month,
+            1
+        );
+
+
+    let last =
+        new Date(
+            year,
+            month + 1,
+            0
+        );
+
+
+    let cells = "";
+
+
+    [
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+    ].forEach(day => {
+
+        cells +=
+            `<div class="day-name">
+                ${day}
+            </div>`;
+
+    });
+
+
+    for(
+        let i=0;
+        i<first.getDay();
+        i++
+    ){
+
+        cells += "<div></div>";
+
+    }
+
+
+    for(
+        let day=1;
+        day<=last.getDate();
+        day++
+    ){
+
+        let date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        let key =
+            date
+                .toISOString()
+                .split("T")[0];
+
+
+        let minutes =
+            studySessions[key] || 0;
+
+
+        let intensity = "";
+
+
+        if(minutes >= 120)
+            intensity = "intensity-4";
+
+        else if(minutes >= 90)
+            intensity = "intensity-3";
+
+        else if(minutes >= 45)
+            intensity = "intensity-2";
+
+        else if(minutes > 0)
+            intensity = "intensity-1";
+
+
+        cells += `
+
+            <div class="day ${intensity}">
+
+                <div>
+                    ${day}
+                </div>
+
+                <div class="study-minutes">
+                    ${
+                        minutes
+                        ? formatMinutes(minutes)
+                        : "—"
+                    }
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML = cells;
+
+}
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+function renderHistory(){
+
+    let container =
+        document
+            .getElementById("historyList");
+
+
+    if(!completedHistory.length){
+
+        container.innerHTML =
+            `<div class="empty">
+                No completed activities yet.
+            </div>`;
+
+        return;
+
+    }
+
+
+    let history =
+        [...completedHistory]
+            .reverse();
+
+
+    container.innerHTML =
+        history.map(item => `
+
+        <div class="task">
+
+            <div class="task-info">
+
+                <div class="task-title">
+                    ${escapeHTML(item.title)}
+                </div>
+
+                <div class="task-subject">
+
+                    ${item.subject} ·
+                    ${formatDate(item.date)}
+
+                </div>
+
+            </div>
+
+            <div class="task-time">
+                ${item.minutes} min
+            </div>
+
+        </div>
+
+        `).join("");
+
+}
+
+
+function toggleHistory(){
+
+    document
+        .getElementById("history")
+        .classList.toggle("show");
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+document
+    .getElementById("planDate")
+    .value = todayKey();
 
 renderHome();
 
