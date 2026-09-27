@@ -190,20 +190,6 @@ body{
     white-space:nowrap;
 }
 
-.progress-mini{
-    margin-top:7px;
-    height:5px;
-    background:#eee;
-    border-radius:10px;
-    overflow:hidden;
-    width:100%;
-}
-
-.progress-mini-fill{
-    height:100%;
-    background:var(--pink);
-}
-
 .star{
     border:0;
     background:none;
@@ -747,7 +733,7 @@ select:focus{
 
 <main class="main">
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
 <section id="home" class="page active">
 
@@ -759,41 +745,85 @@ select:focus{
 
     </div>
 
+
     <div class="stats">
 
         <div class="card">
-            <div class="stat-label">Tasks completed</div>
-            <div class="stat-number" id="completedStat">0</div>
+
+            <div class="stat-label">
+                Tasks completed
+            </div>
+
+            <div
+                class="stat-number"
+                id="completedStat">
+                0
+            </div>
+
         </div>
 
-        <div class="card">
-            <div class="stat-label">Study time today</div>
-            <div class="stat-number" id="todayStudyStat">0 min</div>
-        </div>
 
         <div class="card">
-            <div class="stat-label">Study this week</div>
-            <div class="stat-number" id="weekStudyStat">0 min</div>
+
+            <div class="stat-label">
+                Study time today
+            </div>
+
+            <div
+                class="stat-number"
+                id="todayStudyStat">
+                0 min
+            </div>
+
         </div>
 
+
         <div class="card">
-            <div class="stat-label">Tasks remaining</div>
-            <div class="stat-number" id="remainingStat">0</div>
+
+            <div class="stat-label">
+                Study this week
+            </div>
+
+            <div
+                class="stat-number"
+                id="weekStudyStat">
+                0 min
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-label">
+                Tasks remaining
+            </div>
+
+            <div
+                class="stat-number"
+                id="remainingStat">
+                0
+            </div>
+
         </div>
 
     </div>
+
 
     <div class="card progress-card">
 
         <div class="progress-top">
 
-            <strong>Today's progress</strong>
+            <strong>
+                Today's progress
+            </strong>
 
             <span id="progressText">
                 0 / 0 tasks completed
             </span>
 
         </div>
+
 
         <div class="progress-bar">
 
@@ -805,6 +835,7 @@ select:focus{
         </div>
 
     </div>
+
 
     <div class="two-column">
 
@@ -818,31 +849,42 @@ select:focus{
 
         </div>
 
+
         <div class="card">
 
             <h2 class="section-title">
                 Study this week
             </h2>
 
-            <div class="chart" id="weeklyChart"></div>
+            <div
+                class="chart"
+                id="weeklyChart">
+            </div>
 
         </div>
 
     </div>
 
+
     <br>
+
 
     <div class="card">
 
         <div class="calendar-header">
 
-            <h2 class="section-title" style="margin:0">
+            <h2
+                class="section-title"
+                style="margin:0">
+
                 Study calendar
+
             </h2>
 
             <span id="calendarMonth"></span>
 
         </div>
+
 
         <div
             class="calendar-grid"
@@ -850,6 +892,7 @@ select:focus{
         </div>
 
     </div>
+
 
     <button
         class="history-toggle"
@@ -859,7 +902,10 @@ select:focus{
 
     </button>
 
-    <div class="history card" id="history">
+
+    <div
+        class="history card"
+        id="history">
 
         <h2 class="section-title">
             Completed activities
@@ -872,7 +918,7 @@ select:focus{
 </section>
 
 
-<!-- ================= TASKS ================= -->
+<!-- TASKS -->
 
 <section id="tasks" class="page">
 
@@ -886,11 +932,13 @@ select:focus{
 
     </div>
 
+
     <div class="add-task">
 
         <input
             id="taskTitle"
             placeholder="What do you need to do?">
+
 
         <select id="taskSubject">
 
@@ -901,11 +949,13 @@ select:focus{
 
         </select>
 
+
         <input
             id="taskMinutes"
             type="number"
             min="1"
             placeholder="Minutes">
+
 
         <button
             class="primary"
@@ -916,6 +966,7 @@ select:focus{
         </button>
 
     </div>
+
 
     <div class="filters">
 
@@ -957,6 +1008,7 @@ select:focus{
 
     </div>
 
+
     <div class="card">
 
         <div id="taskList"></div>
@@ -966,7 +1018,7 @@ select:focus{
 </section>
 
 
-<!-- ================= PLAN ================= -->
+<!-- PLAN -->
 
 <section id="plan" class="page">
 
@@ -979,6 +1031,7 @@ select:focus{
         </p>
 
     </div>
+
 
     <div class="plan-controls">
 
@@ -997,25 +1050,33 @@ select:focus{
 
     </div>
 
+
     <div class="plan-summary">
 
         <div>
 
-            <div style="font-size:12px;color:#888">
+            <div
+                style="font-size:12px;color:#888">
+
                 Planned study time
+
             </div>
 
             <div
                 class="plan-total"
                 id="planTotal">
+
                 0 min
+
             </div>
 
         </div>
 
+
         <div id="planDateLabel"></div>
 
     </div>
+
 
     <div class="card">
 
@@ -1027,7 +1088,9 @@ select:focus{
 
     </div>
 
+
     <br>
+
 
     <div class="card">
 
@@ -1050,19 +1113,26 @@ select:focus{
         <div
             class="timer-mode"
             id="timerMode">
+
             Focus
+
         </div>
+
 
         <div
             class="timer-task"
             id="timerTask">
         </div>
 
+
         <div
             class="timer-display"
             id="timerDisplay">
+
             25:00
+
         </div>
+
 
         <div class="timer-buttons">
 
@@ -1080,12 +1150,16 @@ select:focus{
 
         </div>
 
+
         <div class="pomodoro">
 
             <div
                 style="font-size:12px;color:#888;margin-bottom:5px">
+
                 Pomodoro
+
             </div>
+
 
             <button onclick="setPomodoro(25)">
                 25 min focus
@@ -1112,38 +1186,53 @@ select:focus{
 </main>
 
 
-<!-- ================= MOBILE NAV ================= -->
+<!-- MOBILE NAV -->
 
 <nav class="mobile-nav">
 
     <button
         class="active"
         onclick="showPage('home')">
+
         ⌂<br>Home
+
     </button>
+
 
     <button onclick="showPage('tasks')">
+
         ☷<br>Tasks
+
     </button>
 
+
     <button onclick="showPage('plan')">
+
         □<br>Plan
+
     </button>
 
 </nav>
 
 
-<!-- ================= EDIT MODAL ================= -->
+<!-- EDIT MODAL -->
 
-<div class="modal" id="editModal">
+<div
+    class="modal"
+    id="editModal">
 
     <div class="modal-box">
 
-        <h2>Edit task</h2>
+        <h2>
+            Edit task
+        </h2>
+
 
         <div class="modal-field">
 
-            <label>Task</label>
+            <label>
+                Task
+            </label>
 
             <input
                 id="editTitle"
@@ -1151,9 +1240,12 @@ select:focus{
 
         </div>
 
+
         <div class="modal-field">
 
-            <label>Subject</label>
+            <label>
+                Subject
+            </label>
 
             <select
                 id="editSubject"
@@ -1168,9 +1260,12 @@ select:focus{
 
         </div>
 
+
         <div class="modal-field">
 
-            <label>Total estimated minutes</label>
+            <label>
+                Total estimated minutes
+            </label>
 
             <input
                 id="editMinutes"
@@ -1180,18 +1275,24 @@ select:focus{
 
         </div>
 
+
         <div class="modal-actions">
 
             <button
                 class="small-button"
                 onclick="closeEdit()">
+
                 Cancel
+
             </button>
+
 
             <button
                 class="primary"
                 onclick="saveEdit()">
+
                 Save changes
+
             </button>
 
         </div>
@@ -1201,24 +1302,31 @@ select:focus{
 </div>
 
 
-<!-- ================= SAVE PROGRESS MODAL ================= -->
+<!-- PROGRESS MODAL -->
 
-<div class="modal" id="progressModal">
+<div
+    class="modal"
+    id="progressModal">
 
     <div class="modal-box">
 
-        <h2>Save study progress</h2>
+        <h2>
+            Save study progress
+        </h2>
+
 
         <p
             id="progressTaskName"
             style="font-size:14px;margin-bottom:18px">
         </p>
 
+
         <div class="modal-field">
 
             <label>
                 How many additional minutes did you work?
             </label>
+
 
             <input
                 id="progressMinutes"
@@ -1227,27 +1335,34 @@ select:focus{
                 placeholder="e.g. 30"
                 style="width:100%">
 
+
             <div class="modal-help">
 
-                Enter the amount you actually studied since
-                the last time you saved progress.
+                Enter the amount you actually studied
+                since the last time you saved progress.
 
             </div>
 
         </div>
+
 
         <div class="modal-actions">
 
             <button
                 class="small-button"
                 onclick="closeProgressModal()">
+
                 Cancel
+
             </button>
+
 
             <button
                 class="primary"
                 onclick="saveManualProgress()">
+
                 Save progress
+
             </button>
 
         </div>
@@ -1283,6 +1398,38 @@ let completedHistory =
         localStorage.getItem("completedHistoryV2") || "[]"
     );
 
+
+/*
+    Make sure older tasks have actualMinutes.
+    This is important for the new study-time system.
+*/
+
+tasks =
+    tasks.map(task => {
+
+        let completed =
+            Math.max(
+                0,
+                (task.estimated || 0) -
+                (task.remaining ?? task.estimated || 0)
+            );
+
+
+        return {
+
+            ...task,
+
+            actualMinutes:
+                Number(
+                    task.actualMinutes ??
+                    completed
+                )
+
+        };
+
+    });
+
+
 let currentFilter = "all";
 
 let editingTaskId = null;
@@ -1301,6 +1448,53 @@ let sessionStartedAt = null;
 
 
 /* =====================================================
+   LOCAL DATE HELPERS
+===================================================== */
+
+function localDateKey(date = new Date()){
+
+    let year =
+        date.getFullYear();
+
+    let month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    let day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function todayKey(){
+
+    return localDateKey();
+
+}
+
+
+function dateFromKey(key){
+
+    let parts =
+        key.split("-");
+
+
+    return new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+}
+
+
+/* =====================================================
    SAVE
 ===================================================== */
 
@@ -1311,15 +1505,18 @@ function save(){
         JSON.stringify(tasks)
     );
 
+
     localStorage.setItem(
         "studyPlansV2",
         JSON.stringify(plans)
     );
 
+
     localStorage.setItem(
         "studySessionsV2",
         JSON.stringify(studySessions)
     );
+
 
     localStorage.setItem(
         "completedHistoryV2",
@@ -1333,49 +1530,49 @@ function save(){
    HELPERS
 ===================================================== */
 
-function todayKey(){
-
-    return new Date()
-        .toISOString()
-        .split("T")[0];
-
-}
-
-
 function formatMinutes(minutes){
 
-    minutes = Math.round(minutes);
+    minutes =
+        Math.round(
+            Number(minutes) || 0
+        );
+
 
     if(minutes < 60)
-        return minutes + " min";
+        return `${minutes} min`;
+
 
     let hours =
-        Math.floor(minutes / 60);
+        Math.floor(
+            minutes / 60
+        );
+
 
     let mins =
         minutes % 60;
 
-    if(mins === 0)
-        return hours + " hr";
 
-    return hours + " hr " + mins + " min";
+    if(mins === 0)
+        return `${hours} hr`;
+
+
+    return `${hours} hr ${mins} min`;
 
 }
 
 
-function formatDate(date){
+function formatDate(key){
 
-    return new Date(
-        date + "T00:00:00"
-    ).toLocaleDateString(
-        "en-AU",
-        {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
+    return dateFromKey(key)
+        .toLocaleDateString(
+            "en-AU",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
 
 }
 
@@ -1404,6 +1601,7 @@ function showPage(page){
             p.classList.remove("active")
         );
 
+
     document
         .getElementById(page)
         .classList.add("active");
@@ -1430,8 +1628,10 @@ function showPage(page){
     if(page === "home")
         renderHome();
 
+
     if(page === "tasks")
         renderTasks();
+
 
     if(page === "plan")
         renderPlan();
@@ -1451,10 +1651,12 @@ function addTask(){
             .value
             .trim();
 
+
     let subject =
         document
             .getElementById("taskSubject")
             .value;
+
 
     let minutes =
         Number(
@@ -1487,6 +1689,8 @@ function addTask(){
 
         remaining:minutes,
 
+        actualMinutes:0,
+
         completed:false,
 
         priority:false,
@@ -1500,6 +1704,7 @@ function addTask(){
         .getElementById("taskTitle")
         .value = "";
 
+
     document
         .getElementById("taskMinutes")
         .value = "";
@@ -1512,6 +1717,72 @@ function addTask(){
     renderHome();
 
     renderPlan();
+
+}
+
+
+/* =====================================================
+   STUDY TIME CORE SYSTEM
+===================================================== */
+
+/*
+    This is the ONLY function used to add study
+    minutes to the daily total.
+
+    This prevents double counting.
+*/
+
+function addStudyMinutes(minutes){
+
+    minutes =
+        Number(minutes);
+
+
+    if(
+        !Number.isFinite(minutes) ||
+        minutes <= 0
+    )
+        return;
+
+
+    let date =
+        todayKey();
+
+
+    if(!studySessions[date])
+        studySessions[date] = 0;
+
+
+    studySessions[date] += minutes;
+
+}
+
+
+/*
+    Add actual minutes to a task.
+*/
+
+function addActualTaskMinutes(task,minutes){
+
+    if(!task)
+        return;
+
+
+    minutes =
+        Number(minutes);
+
+
+    if(
+        !Number.isFinite(minutes) ||
+        minutes <= 0
+    )
+        return;
+
+
+    task.actualMinutes =
+        Number(
+            task.actualMinutes || 0
+        ) + minutes;
 
 }
 
@@ -1532,18 +1803,30 @@ function openProgressModal(id){
         return;
 
 
-    progressTaskId = id;
+    progressTaskId =
+        id;
+
+
+    let completed =
+        task.estimated -
+        task.remaining;
 
 
     document
         .getElementById("progressTaskName")
         .innerText =
-        `${task.title} — ${task.remaining} min remaining`;
+        `${task.title} — ${completed} / ${task.estimated} min completed`;
 
 
     document
         .getElementById("progressMinutes")
         .value = "";
+
+
+    document
+        .getElementById("progressMinutes")
+        .max =
+        task.remaining;
 
 
     document
@@ -1564,7 +1847,9 @@ function openProgressModal(id){
 
 function closeProgressModal(){
 
-    progressTaskId = null;
+    progressTaskId =
+        null;
+
 
     document
         .getElementById("progressModal")
@@ -1598,7 +1883,10 @@ function saveManualProgress(){
         );
 
 
-    if(!minutes || minutes <= 0){
+    if(
+        !Number.isFinite(minutes) ||
+        minutes <= 0
+    ){
 
         alert(
             "Please enter how many minutes you studied."
@@ -1620,16 +1908,22 @@ function saveManualProgress(){
     }
 
 
-    /* Add actual study time */
+    /*
+        Add the actual minutes ONCE.
+    */
 
-    if(!studySessions[todayKey()])
-        studySessions[todayKey()] = 0;
+    addStudyMinutes(minutes);
+
+    addActualTaskMinutes(
+        task,
+        minutes
+    );
 
 
-    studySessions[todayKey()] += minutes;
-
-
-    /* Add progress to task */
+    /*
+        Remove those minutes from
+        the remaining work.
+    */
 
     task.remaining =
         Math.max(
@@ -1638,7 +1932,10 @@ function saveManualProgress(){
         );
 
 
-    /* If that finished the task */
+    /*
+        If the saved progress finished
+        the task, complete it.
+    */
 
     if(task.remaining === 0){
 
@@ -1683,9 +1980,45 @@ function completeTask(id){
 
 
     /*
-       This does NOT add the remaining estimated
-       time to study statistics.
+        IMPORTANT:
+
+        If a task is 60 min and has 30 min remaining,
+        pressing Complete means those remaining 30 min
+        are now counted as completed study.
+
+        We ONLY add the remaining amount.
+
+        This means:
+
+        0 / 60 → Complete = +60
+
+        30 / 60 → Complete = +30
+
+        45 / 60 → Complete = +15
+
+        Nothing already counted is counted again.
     */
+
+    let remainingMinutes =
+        Number(
+            task.remaining
+        ) || 0;
+
+
+    if(remainingMinutes > 0){
+
+        addStudyMinutes(
+            remainingMinutes
+        );
+
+
+        addActualTaskMinutes(
+            task,
+            remainingMinutes
+        );
+
+    }
+
 
     task.remaining = 0;
 
@@ -1694,9 +2027,13 @@ function completeTask(id){
 
     addToHistory(task);
 
-
     removeTaskFromPlans(task.id);
 
+
+    /*
+        Stop timer if this task
+        was currently being timed.
+    */
 
     if(timerTaskId === id){
 
@@ -1706,13 +2043,16 @@ function completeTask(id){
                 timerInterval
             );
 
-            timerInterval = null;
+            timerInterval =
+                null;
 
         }
 
-        sessionStartedAt = null;
+        sessionStartedAt =
+            null;
 
-        timerTaskId = null;
+        timerTaskId =
+            null;
 
     }
 
@@ -1729,12 +2069,12 @@ function completeTask(id){
 
 
 /* =====================================================
-   FINISH TASK AFTER ACTUAL STUDY
+   FINISH TASK
 ===================================================== */
 
 function finishTask(task){
 
-    if(task.completed)
+    if(!task || task.completed)
         return;
 
 
@@ -1750,26 +2090,19 @@ function finishTask(task){
 }
 
 
+/* =====================================================
+   HISTORY
+===================================================== */
+
 function addToHistory(task){
 
-    /*
-       Prevent duplicate history entries.
-    */
-
-    let alreadyThere =
+    if(
         completedHistory.some(
             item =>
             item.id === task.id
-        );
-
-
-    if(alreadyThere)
+        )
+    )
         return;
-
-
-    let actualMinutes =
-        task.estimated -
-        task.remaining;
 
 
     completedHistory.push({
@@ -1782,7 +2115,10 @@ function addToHistory(task){
 
         minutes:task.estimated,
 
-        actualMinutes:actualMinutes,
+        actualMinutes:
+            Number(
+                task.actualMinutes || 0
+            ),
 
         date:todayKey()
 
@@ -1791,17 +2127,20 @@ function addToHistory(task){
 }
 
 
+/* =====================================================
+   REMOVE FROM PLANS
+===================================================== */
+
 function removeTaskFromPlans(id){
 
     Object.keys(plans)
         .forEach(date => {
 
             plans[date] =
-                plans[date]
-                    .filter(
-                        taskId =>
-                        taskId !== id
-                    );
+                plans[date].filter(
+                    taskId =>
+                    taskId !== id
+                );
 
         });
 
@@ -1809,7 +2148,7 @@ function removeTaskFromPlans(id){
 
 
 /* =====================================================
-   EDIT TASK
+   EDIT
 ===================================================== */
 
 function openEdit(id){
@@ -1824,22 +2163,26 @@ function openEdit(id){
         return;
 
 
-    editingTaskId = id;
+    editingTaskId =
+        id;
 
 
     document
         .getElementById("editTitle")
-        .value = task.title;
+        .value =
+        task.title;
 
 
     document
         .getElementById("editSubject")
-        .value = task.subject;
+        .value =
+        task.subject;
 
 
     document
         .getElementById("editMinutes")
-        .value = task.estimated;
+        .value =
+        task.estimated;
 
 
     document
@@ -1851,7 +2194,9 @@ function openEdit(id){
 
 function closeEdit(){
 
-    editingTaskId = null;
+    editingTaskId =
+        null;
+
 
     document
         .getElementById("editModal")
@@ -1872,20 +2217,20 @@ function saveEdit(){
         return;
 
 
-    let newTitle =
+    let title =
         document
             .getElementById("editTitle")
             .value
             .trim();
 
 
-    let newSubject =
+    let subject =
         document
             .getElementById("editSubject")
             .value;
 
 
-    let newEstimated =
+    let estimated =
         Number(
             document
                 .getElementById("editMinutes")
@@ -1893,7 +2238,7 @@ function saveEdit(){
         );
 
 
-    if(!newTitle || !newEstimated){
+    if(!title || !estimated){
 
         alert(
             "Please enter all fields."
@@ -1910,23 +2255,31 @@ function saveEdit(){
 
 
     task.title =
-        newTitle;
+        title;
+
 
     task.subject =
-        newSubject;
+        subject;
+
 
     task.estimated =
-        newEstimated;
+        estimated;
+
 
     task.remaining =
         Math.max(
             0,
-            newEstimated -
+            estimated -
             alreadyCompleted
         );
 
 
-    if(task.remaining <= 0){
+    /*
+        If the edited estimate is now
+        completely covered by previous work.
+    */
+
+    if(task.remaining === 0){
 
         task.completed = true;
 
@@ -1955,16 +2308,6 @@ function saveEdit(){
 ===================================================== */
 
 function deleteTask(id){
-
-    let task =
-        tasks.find(
-            t => t.id === id
-        );
-
-
-    if(!task)
-        return;
-
 
     if(!confirm(
         "Delete this task?"
@@ -2087,21 +2430,27 @@ function renderTasks(){
         if(
             a.completed !==
             b.completed
-        )
+        ){
+
             return (
                 Number(a.completed) -
                 Number(b.completed)
             );
 
+        }
+
 
         if(
             a.priority !==
             b.priority
-        )
+        ){
+
             return (
                 Number(b.priority) -
                 Number(a.priority)
             );
+
+        }
 
 
         return a.id - b.id;
@@ -2152,25 +2501,34 @@ function renderTasks(){
                         : ""
                     }"
                     onclick="togglePriority(${task.id})">
+
                     ★
+
                 </button>
 
 
                 <div class="task-info">
 
                     <div class="task-title">
+
                         ${escapeHTML(task.title)}
+
                     </div>
 
+
                     <div class="task-subject">
+
                         ${task.subject}
+
                     </div>
+
 
                     <div class="progress-mini">
 
                         <div
                             class="progress-mini-fill"
                             style="width:${percentage}%">
+
                         </div>
 
                     </div>
@@ -2200,6 +2558,7 @@ function renderTasks(){
                         + Save progress
 
                     </button>
+
 
                     <button
                         class="complete-button"
@@ -2241,7 +2600,7 @@ function renderTasks(){
 
 
 /* =====================================================
-   PLAN DATA
+   PLAN
 ===================================================== */
 
 function getPlan(date){
@@ -2261,6 +2620,16 @@ function addToPlan(id){
         document
             .getElementById("planDate")
             .value;
+
+
+    let task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if(!task || task.completed)
+        return;
 
 
     let plan =
@@ -2309,9 +2678,8 @@ function changePlanDate(amount){
 
 
     let date =
-        new Date(
-            input.value +
-            "T00:00:00"
+        dateFromKey(
+            input.value
         );
 
 
@@ -2322,9 +2690,7 @@ function changePlanDate(amount){
 
 
     input.value =
-        date
-            .toISOString()
-            .split("T")[0];
+        localDateKey(date);
 
 
     renderPlan();
@@ -2333,7 +2699,7 @@ function changePlanDate(amount){
 
 
 /* =====================================================
-   MOVE REMAINING TO TOMORROW
+   MOVE TO TOMORROW
 ===================================================== */
 
 function moveTomorrow(id){
@@ -2357,27 +2723,46 @@ function moveTomorrow(id){
     );
 
 
-    let date =
-        tomorrow
-            .toISOString()
-            .split("T")[0];
+    let tomorrowKey =
+        localDateKey(
+            tomorrow
+        );
 
 
-    if(!plans[date])
-        plans[date] = [];
+    if(!plans[tomorrowKey])
+        plans[tomorrowKey] = [];
 
 
-    if(!plans[date].includes(id))
-        plans[date].push(id);
+    if(
+        !plans[tomorrowKey]
+            .includes(id)
+    ){
+
+        plans[tomorrowKey].push(id);
+
+    }
+
+
+    /*
+        Remove it from the currently
+        selected day's plan.
+    */
+
+    let currentDate =
+        document
+            .getElementById("planDate")
+            .value;
+
+
+    plans[currentDate] =
+        getPlan(currentDate)
+            .filter(
+                taskId =>
+                taskId !== id
+            );
 
 
     save();
-
-
-    alert(
-        `${task.remaining} minutes of "${task.title}" moved to tomorrow.`
-    );
-
 
     renderPlan();
 
@@ -2414,6 +2799,30 @@ function renderPlan(){
         getPlan(date);
 
 
+    /*
+        Remove completed tasks from
+        displayed plan.
+    */
+
+    plan =
+        plan.filter(id => {
+
+            let task =
+                tasks.find(
+                    t => t.id === id
+                );
+
+
+            return task &&
+                !task.completed;
+
+        });
+
+
+    plans[date] =
+        plan;
+
+
     let planned =
         plan
             .map(
@@ -2422,16 +2831,13 @@ function renderPlan(){
                     t => t.id === id
                 )
             )
-            .filter(Boolean)
-            .filter(
-                t => !t.completed
-            );
+            .filter(Boolean);
 
 
     let total =
         planned.reduce(
-            (sum,t) =>
-            sum + t.remaining,
+            (sum,task) =>
+            sum + task.remaining,
             0
         );
 
@@ -2480,24 +2886,30 @@ function renderPlan(){
                     <div class="task-info">
 
                         <div class="task-title">
+
                             ${escapeHTML(task.title)}
+
                         </div>
+
 
                         <div class="task-subject">
 
                             ${task.subject} ·
-                            ${done} / ${task.estimated}
+                            ${done} /
+                            ${task.estimated}
                             min completed ·
                             ${task.remaining}
                             min remaining
 
                         </div>
 
+
                         <div class="progress-mini">
 
                             <div
                                 class="progress-mini-fill"
                                 style="width:${percentage}%">
+
                             </div>
 
                         </div>
@@ -2605,15 +3017,20 @@ function renderPlan(){
                             : ""
                         }"
                         onclick="togglePriority(${task.id})">
+
                         ★
+
                     </button>
 
 
                     <div class="task-info">
 
                         <div class="task-title">
+
                             ${escapeHTML(task.title)}
+
                         </div>
+
 
                         <div class="task-subject">
 
@@ -2654,6 +3071,9 @@ function renderPlan(){
 
     }
 
+
+    save();
+
 }
 
 
@@ -2669,7 +3089,7 @@ function openTimer(id){
         );
 
 
-    if(!task)
+    if(!task || task.completed)
         return;
 
 
@@ -2758,6 +3178,10 @@ function startTimer(){
     }
 
 
+    /*
+        Start a new actual-study session.
+    */
+
     sessionStartedAt =
         Date.now();
 
@@ -2771,6 +3195,11 @@ function startTimer(){
 
 
             if(timerSeconds <= 0){
+
+                /*
+                    Record the completed focus
+                    time before ending timer.
+                */
 
                 recordActualStudy();
 
@@ -2798,8 +3227,11 @@ function pauseTimer(){
         return;
 
 
-    if(timerMode === "focus")
+    if(timerMode === "focus"){
+
         recordActualStudy();
+
+    }
 
 
     clearInterval(
@@ -2813,13 +3245,18 @@ function pauseTimer(){
 }
 
 
+/*
+    Timer study time is also passed through
+    the same study-time system.
+*/
+
 function recordActualStudy(){
 
     if(!sessionStartedAt)
         return;
 
 
-    let elapsed =
+    let elapsedSeconds =
         Math.floor(
             (
                 Date.now() -
@@ -2830,7 +3267,7 @@ function recordActualStudy(){
 
     let minutes =
         Math.floor(
-            elapsed / 60
+            elapsedSeconds / 60
         );
 
 
@@ -2844,25 +3281,43 @@ function recordActualStudy(){
     }
 
 
-    if(!studySessions[todayKey()])
-        studySessions[todayKey()] = 0;
+    let task =
+        timerTaskId
+        ? tasks.find(
+            t =>
+            t.id === timerTaskId
+        )
+        : null;
 
 
-    studySessions[todayKey()] +=
-        minutes;
+    /*
+        Do not allow timer time to count
+        beyond the task's remaining amount.
+    */
 
+    if(task){
 
-    if(timerTaskId){
-
-        let task =
-            tasks.find(
-                t =>
-                t.id ===
-                timerTaskId
+        minutes =
+            Math.min(
+                minutes,
+                task.remaining
             );
+
+    }
+
+
+    if(minutes > 0){
+
+        addStudyMinutes(minutes);
 
 
         if(task){
+
+            addActualTaskMinutes(
+                task,
+                minutes
+            );
+
 
             task.remaining =
                 Math.max(
@@ -2872,10 +3327,7 @@ function recordActualStudy(){
                 );
 
 
-            if(
-                task.remaining === 0 &&
-                !task.completed
-            ){
+            if(task.remaining === 0){
 
                 finishTask(task);
 
@@ -2918,8 +3370,29 @@ function timerFinished(){
     }
 
 
-    timerTaskId =
-        null;
+    /*
+        Keep the task selected after
+        a focus session if it still has
+        time remaining.
+    */
+
+    if(timerMode === "focus"){
+
+        let task =
+            tasks.find(
+                t =>
+                t.id === timerTaskId
+            );
+
+
+        if(!task || task.completed){
+
+            timerTaskId =
+                null;
+
+        }
+
+    }
 
 }
 
@@ -2936,7 +3409,8 @@ function resetTimer(){
 
     }else{
 
-        let minutes = 25;
+        let minutes =
+            25;
 
 
         if(timerTaskId){
@@ -2944,8 +3418,7 @@ function resetTimer(){
             let task =
                 tasks.find(
                     t =>
-                    t.id ===
-                    timerTaskId
+                    t.id === timerTaskId
                 );
 
 
@@ -2992,8 +3465,7 @@ function setPomodoro(minutes){
         let task =
             tasks.find(
                 t =>
-                t.id ===
-                timerTaskId
+                t.id === timerTaskId
             );
 
 
@@ -3169,6 +3641,10 @@ function renderHome(){
 }
 
 
+/* =====================================================
+   HOME TASKS
+===================================================== */
+
 function renderHomeTasks(){
 
     let today =
@@ -3236,8 +3712,11 @@ function renderHomeTasks(){
                 <div class="task-info">
 
                     <div class="task-title">
+
                         ${escapeHTML(task.title)}
+
                     </div>
+
 
                     <div class="task-subject">
 
@@ -3250,11 +3729,13 @@ function renderHomeTasks(){
 
                     </div>
 
+
                     <div class="progress-mini">
 
                         <div
                             class="progress-mini-fill"
                             style="width:${percentage}%">
+
                         </div>
 
                     </div>
@@ -3296,29 +3777,26 @@ function getWeeklyMinutes(){
 
     let total = 0;
 
-    let date =
-        new Date();
 
+    for(let i=0;i<7;i++){
 
-    for(
-        let i=0;
-        i<7;
-        i++
-    ){
-
-        let key =
-            date
-                .toISOString()
-                .split("T")[0];
-
-
-        total +=
-            studySessions[key] || 0;
+        let date =
+            new Date();
 
 
         date.setDate(
-            date.getDate() - 1
+            date.getDate() - i
         );
+
+
+        let key =
+            localDateKey(date);
+
+
+        total +=
+            Number(
+                studySessions[key] || 0
+            );
 
     }
 
@@ -3344,28 +3822,26 @@ function renderWeeklyChart(){
         i--
     ){
 
-        let d =
+        let date =
             new Date();
 
 
-        d.setDate(
-            d.getDate() - i
+        date.setDate(
+            date.getDate() - i
         );
-
-
-        let key =
-            d
-                .toISOString()
-                .split("T")[0];
 
 
         values.push({
 
             minutes:
-                studySessions[key] || 0,
+                Number(
+                    studySessions[
+                        localDateKey(date)
+                    ] || 0
+                ),
 
             day:
-                d.toLocaleDateString(
+                date.toLocaleDateString(
                     "en-AU",
                     {
                         weekday:"short"
@@ -3408,13 +3884,18 @@ function renderWeeklyChart(){
                     ${v.minutes}
                 </div>
 
+
                 <div
                     class="bar"
                     style="height:${height}px">
+
                 </div>
 
+
                 <div class="bar-label">
+
                     ${v.day}
+
                 </div>
 
             </div>
@@ -3525,13 +4006,13 @@ function renderCalendar(){
 
 
         let key =
-            date
-                .toISOString()
-                .split("T")[0];
+            localDateKey(date);
 
 
         let minutes =
-            studySessions[key] || 0;
+            Number(
+                studySessions[key] || 0
+            );
 
 
         let intensity = "";
@@ -3561,6 +4042,7 @@ function renderCalendar(){
                 <div>
                     ${day}
                 </div>
+
 
                 <div class="study-minutes">
 
@@ -3621,8 +4103,11 @@ function renderHistory(){
             <div class="task-info">
 
                 <div class="task-title">
+
                     ${escapeHTML(item.title)}
+
                 </div>
+
 
                 <div class="task-subject">
 
@@ -3633,12 +4118,13 @@ function renderHistory(){
 
             </div>
 
+
             <div class="task-time">
 
                 ${
-                    item.actualMinutes !== undefined
-                    ? item.actualMinutes
-                    : item.minutes
+                    Number(
+                        item.actualMinutes || 0
+                    )
                 }
                 min studied
 
@@ -3668,6 +4154,9 @@ document
     .getElementById("planDate")
     .value =
     todayKey();
+
+
+save();
 
 renderHome();
 
