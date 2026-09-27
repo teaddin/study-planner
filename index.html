@@ -30,8 +30,6 @@ body{
     color:var(--dark);
 }
 
-/* SIDEBAR */
-
 .sidebar{
     position:fixed;
     left:0;
@@ -72,8 +70,6 @@ body{
     color:var(--pink-dark);
 }
 
-/* MAIN */
-
 .main{
     margin-left:230px;
     padding:40px;
@@ -101,20 +97,18 @@ body{
     color:var(--grey);
 }
 
-/* CARDS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
 
 .card{
     background:white;
     border:1px solid var(--light-grey);
     border-radius:var(--radius);
     padding:22px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:20px;
 }
 
 .stat-label{
@@ -127,8 +121,6 @@ body{
     font-size:27px;
     font-weight:650;
 }
-
-/* PROGRESS */
 
 .progress-card{
     margin-bottom:20px;
@@ -154,8 +146,6 @@ body{
     transition:.3s;
 }
 
-/* GRID */
-
 .two-column{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -166,8 +156,6 @@ body{
     font-size:18px;
     margin-bottom:17px;
 }
-
-/* TASK */
 
 .task{
     display:flex;
@@ -183,6 +171,7 @@ body{
 
 .task-info{
     flex:1;
+    min-width:0;
 }
 
 .task-title{
@@ -215,8 +204,6 @@ body{
     background:var(--pink);
 }
 
-/* STAR */
-
 .star{
     border:0;
     background:none;
@@ -228,8 +215,6 @@ body{
 .star.priority{
     color:var(--pink-dark);
 }
-
-/* BUTTONS */
 
 button{
     font-family:inherit;
@@ -256,6 +241,7 @@ button{
     padding:7px 10px;
     cursor:pointer;
     font-size:12px;
+    white-space:nowrap;
 }
 
 .small-button:hover{
@@ -263,11 +249,25 @@ button{
     border-color:var(--pink);
 }
 
+.complete-button{
+    border:1px solid #d7a0b0;
+    background:#f5e7eb;
+    color:#b9788d;
+    border-radius:8px;
+    padding:7px 10px;
+    cursor:pointer;
+    font-size:12px;
+    white-space:nowrap;
+    font-weight:600;
+}
+
+.complete-button:hover{
+    background:#ecd5dc;
+}
+
 .danger{
     color:#b76f7e;
 }
-
-/* ADD TASK */
 
 .add-task{
     display:grid;
@@ -291,8 +291,6 @@ select:focus{
     border-color:var(--pink);
 }
 
-/* FILTER */
-
 .filters{
     display:flex;
     flex-wrap:wrap;
@@ -314,8 +312,6 @@ select:focus{
     color:var(--pink-dark);
     border-color:var(--pink-light);
 }
-
-/* CALENDAR */
 
 .calendar-header{
     display:flex;
@@ -360,8 +356,6 @@ select:focus{
     margin-top:6px;
 }
 
-/* CHART */
-
 .chart{
     height:220px;
     display:flex;
@@ -397,8 +391,6 @@ select:focus{
 .bar-value{
     margin-bottom:4px;
 }
-
-/* PLAN */
 
 .plan-controls{
     display:flex;
@@ -465,9 +457,8 @@ select:focus{
     padding:7px 12px;
     border-radius:7px;
     cursor:pointer;
+    white-space:nowrap;
 }
-
-/* TIMER */
 
 .timer{
     text-align:center;
@@ -534,8 +525,6 @@ select:focus{
     background:var(--pink-light);
 }
 
-/* EDIT MODAL */
-
 .modal{
     display:none;
     position:fixed;
@@ -581,8 +570,6 @@ select:focus{
     margin-top:20px;
 }
 
-/* HISTORY */
-
 .history-toggle{
     border:0;
     background:none;
@@ -606,8 +593,6 @@ select:focus{
     padding:25px;
     font-size:14px;
 }
-
-/* MOBILE */
 
 .mobile-nav{
     display:none;
@@ -664,7 +649,6 @@ select:focus{
     .add-task input:first-child{
         grid-column:1/-1;
     }
-
 }
 
 @media(max-width:500px){
@@ -733,7 +717,6 @@ select:focus{
 
     </div>
 
-
     <div class="stats">
 
         <div class="card">
@@ -758,7 +741,6 @@ select:focus{
 
     </div>
 
-
     <div class="card progress-card">
 
         <div class="progress-top">
@@ -782,7 +764,6 @@ select:focus{
 
     </div>
 
-
     <div class="two-column">
 
         <div class="card">
@@ -794,7 +775,6 @@ select:focus{
             <div id="homeTasks"></div>
 
         </div>
-
 
         <div class="card">
 
@@ -808,9 +788,7 @@ select:focus{
 
     </div>
 
-
     <br>
-
 
     <div class="card">
 
@@ -831,7 +809,6 @@ select:focus{
 
     </div>
 
-
     <button
         class="history-toggle"
         onclick="toggleHistory()">
@@ -839,7 +816,6 @@ select:focus{
         View completed activity history →
 
     </button>
-
 
     <div class="history card" id="history">
 
@@ -867,7 +843,6 @@ select:focus{
         </p>
 
     </div>
-
 
     <div class="add-task">
 
@@ -899,7 +874,6 @@ select:focus{
         </button>
 
     </div>
-
 
     <div class="filters">
 
@@ -941,7 +915,6 @@ select:focus{
 
     </div>
 
-
     <div class="card">
 
         <div id="taskList"></div>
@@ -965,7 +938,6 @@ select:focus{
 
     </div>
 
-
     <div class="plan-controls">
 
         <button onclick="changePlanDate(-1)">
@@ -982,7 +954,6 @@ select:focus{
         </button>
 
     </div>
-
 
     <div class="plan-summary">
 
@@ -1004,7 +975,6 @@ select:focus{
 
     </div>
 
-
     <div class="card">
 
         <h2 class="section-title">
@@ -1015,9 +985,7 @@ select:focus{
 
     </div>
 
-
     <br>
-
 
     <div class="card">
 
@@ -1028,9 +996,6 @@ select:focus{
         <div id="availableTasks"></div>
 
     </div>
-
-
-    <!-- TIMER -->
 
     <div
         class="timer"
@@ -1070,7 +1035,6 @@ select:focus{
 
         </div>
 
-
         <div class="pomodoro">
 
             <div
@@ -1102,8 +1066,6 @@ select:focus{
 
 </main>
 
-
-<!-- MOBILE NAV -->
 
 <nav class="mobile-nav">
 
@@ -1142,7 +1104,6 @@ select:focus{
 
         </div>
 
-
         <div class="modal-field">
 
             <label>Subject</label>
@@ -1160,7 +1121,6 @@ select:focus{
 
         </div>
 
-
         <div class="modal-field">
 
             <label>Total estimated minutes</label>
@@ -1172,7 +1132,6 @@ select:focus{
                 style="width:100%">
 
         </div>
-
 
         <div class="modal-actions">
 
@@ -1307,7 +1266,7 @@ function formatDate(date){
 
 function escapeHTML(text){
 
-    return text
+    return String(text)
         .replaceAll("&","&amp;")
         .replaceAll("<","&lt;")
         .replaceAll(">","&gt;")
@@ -1435,6 +1394,91 @@ function addTask(){
 
 
 /* =========================================
+   MANUALLY COMPLETE TASK
+========================================= */
+
+function completeTask(id){
+
+    let task =
+        tasks.find(t => t.id === id);
+
+    if(!task || task.completed)
+        return;
+
+    if(!confirm(
+        "Mark this task as completed?"
+    ))
+        return;
+
+    /*
+       IMPORTANT:
+       We do NOT add the remaining estimated
+       time to study statistics here.
+       Only time actually recorded by the
+       timer counts as study time.
+    */
+
+    task.remaining = 0;
+
+    task.completed = true;
+
+
+    completedHistory.push({
+
+        id:task.id,
+
+        title:task.title,
+
+        subject:task.subject,
+
+        minutes:task.estimated,
+
+        actualMinutes:
+            task.estimated - task.remaining,
+
+        date:todayKey()
+
+    });
+
+
+    /* Remove it from every future plan */
+
+    Object.keys(plans)
+        .forEach(date => {
+
+            plans[date] =
+                plans[date]
+                    .filter(
+                        taskId =>
+                        taskId !== task.id
+                    );
+
+        });
+
+
+    /* Stop timer if this task was active */
+
+    if(timerTaskId === id){
+
+        pauseTimer();
+
+        timerTaskId = null;
+
+    }
+
+
+    save();
+
+    renderTasks();
+
+    renderHome();
+
+    renderPlan();
+
+}
+
+
+/* =========================================
    EDIT TASK
 ========================================= */
 
@@ -1480,7 +1524,9 @@ function closeEdit(){
 function saveEdit(){
 
     let task =
-        tasks.find(t => t.id === editingTaskId);
+        tasks.find(
+            t => t.id === editingTaskId
+        );
 
     if(!task) return;
 
@@ -1542,7 +1588,7 @@ function saveEdit(){
 
 
 /* =========================================
-   DELETE TASK
+   DELETE
 ========================================= */
 
 function deleteTask(id){
@@ -1552,20 +1598,22 @@ function deleteTask(id){
 
     if(!task) return;
 
-    if(
-        !confirm(
-            "Delete this task?"
-        )
-    ) return;
+    if(!confirm(
+        "Delete this task?"
+    ))
+        return;
 
     tasks =
-        tasks.filter(t => t.id !== id);
+        tasks.filter(
+            t => t.id !== id
+        );
 
     Object.keys(plans).forEach(date => {
 
         plans[date] =
             plans[date]
-                .filter(taskId =>
+                .filter(
+                    taskId =>
                     taskId !== id
                 );
 
@@ -1589,11 +1637,14 @@ function deleteTask(id){
 function togglePriority(id){
 
     let task =
-        tasks.find(t => t.id === id);
+        tasks.find(
+            t => t.id === id
+        );
 
     if(!task) return;
 
-    task.priority = !task.priority;
+    task.priority =
+        !task.priority;
 
     save();
 
@@ -1626,7 +1677,7 @@ function filterTasks(filter,button){
 
 
 /* =========================================
-   RENDER TASKS
+   TASK LIST
 ========================================= */
 
 function renderTasks(){
@@ -1640,14 +1691,13 @@ function renderTasks(){
             if(currentFilter === "priority")
                 return task.priority;
 
-            if(
-                currentFilter !== "all"
-            )
+            if(currentFilter !== "all")
                 return task.subject === currentFilter;
 
             return true;
 
         });
+
 
     list.sort((a,b) => {
 
@@ -1688,8 +1738,9 @@ function renderTasks(){
                 ? Math.min(
                     100,
                     (done / task.estimated) * 100
-                  )
+                )
                 : 0;
+
 
             return `
 
@@ -1709,15 +1760,11 @@ function renderTasks(){
                 <div class="task-info">
 
                     <div class="task-title">
-
                         ${escapeHTML(task.title)}
-
                     </div>
 
                     <div class="task-subject">
-
                         ${task.subject}
-
                     </div>
 
                     <div class="progress-mini">
@@ -1737,10 +1784,23 @@ function renderTasks(){
                     ${
                         task.completed
                         ? "Completed"
-                        : task.remaining + " min left"
+                        : `${done} / ${task.estimated} min`
                     }
 
                 </div>
+
+
+                ${
+                    !task.completed
+                    ? `
+                    <button
+                        class="complete-button"
+                        onclick="completeTask(${task.id})">
+                        ✓ Complete
+                    </button>
+                    `
+                    : ""
+                }
 
 
                 <button
@@ -1766,7 +1826,7 @@ function renderTasks(){
 
 
 /* =========================================
-   PLAN DATA
+   PLAN
 ========================================= */
 
 function getPlan(date){
@@ -1808,7 +1868,8 @@ function removeFromPlan(id){
 
     plans[date] =
         getPlan(date)
-            .filter(taskId =>
+            .filter(
+                taskId =>
                 taskId !== id
             );
 
@@ -1843,7 +1904,7 @@ function changePlanDate(amount){
 
 
 /* =========================================
-   RENDER PLAN
+   PLAN RENDER
 ========================================= */
 
 function renderPlan(){
@@ -1854,11 +1915,13 @@ function renderPlan(){
     if(!input.value)
         input.value = todayKey();
 
-    let date = input.value;
+    let date =
+        input.value;
 
     document
         .getElementById("planDateLabel")
-        .innerText = formatDate(date);
+        .innerText =
+        formatDate(date);
 
 
     let plan =
@@ -1867,17 +1930,22 @@ function renderPlan(){
 
     let planned =
         plan
-            .map(id =>
-                tasks.find(t => t.id === id)
+            .map(
+                id =>
+                tasks.find(
+                    t => t.id === id
+                )
             )
             .filter(Boolean)
-            .filter(t => !t.completed);
+            .filter(
+                t => !t.completed
+            );
 
 
     let total =
         planned.reduce(
             (sum,t) =>
-                sum + t.remaining,
+            sum + t.remaining,
             0
         );
 
@@ -1903,46 +1971,79 @@ function renderPlan(){
     }else{
 
         plannedContainer.innerHTML =
-            planned.map(task => `
+            planned.map(task => {
 
-            <div class="task">
+                let done =
+                    task.estimated -
+                    task.remaining;
 
-                <div class="task-info">
 
-                    <div class="task-title">
-                        ${escapeHTML(task.title)}
+                return `
+
+                <div class="task">
+
+                    <div class="task-info">
+
+                        <div class="task-title">
+                            ${escapeHTML(task.title)}
+                        </div>
+
+                        <div class="task-subject">
+
+                            ${task.subject} ·
+                            ${done} / ${task.estimated}
+                            min completed ·
+                            ${task.remaining} min remaining
+
+                        </div>
+
+                        <div class="progress-mini">
+
+                            <div
+                                class="progress-mini-fill"
+                                style="width:${
+                                    task.estimated
+                                    ? (done/task.estimated)*100
+                                    : 0
+                                }%">
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="task-subject">
 
-                        ${task.subject} ·
-                        ${task.remaining} min remaining
+                    <button
+                        class="start-button"
+                        onclick="openTimer(${task.id})">
 
-                    </div>
+                        Start
+
+                    </button>
+
+
+                    <button
+                        class="complete-button"
+                        onclick="completeTask(${task.id})">
+
+                        ✓ Complete
+
+                    </button>
+
+
+                    <button
+                        class="remove-button"
+                        onclick="removeFromPlan(${task.id})">
+
+                        Remove
+
+                    </button>
 
                 </div>
 
+                `;
 
-                <button
-                    class="start-button"
-                    onclick="openTimer(${task.id})">
-
-                    Start
-
-                </button>
-
-
-                <button
-                    class="remove-button"
-                    onclick="removeFromPlan(${task.id})">
-
-                    Remove
-
-                </button>
-
-            </div>
-
-            `).join("");
+            }).join("");
 
     }
 
@@ -1956,8 +2057,8 @@ function renderPlan(){
 
     available.sort(
         (a,b) =>
-            Number(b.priority) -
-            Number(a.priority)
+        Number(b.priority) -
+        Number(a.priority)
     );
 
 
@@ -1976,48 +2077,59 @@ function renderPlan(){
     }else{
 
         availableContainer.innerHTML =
-            available.map(task => `
+            available.map(task => {
 
-            <div class="available-task">
-
-                <button
-                    class="star ${
-                        task.priority
-                        ? "priority"
-                        : ""
-                    }"
-                    onclick="togglePriority(${task.id})">
-                    ★
-                </button>
+                let done =
+                    task.estimated -
+                    task.remaining;
 
 
-                <div class="task-info">
+                return `
 
-                    <div class="task-title">
-                        ${escapeHTML(task.title)}
+                <div class="available-task">
+
+                    <button
+                        class="star ${
+                            task.priority
+                            ? "priority"
+                            : ""
+                        }"
+                        onclick="togglePriority(${task.id})">
+                        ★
+                    </button>
+
+
+                    <div class="task-info">
+
+                        <div class="task-title">
+                            ${escapeHTML(task.title)}
+                        </div>
+
+                        <div class="task-subject">
+
+                            ${task.subject} ·
+                            ${done} / ${task.estimated}
+                            min completed ·
+                            ${task.remaining} min left
+
+                        </div>
+
                     </div>
 
-                    <div class="task-subject">
 
-                        ${task.subject} ·
-                        ${task.remaining} min remaining
+                    <button
+                        class="add-button"
+                        onclick="addToPlan(${task.id})">
 
-                    </div>
+                        + Add
+
+                    </button>
 
                 </div>
 
+                `;
 
-                <button
-                    class="add-button"
-                    onclick="addToPlan(${task.id})">
-
-                    + Add
-
-                </button>
-
-            </div>
-
-            `).join("");
+            }).join("");
 
     }
 
@@ -2031,7 +2143,9 @@ function renderPlan(){
 function openTimer(id){
 
     let task =
-        tasks.find(t => t.id === id);
+        tasks.find(
+            t => t.id === id
+        );
 
     if(!task) return;
 
@@ -2039,20 +2153,26 @@ function openTimer(id){
 
     timerMode = "focus";
 
-    setPomodoro(
+    timerSeconds =
         Math.min(
             25,
             task.remaining
-        )
-    );
+        ) * 60;
+
+    document
+        .getElementById("timerMode")
+        .innerText = "Focus";
 
     document
         .getElementById("timerTask")
-        .innerText = task.title;
+        .innerText =
+        `${task.title} · ${task.remaining} min remaining`;
 
     document
         .getElementById("timerPanel")
         .style.display = "block";
+
+    updateTimerDisplay();
 
     document
         .getElementById("timerPanel")
@@ -2063,18 +2183,11 @@ function openTimer(id){
 }
 
 
-/*
-    Timer works in real time.
-
-    Every time the timer is paused,
-    the actual amount of time studied
-    is added to the task.
-*/
-
 function startTimer(){
 
     if(timerInterval)
         return;
+
 
     if(timerMode === "break"){
 
@@ -2108,6 +2221,7 @@ function startTimer(){
 
     sessionStartedAt =
         Date.now();
+
 
     timerInterval =
         setInterval(() => {
@@ -2157,15 +2271,21 @@ function recordActualStudy(){
     if(!sessionStartedAt)
         return;
 
+
     let elapsed =
         Math.floor(
-            (Date.now() -
-             sessionStartedAt)
-            / 1000
+            (
+                Date.now() -
+                sessionStartedAt
+            ) / 1000
         );
 
+
     let minutes =
-        Math.floor(elapsed / 60);
+        Math.floor(
+            elapsed / 60
+        );
+
 
     if(minutes <= 0){
 
@@ -2179,7 +2299,9 @@ function recordActualStudy(){
     if(!studySessions[todayKey()])
         studySessions[todayKey()] = 0;
 
-    studySessions[todayKey()] += minutes;
+
+    studySessions[todayKey()] +=
+        minutes;
 
 
     if(timerTaskId){
@@ -2189,7 +2311,12 @@ function recordActualStudy(){
                 t => t.id === timerTaskId
             );
 
+
         if(task){
+
+            let wasRemaining =
+                task.remaining;
+
 
             task.remaining =
                 Math.max(
@@ -2198,7 +2325,8 @@ function recordActualStudy(){
                 );
 
 
-            if(task.remaining === 0){
+            if(task.remaining === 0 &&
+               !task.completed){
 
                 task.completed = true;
 
@@ -2211,6 +2339,9 @@ function recordActualStudy(){
                     subject:task.subject,
 
                     minutes:task.estimated,
+
+                    actualMinutes:
+                        task.estimated,
 
                     date:todayKey()
 
@@ -2293,8 +2424,33 @@ function setPomodoro(minutes){
         ? "break"
         : "focus";
 
+
+    if(
+        timerMode === "focus" &&
+        timerTaskId
+    ){
+
+        let task =
+            tasks.find(
+                t => t.id === timerTaskId
+            );
+
+        if(task){
+
+            minutes =
+                Math.min(
+                    minutes,
+                    task.remaining
+                );
+
+        }
+
+    }
+
+
     timerSeconds =
         minutes * 60;
+
 
     document
         .getElementById("timerMode")
@@ -2302,6 +2458,7 @@ function setPomodoro(minutes){
         timerMode === "focus"
         ? "Focus"
         : "Break";
+
 
     updateTimerDisplay();
 
@@ -2317,10 +2474,14 @@ function updateTimerDisplay(){
         .toString()
         .padStart(2,"0");
 
+
     let secs =
-        (timerSeconds % 60)
+        (
+            timerSeconds % 60
+        )
         .toString()
         .padStart(2,"0");
+
 
     document
         .getElementById("timerDisplay")
@@ -2336,7 +2497,9 @@ function updateTimerDisplay(){
 
 function renderHome(){
 
-    let today = todayKey();
+    let today =
+        todayKey();
+
 
     document
         .getElementById("todayText")
@@ -2346,16 +2509,13 @@ function renderHome(){
 
     let completed =
         tasks.filter(
-            t =>
-            t.completed &&
-            t.created <= today
+            t => t.completed
         );
 
 
     let remaining =
         tasks.filter(
-            t =>
-            !t.completed
+            t => !t.completed
         );
 
 
@@ -2387,11 +2547,19 @@ function renderHome(){
         );
 
 
+    let plannedIds =
+        getPlan(today);
+
+
     let todayTasks =
-        tasks.filter(
-            t =>
-            t.created <= today
-        );
+        plannedIds
+            .map(
+                id =>
+                tasks.find(
+                    t => t.id === id
+                )
+            )
+            .filter(Boolean);
 
 
     let total =
@@ -2408,7 +2576,7 @@ function renderHome(){
         total
         ? Math.round(
             (done / total) * 100
-          )
+        )
         : 0;
 
 
@@ -2437,7 +2605,9 @@ function renderHome(){
 
 function renderHomeTasks(){
 
-    let today = todayKey();
+    let today =
+        todayKey();
+
 
     let plannedIds =
         getPlan(today);
@@ -2445,25 +2615,16 @@ function renderHomeTasks(){
 
     let list =
         plannedIds
-            .map(id =>
+            .map(
+                id =>
                 tasks.find(
                     t => t.id === id
                 )
             )
             .filter(Boolean)
-            .filter(t => !t.completed);
-
-
-    if(!list.length){
-
-        list =
-            tasks
-                .filter(
-                    t => !t.completed
-                )
-                .slice(0,5);
-
-    }
+            .filter(
+                t => !t.completed
+            );
 
 
     let container =
@@ -2475,7 +2636,7 @@ function renderHomeTasks(){
 
         container.innerHTML =
             `<div class="empty">
-                No tasks for today 🎉
+                No tasks planned for today 🎉
             </div>`;
 
         return;
@@ -2490,9 +2651,13 @@ function renderHomeTasks(){
                 task.estimated -
                 task.remaining;
 
+
             let percentage =
                 task.estimated
-                ? (done / task.estimated) * 100
+                ? (
+                    done /
+                    task.estimated
+                  ) * 100
                 : 0;
 
 
@@ -2503,14 +2668,14 @@ function renderHomeTasks(){
                 <div class="task-info">
 
                     <div class="task-title">
-
                         ${escapeHTML(task.title)}
-
                     </div>
 
                     <div class="task-subject">
 
                         ${task.subject} ·
+                        ${done} / ${task.estimated}
+                        min ·
                         ${task.remaining} min left
 
                     </div>
@@ -2526,6 +2691,15 @@ function renderHomeTasks(){
 
                 </div>
 
+
+                <button
+                    class="complete-button"
+                    onclick="completeTask(${task.id})">
+
+                    ✓ Complete
+
+                </button>
+
             </div>
 
             `;
@@ -2536,30 +2710,39 @@ function renderHomeTasks(){
 
 
 /* =========================================
-   WEEKLY STUDY
+   WEEK
 ========================================= */
 
 function getWeeklyMinutes(){
 
     let total = 0;
 
-    let date = new Date();
+    let date =
+        new Date();
 
-    for(let i=0;i<7;i++){
+
+    for(
+        let i=0;
+        i<7;
+        i++
+    ){
 
         let key =
             date
                 .toISOString()
                 .split("T")[0];
 
+
         total +=
             studySessions[key] || 0;
+
 
         date.setDate(
             date.getDate() - 1
         );
 
     }
+
 
     return total;
 
@@ -2575,13 +2758,21 @@ function renderWeeklyChart(){
 
     let values = [];
 
-    for(let i=6;i>=0;i--){
 
-        let d = new Date();
+    for(
+        let i=6;
+        i>=0;
+        i--
+    ){
+
+        let d =
+            new Date();
+
 
         d.setDate(
             d.getDate() - i
         );
+
 
         let key =
             d.toISOString()
@@ -2596,7 +2787,9 @@ function renderWeeklyChart(){
             day:
                 d.toLocaleDateString(
                     "en-AU",
-                    {weekday:"short"}
+                    {
+                        weekday:"short"
+                    }
                 )
 
         });
@@ -2660,7 +2853,9 @@ function renderCalendar(){
             .getElementById("calendar");
 
 
-    let now = new Date();
+    let now =
+        new Date();
+
 
     document
         .getElementById("calendarMonth")
@@ -2676,6 +2871,7 @@ function renderCalendar(){
 
     let year =
         now.getFullYear();
+
 
     let month =
         now.getMonth();
@@ -2724,7 +2920,8 @@ function renderCalendar(){
         i++
     ){
 
-        cells += "<div></div>";
+        cells +=
+            "<div></div>";
 
     }
 
@@ -2778,11 +2975,13 @@ function renderCalendar(){
                 </div>
 
                 <div class="study-minutes">
+
                     ${
                         minutes
                         ? formatMinutes(minutes)
                         : "—"
                     }
+
                 </div>
 
             </div>
@@ -2792,7 +2991,8 @@ function renderCalendar(){
     }
 
 
-    container.innerHTML = cells;
+    container.innerHTML =
+        cells;
 
 }
 
@@ -2846,7 +3046,9 @@ function renderHistory(){
             </div>
 
             <div class="task-time">
-                ${item.minutes} min
+
+                ${item.actualMinutes || item.minutes} min
+
             </div>
 
         </div>
@@ -2871,7 +3073,8 @@ function toggleHistory(){
 
 document
     .getElementById("planDate")
-    .value = todayKey();
+    .value =
+    todayKey();
 
 renderHome();
 
