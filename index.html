@@ -12,8 +12,8 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f6f6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f7f7f7;
     color: #333;
 }
 
@@ -25,55 +25,54 @@ select {
 
 button {
     cursor: pointer;
+    border: 0;
 }
 
-.app {
+.layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
-
 .sidebar {
     width: 220px;
     background: #fff;
-    border-right: 1px solid #e7e2e2;
-    padding: 25px 15px;
+    border-right: 1px solid #e5e5e5;
+    padding: 25px 16px;
     position: fixed;
-    height: 100vh;
+    left: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .logo {
-    font-size: 23px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 5px 10px 28px;
     color: #444;
-    text-align: center;
-    margin-bottom: 35px;
 }
 
 .nav-button {
+    display: block;
     width: 100%;
-    border: none;
-    background: transparent;
-    padding: 13px 15px;
-    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 5px 0;
     text-align: left;
-    margin-bottom: 8px;
-    color: #555;
+    background: transparent;
+    border-radius: 12px;
+    color: #666;
 }
 
 .nav-button:hover,
 .nav-button.active {
-    background: #f3e1e5;
-    color: #8d5b68;
+    background: #f5e2e8;
+    color: #a85c73;
 }
-
-/* MAIN */
 
 .main {
     margin-left: 220px;
-    padding: 30px;
     width: calc(100% - 220px);
+    padding: 30px;
+    max-width: 1300px;
 }
 
 .page {
@@ -85,439 +84,291 @@ button {
 }
 
 h1 {
-    margin-top: 0;
-    font-size: 28px;
+    margin: 0 0 22px;
+    font-size: 30px;
 }
 
 h2 {
     font-size: 20px;
+    margin-top: 0;
 }
-
-.subtitle {
-    color: #888;
-    margin-top: -10px;
-    margin-bottom: 25px;
-}
-
-/* CARDS */
 
 .card {
     background: #fff;
-    border: 1px solid #e8e4e4;
-    border-radius: 16px;
+    border: 1px solid #e7e7e7;
+    border-radius: 18px;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
 }
 
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 14px;
 }
 
-.stat-card {
+.stat {
     background: #fff;
-    border: 1px solid #e8e4e4;
+    border: 1px solid #e7e7e7;
     border-radius: 16px;
     padding: 18px;
 }
 
-.stat-title {
-    color: #888;
-    font-size: 13px;
-}
-
 .stat-number {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 7px;
+    font-size: 26px;
+    font-weight: 700;
 }
 
-/* FORMS */
+.stat-label {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+}
 
 .form-row {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr auto;
     gap: 10px;
+    align-items: end;
 }
 
-input,
-select {
-    border: 1px solid #ddd5d5;
+label {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.primary,
+.secondary,
+.danger {
+    padding: 10px 14px;
     border-radius: 10px;
-    padding: 11px;
-    background: #fff;
-    outline: none;
-}
-
-input:focus,
-select:focus {
-    border-color: #c58b99;
 }
 
 .primary {
-    background: #c98f9d;
+    background: #c77b94;
     color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 11px 17px;
 }
 
 .primary:hover {
-    background: #b97c8b;
+    background: #b86c85;
 }
 
 .secondary {
-    background: #f1eeee;
+    background: #f1f1f1;
     color: #555;
-    border: none;
-    border-radius: 10px;
-    padding: 9px 13px;
-}
-
-.secondary:hover {
-    background: #e8e1e1;
 }
 
 .danger {
-    background: #f4dfe2;
-    color: #9a4d5c;
-    border: none;
-    border-radius: 9px;
-    padding: 8px 12px;
-}
-
-.danger:hover {
-    background: #edd0d5;
-}
-
-/* TASKS */
-
-.task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    background: #f8e5e9;
+    color: #a84f68;
 }
 
 .task {
-    background: #fff;
-    border: 1px solid #e8e4e4;
+    border: 1px solid #e7e7e7;
     border-radius: 14px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    padding: 14px;
+    margin: 10px 0;
+    background: #fff;
 }
 
-.task-main {
-    flex: 1;
+.task-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
 }
 
 .task-title {
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .task-meta {
     font-size: 13px;
     color: #888;
-}
-
-.priority {
-    border: none;
-    background: transparent;
-    font-size: 23px;
-    color: #bbb;
-    padding: 3px;
-}
-
-.priority.selected {
-    color: #c98f9d;
+    margin-top: 5px;
 }
 
 .task-actions {
     display: flex;
-    gap: 6px;
+    gap: 7px;
     flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.star {
+    background: transparent;
+    font-size: 22px;
+    color: #ccc;
+    padding: 0;
+}
+
+.star.active {
+    color: #c77b94;
+}
+
+.priority-task {
+    border-color: #e2b5c3;
+}
+
+.progress {
+    height: 10px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .progress-bar {
-    height: 7px;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 9px;
-}
-
-.progress-fill {
     height: 100%;
-    background: #c98f9d;
+    background: #c77b94;
+    border-radius: 20px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+}
+
+.calendar-head {
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+}
+
+.day {
+    min-height: 70px;
+    border: 1px solid #eee;
     border-radius: 10px;
+    padding: 7px;
+    background: #fafafa;
 }
 
-/* FILTERS */
+.day-num {
+    font-size: 12px;
+    color: #777;
+}
 
-.filters {
+.day-minutes {
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.plan-date {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-/* PLAN */
-
-.plan-header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    margin-bottom: 18px;
 }
 
-.date-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.plan-date input {
+    max-width: 180px;
 }
-
-.date-controls button {
-    border: none;
-    background: #f0ebeb;
-    border-radius: 9px;
-    padding: 8px 12px;
-}
-
-.plan-total {
-    background: #f5e6e9;
-    color: #8d5b68;
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.plan-task {
-    background: #fff;
-    border: 1px solid #e8e4e4;
-    border-radius: 14px;
-    padding: 15px;
-    margin-bottom: 10px;
-}
-
-.plan-task-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.plan-task-info {
-    flex: 1;
-}
-
-.plan-actions {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.completed-label {
-    color: #7c9b80;
-    font-weight: bold;
-}
-
-/* TIMER */
 
 .timer {
     text-align: center;
 }
 
 .timer-display {
-    font-size: 55px;
-    font-weight: bold;
+    font-size: 58px;
+    font-weight: 700;
+    letter-spacing: 2px;
     margin: 15px 0;
-    color: #555;
 }
 
 .timer-buttons {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     flex-wrap: wrap;
 }
 
-/* HOME */
-
-.progress-container {
-    background: #eee;
-    height: 14px;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-container .progress-fill {
-    height: 100%;
-}
-
-.chart {
+.bar-chart {
     display: flex;
-    align-items: end;
-    gap: 12px;
+    align-items: flex-end;
+    gap: 10px;
     height: 180px;
-    padding: 15px 5px 0;
+    padding-top: 20px;
 }
 
-.chart-day {
+.bar-wrap {
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    height: 100%;
-    justify-content: end;
-}
-
-.chart-bar {
-    width: 100%;
-    max-width: 45px;
-    background: #d7a8b2;
-    border-radius: 8px 8px 2px 2px;
-    min-height: 3px;
-}
-
-.chart-label {
-    font-size: 11px;
-    color: #888;
-    margin-top: 6px;
-}
-
-.chart-value {
-    font-size: 10px;
-    color: #888;
-    margin-bottom: 4px;
-}
-
-/* CALENDAR */
-
-.calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
 
-.calendar-header {
+.bar {
+    width: 100%;
+    max-width: 45px;
+    background: #d99bad;
+    border-radius: 7px 7px 0 0;
+    min-height: 2px;
+}
+
+.bar-label {
     font-size: 11px;
     color: #888;
+}
+
+.bar-value {
+    font-size: 11px;
+    color: #666;
+}
+
+.empty {
+    color: #999;
     text-align: center;
-    padding: 5px;
+    padding: 20px;
 }
 
-.calendar-day {
-    min-height: 65px;
-    border-radius: 8px;
-    background: #f4f3f3;
-    padding: 7px;
-    font-size: 11px;
-}
-
-.calendar-day.empty {
-    background: transparent;
-}
-
-.calendar-day.level1 {
-    background: #f4e7e9;
-}
-
-.calendar-day.level2 {
-    background: #ecd5da;
-}
-
-.calendar-day.level3 {
-    background: #dfbbc3;
-}
-
-.calendar-day.level4 {
-    background: #cf9da9;
-    color: white;
-}
-
-.calendar-minutes {
-    margin-top: 7px;
-    font-size: 10px;
-}
-
-/* HISTORY */
-
-.history-toggle {
-    border: none;
-    background: transparent;
-    color: #9b6370;
-    font-weight: bold;
-    padding: 0;
-}
-
-.history-item {
-    display: flex;
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
     align-items: center;
-    gap: 10px;
-    padding: 11px 0;
-    border-bottom: 1px solid #eee;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
 }
 
-.history-info {
-    flex: 1;
+.modal.show {
+    display: flex;
 }
 
-.history-title {
-    font-weight: bold;
+.modal-box {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    width: min(450px, 100%);
 }
-
-.history-meta {
-    font-size: 12px;
-    color: #888;
-    margin-top: 3px;
-}
-
-/* MOBILE */
 
 .mobile-nav {
     display: none;
 }
 
-/* MODAL */
-
-.modal-background {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.25);
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-}
-
-.modal-background.show {
-    display: flex;
-}
-
-.modal {
-    width: min(450px, 90%);
-    background: white;
-    border-radius: 18px;
-    padding: 22px;
-}
-
-.modal h2 {
-    margin-top: 0;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-@media (max-width: 800px) {
-
+@media(max-width:800px) {
     .sidebar {
         display: none;
     }
@@ -525,8 +376,17 @@ select:focus {
     .main {
         margin-left: 0;
         width: 100%;
-        padding: 20px;
-        padding-bottom: 85px;
+        padding: 18px;
+        padding-bottom: 80px;
+    }
+
+    .grid,
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
     }
 
     .mobile-nav {
@@ -535,38 +395,32 @@ select:focus {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 65px;
         background: white;
-        border-top: 1px solid #e7e2e2;
-        z-index: 50;
+        border-top: 1px solid #ddd;
+        z-index: 5;
     }
 
     .mobile-nav button {
         flex: 1;
-        border: none;
+        padding: 13px;
         background: white;
         color: #777;
     }
 
     .mobile-nav button.active {
-        color: #9b6370;
-        font-weight: bold;
+        color: #a85c73;
     }
+}
 
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+@media(max-width:520px) {
+    .grid,
+    .stats,
     .form-row {
         grid-template-columns: 1fr;
     }
 
-    .task {
-        align-items: flex-start;
-    }
-
-    .chart {
-        gap: 5px;
+    .timer-display {
+        font-size: 46px;
     }
 }
 </style>
@@ -574,415 +428,259 @@ select:focus {
 
 <body>
 
-<div class="app">
+<div class="layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="logo">
-            Study Planner ♡
-        </div>
+<div class="logo">Study Planner</div>
 
-        <button class="nav-button active"
-                onclick="showPage('home')">
-            Home
-        </button>
+<button class="nav-button active" onclick="showPage('home')">
+    Home
+</button>
 
-        <button class="nav-button"
-                onclick="showPage('tasks')">
-            Tasks
-        </button>
+<button class="nav-button" onclick="showPage('tasks')">
+    Tasks
+</button>
 
-        <button class="nav-button"
-                onclick="showPage('plan')">
-            Plan
-        </button>
+<button class="nav-button" onclick="showPage('plan')">
+    Plan
+</button>
 
-    </aside>
+</aside>
 
 
-    <!-- MAIN -->
-    <main class="main">
+<main class="main">
 
-        <!-- HOME -->
-        <section id="home" class="page active">
+<!-- HOME -->
 
-            <h1>Good luck studying ♡</h1>
+<section id="home" class="page active">
 
-            <p class="subtitle">
-                Keep track of what you need to get done.
-            </p>
+<h1>Home</h1>
 
+<div class="stats">
 
-            <div class="stats">
+<div class="stat">
+<div class="stat-number" id="statTasks">0 / 0</div>
+<div class="stat-label">Tasks completed</div>
+</div>
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Tasks completed
-                    </div>
+<div class="stat">
+<div class="stat-number" id="statPercent">0%</div>
+<div class="stat-label">Today's progress</div>
+</div>
 
-                    <div class="stat-number"
-                         id="statCompleted">
-                        0
-                    </div>
-                </div>
+<div class="stat">
+<div class="stat-number" id="statToday">0 min</div>
+<div class="stat-label">Study time today</div>
+</div>
 
+<div class="stat">
+<div class="stat-number" id="statWeek">0 min</div>
+<div class="stat-label">Study time this week</div>
+</div>
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Study time today
-                    </div>
+</div>
 
-                    <div class="stat-number"
-                         id="statToday">
-                        0m
-                    </div>
-                </div>
 
+<div class="card">
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Study this week
-                    </div>
+<h2>Today's progress</h2>
 
-                    <div class="stat-number"
-                         id="statWeek">
-                        0m
-                    </div>
-                </div>
+<div class="progress">
+<div class="progress-bar" id="homeProgress" style="width:0%"></div>
+</div>
 
+<p id="remainingText" style="color:#888;margin-bottom:0">
+0 tasks remaining
+</p>
 
-                <div class="stat-card">
-                    <div class="stat-title">
-                        Tasks remaining
-                    </div>
+</div>
 
-                    <div class="stat-number"
-                         id="statRemaining">
-                        0
-                    </div>
-                </div>
 
-            </div>
+<div class="grid">
 
+<div class="card">
 
-            <!-- TODAY PROGRESS -->
+<h2>Study calendar</h2>
 
-            <div class="card">
+<div class="calendar" id="calendar"></div>
 
-                <h2>Today's progress</h2>
+</div>
 
-                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
 
-                    <span id="todayProgressText">
-                        0 / 0 tasks
-                    </span>
+<div class="card">
 
-                    <span id="todayProgressPercent">
-                        0%
-                    </span>
+<h2>Study time this week</h2>
 
-                </div>
+<div class="bar-chart" id="barChart"></div>
 
-                <div class="progress-container">
+</div>
 
-                    <div id="todayProgressBar"
-                         class="progress-fill"
-                         style="width:0%">
-                    </div>
+</div>
 
-                </div>
 
-            </div>
+<div class="card">
 
+<h2>Completed activities</h2>
 
-            <!-- TODAY TASKS -->
+<div id="historyList"></div>
 
-            <div class="card">
+</div>
 
-                <h2>Today's tasks</h2>
+</section>
 
-                <div id="todayTasks"></div>
 
-            </div>
+<!-- TASKS -->
 
+<section id="tasks" class="page">
 
-            <!-- WEEKLY CHART -->
+<h1>Tasks</h1>
 
-            <div class="card">
+<div class="card">
 
-                <h2>This week</h2>
+<h2>Add a task</h2>
 
-                <div id="weeklyChart"
-                     class="chart">
-                </div>
+<div class="form-row">
 
-            </div>
+<div>
+<label>Task</label>
+<input id="taskTitle" placeholder="e.g. Biology chapter 5">
+</div>
 
+<div>
+<label>Subject</label>
+<select id="taskSubject">
+<option>English</option>
+<option>Maths</option>
+<option>Biology</option>
+<option>HHD</option>
+</select>
+</div>
 
-            <!-- CALENDAR -->
+<div>
+<label>Estimated minutes</label>
+<input id="taskTime" type="number" min="1" placeholder="60">
+</div>
 
-            <div class="card">
+<button class="primary" onclick="addTask()">Add</button>
 
-                <h2>Study calendar</h2>
+</div>
 
-                <div id="calendar"></div>
+</div>
 
-            </div>
+<div id="taskList"></div>
 
+</section>
 
-            <!-- HISTORY -->
 
-            <div class="card">
+<!-- PLAN -->
 
-                <div style="display:flex;justify-content:space-between;align-items:center;">
+<section id="plan" class="page">
 
-                    <h2 style="margin:0;">
-                        Completed activities
-                    </h2>
+<h1>Plan</h1>
 
-                    <button
-                        class="history-toggle"
-                        onclick="toggleHistory()"
-                        id="historyToggle">
-                        Show
-                    </button>
+<div class="card">
 
-                </div>
+<div class="plan-date">
 
-                <div id="history"
-                     style="display:none;margin-top:15px;">
-                </div>
+<label style="margin:0">
+Planning for
+</label>
 
-            </div>
+<input
+type="date"
+id="planDate"
+onchange="renderAll()"
+>
 
-        </section>
+</div>
 
 
-        <!-- TASKS -->
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
 
-        <section id="tasks" class="page">
+<h2 style="margin:0">
+Today's plan
+</h2>
 
-            <h1>Tasks</h1>
+<strong id="plannedTotal">
+0 min planned
+</strong>
 
-            <p class="subtitle">
-                Add everything you need to get done.
-            </p>
+</div>
 
+<div id="plannedTasks"></div>
 
-            <div class="card">
+</div>
 
-                <h2>Add a task</h2>
 
-                <div class="form-row">
+<div class="card">
 
-                    <input
-                        id="taskTitle"
-                        type="text"
-                        placeholder="Task name">
+<h2>Available tasks</h2>
 
-                    <select id="taskSubject">
+<p style="color:#888">
+Select tasks to add them to this day's plan.
+</p>
 
-                        <option>English</option>
-                        <option>Maths</option>
-                        <option>Biology</option>
-                        <option>HHD</option>
+<div id="availableTasks"></div>
 
-                    </select>
+</div>
 
-                    <input
-                        id="taskEstimated"
-                        type="number"
-                        min="1"
-                        placeholder="Minutes">
 
-                    <button
-                        class="primary"
-                        onclick="addTask()">
-                        Add
-                    </button>
+<!-- POMODORO -->
 
-                </div>
+<div class="card timer">
 
-            </div>
+<h2>Pomodoro timer</h2>
 
+<div id="timerTaskName" style="color:#888;">
+No task selected
+</div>
 
-            <div class="card">
+<div class="timer-display" id="timerDisplay">
+25:00
+</div>
 
-                <div class="filters">
+<div class="timer-buttons">
 
-                    <button
-                        class="secondary"
-                        onclick="setTaskFilter('all')">
-                        All
-                    </button>
+<button class="secondary" onclick="setPomodoro(25)">
+25 Focus
+</button>
 
-                    <button
-                        class="secondary"
-                        onclick="setTaskFilter('priority')">
-                        ★ Priority
-                    </button>
+<button class="secondary" onclick="setPomodoro(5)">
+5 Break
+</button>
 
-                    <button
-                        class="secondary"
-                        onclick="setTaskFilter('remaining')">
-                        Remaining
-                    </button>
+<button class="secondary" onclick="setPomodoro(15)">
+15 Break
+</button>
 
-                </div>
+<button class="secondary" onclick="setPomodoro(50)">
+50 Focus
+</button>
 
-                <div id="taskList"
-                     class="task-list">
-                </div>
+</div>
 
-            </div>
+<div style="margin-top:12px;">
 
-        </section>
+<button class="primary" onclick="startTimer()">
+Start
+</button>
 
+<button class="secondary" onclick="pauseTimer()">
+Pause
+</button>
 
-        <!-- PLAN -->
+<button class="secondary" onclick="resetTimer()">
+Reset
+</button>
 
-        <section id="plan" class="page">
+</div>
 
-            <div class="plan-header">
+</div>
 
-                <div>
+</section>
 
-                    <h1>Plan</h1>
-
-                    <p class="subtitle">
-                        Choose what you want to study.
-                    </p>
-
-                </div>
-
-
-                <div class="date-controls">
-
-                    <button onclick="changePlanDate(-1)">
-                        ←
-                    </button>
-
-                    <input
-                        id="planDate"
-                        type="date"
-                        onchange="changePlanDateDirect()">
-
-                    <button onclick="changePlanDate(1)">
-                        →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- PLANNED -->
-
-            <div class="card">
-
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-
-                    <h2>Today's plan</h2>
-
-                    <div
-                        class="plan-total"
-                        id="plannedTotal">
-                        0 min
-                    </div>
-
-                </div>
-
-                <div id="plannedTasks"></div>
-
-            </div>
-
-
-            <!-- AVAILABLE -->
-
-            <div class="card">
-
-                <h2>Available tasks</h2>
-
-                <div id="availableTasks"></div>
-
-            </div>
-
-
-            <!-- TIMER -->
-
-            <div class="card timer">
-
-                <h2>Pomodoro timer</h2>
-
-                <div id="timerTaskName"
-                     style="color:#888;">
-                    No task selected
-                </div>
-
-
-                <div class="timer-display"
-                     id="timerDisplay">
-                    25:00
-                </div>
-
-
-                <div class="timer-buttons">
-
-                    <button
-                        class="secondary"
-                        onclick="setPomodoro(25)">
-                        25 Focus
-                    </button>
-
-                    <button
-                        class="secondary"
-                        onclick="setPomodoro(5)">
-                        5 Break
-                    </button>
-
-                    <button
-                        class="secondary"
-                        onclick="setPomodoro(15)">
-                        15 Break
-                    </button>
-
-                    <button
-                        class="secondary"
-                        onclick="setPomodoro(50)">
-                        50 Focus
-                    </button>
-
-                </div>
-
-
-                <div style="margin-top:12px;">
-
-                    <button
-                        class="primary"
-                        onclick="startTimer()">
-                        Start
-                    </button>
-
-                    <button
-                        class="secondary"
-                        onclick="pauseTimer()">
-                        Pause
-                    </button>
-
-                    <button
-                        class="secondary"
-                        onclick="resetTimer()">
-                        Reset
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+</main>
 
 </div>
 
@@ -991,219 +689,123 @@ select:focus {
 
 <div class="mobile-nav">
 
-    <button
-        class="active"
-        onclick="showPage('home')">
-        Home
-    </button>
+<button class="active" onclick="showPage('home')">
+Home
+</button>
 
-    <button
-        onclick="showPage('tasks')">
-        Tasks
-    </button>
+<button onclick="showPage('tasks')">
+Tasks
+</button>
 
-    <button
-        onclick="showPage('plan')">
-        Plan
-    </button>
+<button onclick="showPage('plan')">
+Plan
+</button>
 
 </div>
 
 
 <!-- EDIT MODAL -->
 
-<div id="editModal"
-     class="modal-background">
+<div class="modal" id="editModal">
 
-    <div class="modal">
+<div class="modal-box">
 
-        <h2>Edit task</h2>
+<h2>Edit task</h2>
 
-        <input
-            id="editTitle"
-            style="width:100%;margin-bottom:10px;">
+<input type="hidden" id="editId">
 
-        <select
-            id="editSubject"
-            style="width:100%;margin-bottom:10px;">
+<label>Task</label>
+<input id="editTitle">
 
-            <option>English</option>
-            <option>Maths</option>
-            <option>Biology</option>
-            <option>HHD</option>
+<label style="margin-top:10px">
+Subject
+</label>
 
-        </select>
+<select id="editSubject">
+<option>English</option>
+<option>Maths</option>
+<option>Biology</option>
+<option>HHD</option>
+</select>
 
-        <input
-            id="editEstimated"
-            type="number"
-            min="1"
-            style="width:100%;">
+<label style="margin-top:10px">
+Estimated minutes
+</label>
 
+<input id="editTime" type="number" min="1">
 
-        <div class="modal-actions">
+<div style="margin-top:15px;display:flex;gap:8px;justify-content:flex-end">
 
-            <button
-                class="secondary"
-                onclick="closeEditModal()">
-                Cancel
-            </button>
+<button class="secondary" onclick="closeModal('editModal')">
+Cancel
+</button>
 
-            <button
-                class="primary"
-                onclick="saveEditTask()">
-                Save
-            </button>
+<button class="primary" onclick="saveEdit()">
+Save
+</button>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
 <!-- PROGRESS MODAL -->
 
-<div id="progressModal"
-     class="modal-background">
+<div class="modal" id="progressModal">
 
-    <div class="modal">
+<div class="modal-box">
 
-        <h2>Save study progress</h2>
+<h2>Save progress</h2>
 
-        <p style="color:#888;">
-            How many additional minutes did you work?
-        </p>
+<input type="hidden" id="progressId">
 
-        <input
-            id="progressMinutes"
-            type="number"
-            min="1"
-            style="width:100%;">
+<p style="color:#888">
+Enter the additional number of minutes you actually studied on this task.
+</p>
 
+<label>
+Minutes worked
+</label>
 
-        <div class="modal-actions">
+<input id="progressMinutes" type="number" min="1">
 
-            <button
-                class="secondary"
-                onclick="closeProgressModal()">
-                Cancel
-            </button>
+<div style="margin-top:15px;display:flex;gap:8px;justify-content:flex-end">
 
-            <button
-                class="primary"
-                onclick="saveManualProgress()">
-                Save
-            </button>
+<button class="secondary" onclick="closeModal('progressModal')">
+Cancel
+</button>
 
-        </div>
+<button class="primary" onclick="saveProgress()">
+Save progress
+</button>
 
-    </div>
+</div>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   DATA
-========================================================= */
-
-let tasks = JSON.parse(
+var tasks = JSON.parse(
     localStorage.getItem("studyTasksV2") || "[]"
 );
 
-let plans = JSON.parse(
+var plans = JSON.parse(
     localStorage.getItem("studyPlansV2") || "{}"
 );
 
-let studySessions = JSON.parse(
+var studySessions = JSON.parse(
     localStorage.getItem("studySessionsV2") || "{}"
 );
 
-let completedHistory = JSON.parse(
+var completedHistory = JSON.parse(
     localStorage.getItem("completedHistoryV2") || "[]"
 );
 
-
-/* =========================================================
-   NORMALISE TASKS
-========================================================= */
-
-tasks = tasks.map(function(task) {
-
-    var remainingValue;
-
-    if (
-        task.remaining !== undefined &&
-        task.remaining !== null
-    ) {
-        remainingValue = Number(task.remaining);
-    } else {
-        remainingValue = Number(task.estimated) || 0;
-    }
-
-
-    var estimated =
-        Number(task.estimated) || 0;
-
-
-    var completedMinutes =
-        Math.max(
-            0,
-            estimated - remainingValue
-        );
-
-
-    return {
-
-        id: task.id,
-
-        title: task.title || "Untitled task",
-
-        subject: task.subject || "English",
-
-        estimated: estimated,
-
-        remaining: Math.max(
-            0,
-            remainingValue
-        ),
-
-        actualMinutes:
-            Number(task.actualMinutes) ||
-            completedMinutes,
-
-        completed:
-            Boolean(task.completed),
-
-        priority:
-            Boolean(task.priority),
-
-        created:
-            task.created || todayKey()
-
-    };
-
-});
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-var taskFilter = "all";
-
-var planDate = todayKey();
-
-var historyVisible = false;
-
-var editingTaskId = null;
-
-var progressTaskId = null;
-
-
-/* TIMER */
 
 var timerInterval = null;
 
@@ -1216,73 +818,7 @@ var timerMode = "focus";
 var sessionStartedAt = null;
 
 
-/* =========================================================
-   DATE
-========================================================= */
-
-function localDateKey(date) {
-
-    if (!date) {
-        date = new Date();
-    }
-
-    var year =
-        date.getFullYear();
-
-    var month =
-        String(
-            date.getMonth() + 1
-        ).padStart(2, "0");
-
-    var day =
-        String(
-            date.getDate()
-        ).padStart(2, "0");
-
-    return (
-        year +
-        "-" +
-        month +
-        "-" +
-        day
-    );
-
-}
-
-
-function todayKey() {
-
-    return localDateKey(
-        new Date()
-    );
-
-}
-
-
-function formatDate(dateString) {
-
-    var date =
-        new Date(
-            dateString + "T00:00:00"
-        );
-
-    return date.toLocaleDateString(
-        undefined,
-        {
-            weekday: "short",
-            day: "numeric",
-            month: "short"
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SAVE
-========================================================= */
-
-function save() {
+function saveAll() {
 
     localStorage.setItem(
         "studyTasksV2",
@@ -1307,57 +843,105 @@ function save() {
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+function localDateKey(date) {
+
+    date = date || new Date();
+
+    var year = date.getFullYear();
+
+    var month = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
+
+    var day = String(
+        date.getDate()
+    ).padStart(2, "0");
+
+    return year + "-" + month + "-" + day;
+
+}
+
+
+function todayKey() {
+
+    return localDateKey(new Date());
+
+}
+
+
+function formatMinutes(minutes) {
+
+    minutes = Math.round(
+        Number(minutes) || 0
+    );
+
+    if (minutes < 60) {
+
+        return minutes + " min";
+
+    }
+
+    var h = Math.floor(minutes / 60);
+
+    var m = minutes % 60;
+
+    return m
+        ? h + "h " + m + "m"
+        : h + "h";
+
+}
+
 
 function showPage(page) {
 
-    document.querySelectorAll(
-        ".page"
-    ).forEach(function(element) {
+    document
+        .querySelectorAll(".page")
+        .forEach(function(p) {
 
-        element.classList.remove(
-            "active"
-        );
+            p.classList.remove("active");
 
-    });
+        });
 
 
-    document.getElementById(
-        page
-    ).classList.add("active");
+    document
+        .getElementById(page)
+        .classList.add("active");
 
 
-    document.querySelectorAll(
-        ".nav-button, .mobile-nav button"
-    ).forEach(function(button) {
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(function(b) {
 
-        button.classList.remove(
-            "active"
-        );
+            b.classList.remove("active");
 
-    });
+        });
 
 
-    document.querySelectorAll(
-        ".nav-button, .mobile-nav button"
-    ).forEach(function(button) {
+    document
+        .querySelectorAll(".mobile-nav button")
+        .forEach(function(b) {
 
-        var text =
-            button.textContent
-                .trim()
-                .toLowerCase();
+            b.classList.remove("active");
 
-        if (text === page) {
+        });
 
-            button.classList.add(
-                "active"
-            );
 
-        }
+    var index =
+        page === "home"
+            ? 0
+            : page === "tasks"
+            ? 1
+            : 2;
 
-    });
+
+    document
+        .querySelectorAll(".nav-button")[index]
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".mobile-nav button")[index]
+        .classList.add("active");
 
 
     renderAll();
@@ -1365,16 +949,13 @@ function showPage(page) {
 }
 
 
-/* =========================================================
-   ADD TASK
-========================================================= */
-
 function addTask() {
 
     var title =
-        document.getElementById(
-            "taskTitle"
-        ).value.trim();
+        document
+            .getElementById("taskTitle")
+            .value
+            .trim();
 
 
     var subject =
@@ -1386,29 +967,19 @@ function addTask() {
     var estimated =
         Number(
             document.getElementById(
-                "taskEstimated"
+                "taskTime"
             ).value
         );
 
 
-    if (!title) {
-
-        alert(
-            "Please enter a task name."
-        );
-
-        return;
-
-    }
-
-
     if (
+        !title ||
         !estimated ||
-        estimated <= 0
+        estimated < 1
     ) {
 
         alert(
-            "Please enter an estimated time."
+            "Please enter a task and estimated time."
         );
 
         return;
@@ -1434,9 +1005,12 @@ function addTask() {
 
         priority: false,
 
-        created: todayKey()
+        created: Date.now()
 
     });
+
+
+    saveAll();
 
 
     document.getElementById(
@@ -1445,33 +1019,14 @@ function addTask() {
 
 
     document.getElementById(
-        "taskEstimated"
+        "taskTime"
     ).value = "";
 
-
-    save();
 
     renderAll();
 
 }
 
-
-/* =========================================================
-   TASK FILTER
-========================================================= */
-
-function setTaskFilter(filter) {
-
-    taskFilter = filter;
-
-    renderTasks();
-
-}
-
-
-/* =========================================================
-   PRIORITY
-========================================================= */
 
 function togglePriority(id) {
 
@@ -1486,51 +1041,30 @@ function togglePriority(id) {
     if (!task) return;
 
 
-    task.priority =
-        !task.priority;
+    task.priority = !task.priority;
 
 
-    save();
+    saveAll();
 
-    renderTasks();
+    renderAll();
 
 }
 
 
-/* =========================================================
-   DELETE TASK
-========================================================= */
-
 function deleteTask(id) {
 
-    var task =
-        tasks.find(function(t) {
+    if (!confirm("Delete this task?")) {
 
-            return t.id === id;
-
-        });
-
-
-    if (!task) return;
-
-
-    if (
-        !confirm(
-            'Delete "' +
-            task.title +
-            '"?'
-        )
-    ) {
         return;
+
     }
 
 
-    tasks =
-        tasks.filter(function(t) {
+    tasks = tasks.filter(function(t) {
 
-            return t.id !== id;
+        return t.id !== id;
 
-        });
+    });
 
 
     Object.keys(plans).forEach(
@@ -1549,18 +1083,14 @@ function deleteTask(id) {
     );
 
 
-    save();
+    saveAll();
 
     renderAll();
 
 }
 
 
-/* =========================================================
-   EDIT TASK
-========================================================= */
-
-function openEditModal(id) {
+function openEdit(id) {
 
     var task =
         tasks.find(function(t) {
@@ -1573,7 +1103,9 @@ function openEditModal(id) {
     if (!task) return;
 
 
-    editingTaskId = id;
+    document.getElementById(
+        "editId"
+    ).value = id;
 
 
     document.getElementById(
@@ -1587,113 +1119,26 @@ function openEditModal(id) {
 
 
     document.getElementById(
-        "editEstimated"
+        "editTime"
     ).value = task.estimated;
 
 
-    document.getElementById(
-        "editModal"
-    ).classList.add("show");
+    document
+        .getElementById("editModal")
+        .classList.add("show");
 
 }
 
 
-function closeEditModal() {
+function saveEdit() {
 
-    editingTaskId = null;
-
-
-    document.getElementById(
-        "editModal"
-    ).classList.remove("show");
-
-}
-
-
-function saveEditTask() {
-
-    var task =
-        tasks.find(function(t) {
-
-            return t.id === editingTaskId;
-
-        });
-
-
-    if (!task) return;
-
-
-    var title =
-        document.getElementById(
-            "editTitle"
-        ).value.trim();
-
-
-    var subject =
-        document.getElementById(
-            "editSubject"
-        ).value;
-
-
-    var estimated =
+    var id =
         Number(
             document.getElementById(
-                "editEstimated"
+                "editId"
             ).value
         );
 
-
-    if (
-        !title ||
-        !estimated ||
-        estimated <= 0
-    ) {
-
-        alert(
-            "Please enter valid information."
-        );
-
-        return;
-
-    }
-
-
-    var completedMinutes =
-        Number(
-            task.actualMinutes
-        ) || 0;
-
-
-    task.title = title;
-
-    task.subject = subject;
-
-    task.estimated = estimated;
-
-    task.remaining =
-        Math.max(
-            0,
-            estimated - completedMinutes
-        );
-
-    task.completed =
-        task.remaining === 0;
-
-
-    save();
-
-    closeEditModal();
-
-    renderAll();
-
-}
-
-
-/* =========================================================
-   MANUAL PROGRESS
-========================================================= */
-
-function openProgressModal(id) {
 
     var task =
         tasks.find(function(t) {
@@ -1703,15 +1148,70 @@ function openProgressModal(id) {
         });
 
 
+    if (!task) return;
+
+
+    var newEstimated =
+        Number(
+            document.getElementById(
+                "editTime"
+            ).value
+        );
+
+
     if (
-        !task ||
-        task.completed
+        !newEstimated ||
+        newEstimated < 1
     ) {
+
         return;
+
     }
 
 
-    progressTaskId = id;
+    var used =
+        task.estimated -
+        task.remaining;
+
+
+    task.title =
+        document
+            .getElementById("editTitle")
+            .value
+            .trim() || task.title;
+
+
+    task.subject =
+        document.getElementById(
+            "editSubject"
+        ).value;
+
+
+    task.estimated =
+        newEstimated;
+
+
+    task.remaining =
+        Math.max(
+            0,
+            newEstimated - used
+        );
+
+
+    saveAll();
+
+    closeModal("editModal");
+
+    renderAll();
+
+}
+
+
+function openProgress(id) {
+
+    document.getElementById(
+        "progressId"
+    ).value = id;
 
 
     document.getElementById(
@@ -1719,36 +1219,29 @@ function openProgressModal(id) {
     ).value = "";
 
 
-    document.getElementById(
-        "progressModal"
-    ).classList.add("show");
+    document
+        .getElementById("progressModal")
+        .classList.add("show");
 
 }
 
 
-function closeProgressModal() {
+function saveProgress() {
 
-    progressTaskId = null;
+    var id =
+        Number(
+            document.getElementById(
+                "progressId"
+            ).value
+        );
 
-
-    document.getElementById(
-        "progressModal"
-    ).classList.remove("show");
-
-}
-
-
-function saveManualProgress() {
 
     var task =
         tasks.find(function(t) {
 
-            return t.id === progressTaskId;
+            return t.id === id;
 
         });
-
-
-    if (!task) return;
 
 
     var minutes =
@@ -1760,125 +1253,53 @@ function saveManualProgress() {
 
 
     if (
+        !task ||
         !minutes ||
-        minutes <= 0
+        minutes < 1
     ) {
-
-        alert(
-            "Enter a number greater than 0."
-        );
 
         return;
 
     }
 
 
-    if (
-        minutes > task.remaining
-    ) {
-
-        alert(
-            "You only have " +
-            task.remaining +
-            " minutes remaining."
+    minutes =
+        Math.min(
+            minutes,
+            task.remaining
         );
 
-        return;
 
-    }
-
-
-    addStudyMinutes(
-        minutes
-    );
+    task.actualMinutes =
+        (Number(task.actualMinutes) || 0)
+        + minutes;
 
 
-    addActualTaskMinutes(
-        task,
-        minutes
-    );
+    task.remaining =
+        Math.max(
+            0,
+            task.remaining - minutes
+        );
 
 
-    task.remaining -=
-        minutes;
+    addStudyMinutes(minutes);
 
 
-    if (
-        task.remaining <= 0
-    ) {
-
-        task.remaining = 0;
+    if (task.remaining <= 0) {
 
         finishTask(task);
 
     }
 
 
-    save();
+    saveAll();
 
-    closeProgressModal();
+    closeModal("progressModal");
 
     renderAll();
 
 }
 
-
-/* =========================================================
-   STUDY TIME
-========================================================= */
-
-function addStudyMinutes(minutes) {
-
-    minutes =
-        Number(minutes);
-
-
-    if (
-        !isFinite(minutes) ||
-        minutes <= 0
-    ) {
-        return;
-    }
-
-
-    var date =
-        todayKey();
-
-
-    if (
-        !studySessions[date]
-    ) {
-
-        studySessions[date] = 0;
-
-    }
-
-
-    studySessions[date] +=
-        minutes;
-
-}
-
-
-function addActualTaskMinutes(
-    task,
-    minutes
-) {
-
-    task.actualMinutes =
-        (
-            Number(
-                task.actualMinutes
-            ) || 0
-        ) +
-        Number(minutes);
-
-}
-
-
-/* =========================================================
-   COMPLETE
-========================================================= */
 
 function completeTask(id) {
 
@@ -1894,44 +1315,36 @@ function completeTask(id) {
         !task ||
         task.completed
     ) {
+
         return;
+
     }
 
 
     if (
         !confirm(
-            'Mark "' +
-            task.title +
-            '" as completed?'
+            "Mark this task as complete?"
         )
     ) {
+
         return;
+
     }
 
 
-    var remainingMinutes =
-        Number(
-            task.remaining
-        ) || 0;
+    var remaining =
+        Number(task.remaining) || 0;
 
 
-    /*
-       Any remaining estimated time
-       is counted when pressing Complete.
-    */
+    if (remaining > 0) {
 
-    if (
-        remainingMinutes > 0
-    ) {
+        task.actualMinutes =
+            (Number(task.actualMinutes) || 0)
+            + remaining;
+
 
         addStudyMinutes(
-            remainingMinutes
-        );
-
-
-        addActualTaskMinutes(
-            task,
-            remainingMinutes
+            remaining
         );
 
     }
@@ -1939,65 +1352,62 @@ function completeTask(id) {
 
     task.remaining = 0;
 
-    task.completed = true;
+
+    finishTask(task);
 
 
-    addToHistory(task);
-
-
-    stopTimerIfTask(
-        id
-    );
-
-
-    save();
+    saveAll();
 
     renderAll();
 
 }
 
 
-/* =========================================================
-   FINISH
-========================================================= */
-
 function finishTask(task) {
-
-    task.remaining = 0;
 
     task.completed = true;
 
-
-    addToHistory(
-        task
-    );
+    task.remaining = 0;
 
 
-    stopTimerIfTask(
-        task.id
-    );
+    addToHistory(task);
+
+
+    if (
+        timerTaskId === task.id
+    ) {
+
+        pauseTimer();
+
+        timerTaskId = null;
+
+        document.getElementById(
+            "timerTaskName"
+        ).textContent =
+            "No task selected";
+
+    }
 
 }
 
 
-/* =========================================================
-   HISTORY ADD
-========================================================= */
-
 function addToHistory(task) {
 
-    var exists =
+    if (
         completedHistory.some(
             function(item) {
 
-                return item.id === task.id;
+                return (
+                    item.id === task.id &&
+                    item.date === todayKey()
+                );
 
             }
-        );
+        )
+    ) {
 
-
-    if (exists) {
         return;
+
     }
 
 
@@ -2009,14 +1419,10 @@ function addToHistory(task) {
 
         subject: task.subject,
 
+        minutes: task.estimated,
+
         actualMinutes:
-            Number(
-                task.actualMinutes
-            ) ||
-            Number(
-                task.estimated
-            ) ||
-            0,
+            task.actualMinutes || 0,
 
         date: todayKey()
 
@@ -2024,10 +1430,6 @@ function addToHistory(task) {
 
 }
 
-
-/* =========================================================
-   DELETE HISTORY
-========================================================= */
 
 function deleteHistoryItem(index) {
 
@@ -2038,50 +1440,27 @@ function deleteHistoryItem(index) {
     if (!item) return;
 
 
-    var minutes =
-        Number(
-            item.actualMinutes
-        ) || 0;
-
-
-    var message =
-        'Delete "' +
-        item.title +
-        '" from completed history?\n\n' +
-        minutes +
-        ' minutes will be removed from your study total and the task will be restored.';
-
-
     if (
-        !confirm(message)
+        !confirm(
+            "Undo this completed activity?"
+        )
     ) {
+
         return;
-    }
-
-
-    /*
-       Remove its recorded study time
-       from the date it was completed.
-    */
-
-    if (
-        studySessions[item.date]
-    ) {
-
-        studySessions[item.date] =
-            Math.max(
-                0,
-                Number(
-                    studySessions[item.date]
-                ) - minutes
-            );
 
     }
 
 
-    /*
-       Restore the task.
-    */
+    var date = item.date;
+
+
+    studySessions[date] =
+        Math.max(
+            0,
+            (studySessions[date] || 0)
+            - (Number(item.actualMinutes) || 0)
+        );
+
 
     var task =
         tasks.find(function(t) {
@@ -2098,16 +1477,10 @@ function deleteHistoryItem(index) {
         task.actualMinutes = 0;
 
         task.remaining =
-            Number(
-                task.estimated
-            ) || 0;
+            task.estimated;
 
     }
 
-
-    /*
-       Remove history entry.
-    */
 
     completedHistory.splice(
         index,
@@ -2115,219 +1488,445 @@ function deleteHistoryItem(index) {
     );
 
 
-    save();
+    saveAll();
 
     renderAll();
 
 }
 
 
-/* =========================================================
-   PLAN
-========================================================= */
+function addStudyMinutes(minutes) {
+
+    var key = todayKey();
+
+
+    studySessions[key] =
+        (studySessions[key] || 0)
+        + (Number(minutes) || 0);
+
+}
+
+
+function renderTasks() {
+
+    var list =
+        document.getElementById(
+            "taskList"
+        );
+
+
+    var sorted =
+        tasks.slice().sort(
+            function(a, b) {
+
+                if (
+                    a.completed !==
+                    b.completed
+                ) {
+
+                    return a.completed
+                        ? 1
+                        : -1;
+
+                }
+
+
+                if (
+                    a.priority !==
+                    b.priority
+                ) {
+
+                    return a.priority
+                        ? -1
+                        : 1;
+
+                }
+
+
+                return b.created -
+                    a.created;
+
+            }
+        );
+
+
+    if (!sorted.length) {
+
+        list.innerHTML =
+            '<div class="card empty">No tasks yet.</div>';
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        sorted.map(function(task) {
+
+            var used =
+                Math.max(
+                    0,
+                    task.estimated -
+                    task.remaining
+                );
+
+
+            return `
+            <div class="task ${task.priority ? "priority-task" : ""}">
+
+                <div class="task-top">
+
+                    <div>
+
+                        <div class="task-title">
+                            ${escapeHtml(task.title)}
+                        </div>
+
+                        <div class="task-meta">
+                            ${escapeHtml(task.subject)}
+                            · ${formatMinutes(task.estimated)} estimated
+                            · ${formatMinutes(used)} completed
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="star ${task.priority ? "active" : ""}"
+                        onclick="togglePriority(${task.id})">
+                        ★
+                    </button>
+
+                </div>
+
+                <div class="progress" style="margin-top:10px">
+
+                    <div
+                        class="progress-bar"
+                        style="width:${Math.min(
+                            100,
+                            used / task.estimated * 100
+                        )}%">
+                    </div>
+
+                </div>
+
+                <div class="task-actions">
+
+                    ${
+                        !task.completed
+                        ?
+                        `
+                        <button
+                            class="secondary"
+                            onclick="openProgress(${task.id})">
+                            + Progress
+                        </button>
+
+                        <button
+                            class="primary"
+                            onclick="completeTask(${task.id})">
+                            Complete
+                        </button>
+                        `
+                        :
+                        `
+                        <span
+                            style="color:#a85c73;font-size:13px;padding:10px">
+                            Completed
+                        </span>
+                        `
+                    }
+
+                    <button
+                        class="secondary"
+                        onclick="openEdit(${task.id})">
+                        Edit
+                    </button>
+
+                    <button
+                        class="danger"
+                        onclick="deleteTask(${task.id})">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+            `;
+
+        }).join("");
+
+}
+
+
+function renderPlan() {
+
+    var date =
+        document.getElementById(
+            "planDate"
+        ).value || todayKey();
+
+
+    var ids =
+        plans[date] || [];
+
+
+    var planned =
+        ids
+            .map(function(id) {
+
+                return tasks.find(
+                    function(t) {
+
+                        return t.id === id;
+
+                    }
+                );
+
+            })
+            .filter(Boolean);
+
+
+    var total =
+        planned.reduce(
+            function(sum, t) {
+
+                return sum +
+                    (Number(t.remaining) || 0);
+
+            },
+            0
+        );
+
+
+    document.getElementById(
+        "plannedTotal"
+    ).textContent =
+        formatMinutes(total)
+        + " planned";
+
+
+    var plannedEl =
+        document.getElementById(
+            "plannedTasks"
+        );
+
+
+    if (!planned.length) {
+
+        plannedEl.innerHTML =
+            '<div class="empty">No tasks planned for this day.</div>';
+
+    } else {
+
+        plannedEl.innerHTML =
+            planned.map(function(task) {
+
+                return `
+                <div class="task">
+
+                    <div class="task-top">
+
+                        <div>
+
+                            <div class="task-title">
+                                ${escapeHtml(task.title)}
+                            </div>
+
+                            <div class="task-meta">
+                                ${escapeHtml(task.subject)}
+                                · ${formatMinutes(task.remaining)}
+                                remaining
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="task-actions">
+
+                        <button
+                            class="primary"
+                            onclick="startTaskFromPlan(${task.id})">
+                            Start
+                        </button>
+
+                        <button
+                            class="secondary"
+                            onclick="removeFromPlan(${task.id})">
+                            Remove
+                        </button>
+
+                        <button
+                            class="secondary"
+                            onclick="openProgress(${task.id})">
+                            + Progress
+                        </button>
+
+                        <button
+                            class="primary"
+                            onclick="completeTask(${task.id})">
+                            Complete
+                        </button>
+
+                    </div>
+
+                </div>
+                `;
+
+            }).join("");
+
+    }
+
+
+    var available =
+        tasks
+            .filter(function(t) {
+
+                return (
+                    !t.completed &&
+                    !ids.includes(t.id)
+                );
+
+            })
+            .sort(function(a, b) {
+
+                if (
+                    a.priority !==
+                    b.priority
+                ) {
+
+                    return a.priority
+                        ? -1
+                        : 1;
+
+                }
+
+                return b.created -
+                    a.created;
+
+            });
+
+
+    var availableEl =
+        document.getElementById(
+            "availableTasks"
+        );
+
+
+    if (!available.length) {
+
+        availableEl.innerHTML =
+            '<div class="empty">No unfinished tasks available.</div>';
+
+    } else {
+
+        availableEl.innerHTML =
+            available.map(function(task) {
+
+                return `
+                <div class="task">
+
+                    <div class="task-top">
+
+                        <div>
+
+                            <div class="task-title">
+                                ${escapeHtml(task.title)}
+                            </div>
+
+                            <div class="task-meta">
+                                ${escapeHtml(task.subject)}
+                                · ${formatMinutes(task.remaining)}
+                                remaining
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="star ${task.priority ? "active" : ""}"
+                            onclick="togglePriority(${task.id})">
+                            ★
+                        </button>
+
+                    </div>
+
+                    <div class="task-actions">
+
+                        <button
+                            class="primary"
+                            onclick="addToPlan(${task.id})">
+                            Add to plan
+                        </button>
+
+                    </div>
+
+                </div>
+                `;
+
+            }).join("");
+
+    }
+
+}
+
 
 function addToPlan(id) {
 
-    var task =
-        tasks.find(function(t) {
-
-            return t.id === id;
-
-        });
+    var date =
+        document.getElementById(
+            "planDate"
+        ).value || todayKey();
 
 
-    if (
-        !task ||
-        task.completed
-    ) {
-        return;
-    }
+    if (!plans[date]) {
 
-
-    if (
-        !plans[planDate]
-    ) {
-
-        plans[planDate] = [];
+        plans[date] = [];
 
     }
 
 
     if (
-        plans[planDate].indexOf(id) === -1
+        !plans[date].includes(id)
     ) {
 
-        plans[planDate].push(id);
+        plans[date].push(id);
 
     }
 
 
-    save();
+    saveAll();
 
-    renderPlan();
+    renderAll();
 
 }
 
 
 function removeFromPlan(id) {
 
-    if (
-        !plans[planDate]
-    ) {
-        return;
-    }
-
-
-    plans[planDate] =
-        plans[planDate].filter(
-            function(taskId) {
-
-                return taskId !== id;
-
-            }
-        );
-
-
-    save();
-
-    renderPlan();
-
-}
-
-
-function moveTomorrow(id) {
-
-    if (
-        !plans[planDate]
-    ) {
-        return;
-    }
-
-
-    plans[planDate] =
-        plans[planDate].filter(
-            function(taskId) {
-
-                return taskId !== id;
-
-            }
-        );
-
-
     var date =
-        new Date(
-            planDate +
-            "T00:00:00"
-        );
-
-
-    date.setDate(
-        date.getDate() + 1
-    );
-
-
-    var tomorrow =
-        localDateKey(date);
-
-
-    if (
-        !plans[tomorrow]
-    ) {
-
-        plans[tomorrow] = [];
-
-    }
-
-
-    if (
-        plans[tomorrow].indexOf(id) === -1
-    ) {
-
-        plans[tomorrow].push(id);
-
-    }
-
-
-    save();
-
-    renderPlan();
-
-}
-
-
-function changePlanDate(amount) {
-
-    var date =
-        new Date(
-            planDate +
-            "T00:00:00"
-        );
-
-
-    date.setDate(
-        date.getDate() + amount
-    );
-
-
-    planDate =
-        localDateKey(date);
-
-
-    document.getElementById(
-        "planDate"
-    ).value = planDate;
-
-
-    renderPlan();
-
-}
-
-
-function changePlanDateDirect() {
-
-    planDate =
         document.getElementById(
             "planDate"
-        ).value ||
-        todayKey();
+        ).value || todayKey();
 
 
-    renderPlan();
+    plans[date] =
+        (plans[date] || [])
+            .filter(function(x) {
 
-}
+                return x !== id;
 
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-function setPomodoro(minutes) {
-
-    pauseTimer();
+            });
 
 
-    timerSeconds =
-        minutes * 60;
+    saveAll();
 
-
-    if (
-        minutes === 5 ||
-        minutes === 15
-    ) {
-
-        timerMode = "break";
-
-    } else {
-
-        timerMode = "focus";
-
-    }
-
-
-    updateTimerDisplay();
+    renderAll();
 
 }
 
+
+/* SELECT A TASK WITHOUT STARTING THE TIMER */
 
 function selectTimerTask(id) {
 
@@ -2343,13 +1942,13 @@ function selectTimerTask(id) {
         !task ||
         task.completed
     ) {
+
         return;
+
     }
 
 
-    if (
-        timerInterval
-    ) {
+    if (timerInterval) {
 
         pauseTimer();
 
@@ -2367,37 +1966,150 @@ function selectTimerTask(id) {
 }
 
 
-function startTimer() {
+/* NEW:
+   Clicking Start on a planned task now:
+   1. Selects that task
+   2. Takes you to the Pomodoro
+   3. Loads 25 minutes, or less if the task has under 25 minutes remaining
+   4. Scrolls down to the timer
+*/
+
+function startTaskFromPlan(id) {
+
+    var task =
+        tasks.find(function(t) {
+
+            return t.id === id;
+
+        });
+
 
     if (
-        timerInterval
+        !task ||
+        task.completed
     ) {
+
         return;
+
     }
 
 
-    if (
-        timerMode === "focus" &&
-        !timerTaskId
-    ) {
+    if (timerInterval) {
 
-        alert(
-            "Select a task first."
+        pauseTimer();
+
+    }
+
+
+    timerTaskId = id;
+
+
+    document.getElementById(
+        "timerTaskName"
+    ).textContent =
+        task.title;
+
+
+    var focusMinutes =
+        Math.min(
+            25,
+            Number(task.remaining) || 25
         );
 
+
+    timerMode = "focus";
+
+
+    timerSeconds =
+        focusMinutes * 60;
+
+
+    sessionStartedAt = null;
+
+
+    updateTimerDisplay();
+
+
+    showPage("plan");
+
+
+    setTimeout(function() {
+
+        var timer =
+            document.querySelector(
+                ".timer"
+            );
+
+
+        if (timer) {
+
+            timer.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+    }, 100);
+
+}
+
+
+function setPomodoro(minutes) {
+
+    if (timerInterval) {
+
+        pauseTimer();
+
+    }
+
+
+    timerMode =
+        minutes === 5 ||
+        minutes === 15
+            ? "break"
+            : "focus";
+
+
+    timerSeconds =
+        minutes * 60;
+
+
+    sessionStartedAt = null;
+
+
+    updateTimerDisplay();
+
+}
+
+
+function startTimer() {
+
+    if (timerInterval) {
+
         return;
 
     }
 
 
-    if (
-        timerMode === "focus"
-    ) {
+    if (timerMode === "focus") {
+
+        if (!timerTaskId) {
+
+            alert(
+                "Select a task first."
+            );
+
+            return;
+
+        }
+
 
         var task =
             tasks.find(function(t) {
 
-                return t.id === timerTaskId;
+                return t.id ===
+                    timerTaskId;
 
             });
 
@@ -2408,90 +2120,89 @@ function startTimer() {
         ) {
 
             alert(
-                "Select an unfinished task first."
+                "That task is already complete."
             );
 
             return;
 
         }
 
-    }
 
+        if (!sessionStartedAt) {
 
-    if (
-        !sessionStartedAt
-    ) {
+            sessionStartedAt =
+                Date.now();
 
-        sessionStartedAt =
-            Date.now();
+        }
 
     }
 
 
     timerInterval =
-        setInterval(
-            function() {
+        setInterval(function() {
+
+            if (timerSeconds > 0) {
+
+                timerSeconds--;
+
+                updateTimerDisplay();
+
+            }
+
+
+            if (
+                timerSeconds <= 0
+            ) {
+
+                clearInterval(
+                    timerInterval
+                );
+
+                timerInterval = null;
+
 
                 if (
-                    timerSeconds > 0
+                    timerMode ===
+                    "focus"
                 ) {
 
-                    timerSeconds--;
-
-                    updateTimerDisplay();
-
-                } else {
-
-                    clearInterval(
-                        timerInterval
-                    );
-
-                    timerInterval = null;
-
-
-                    if (
-                        timerMode === "focus"
-                    ) {
-
-                        recordActualStudy();
-
-                    }
-
-
-                    alert(
-                        timerMode === "focus"
-                            ? "Focus session finished!"
-                            : "Break finished!"
-                    );
+                    recordActualStudy();
 
                 }
 
-            },
-            1000
-        );
+
+                sessionStartedAt = null;
+
+
+                alert(
+                    timerMode === "focus"
+                        ? "Focus session complete!"
+                        : "Break complete!"
+                );
+
+            }
+
+        }, 1000);
 
 }
 
 
 function pauseTimer() {
 
-    if (
-        !timerInterval
-    ) {
-        return;
+    if (timerInterval) {
+
+        clearInterval(
+            timerInterval
+        );
+
+        timerInterval = null;
+
     }
 
 
-    clearInterval(
-        timerInterval
-    );
-
-
-    timerInterval = null;
-
-
     if (
-        timerMode === "focus"
+        timerMode === "focus" &&
+        sessionStartedAt
     ) {
 
         recordActualStudy();
@@ -2509,19 +2220,10 @@ function resetTimer() {
     pauseTimer();
 
 
-    if (
+    timerSeconds =
         timerMode === "break"
-    ) {
-
-        timerSeconds =
-            5 * 60;
-
-    } else {
-
-        timerSeconds =
-            25 * 60;
-
-    }
+            ? 5 * 60
+            : 25 * 60;
 
 
     updateTimerDisplay();
@@ -2533,7 +2235,7 @@ function recordActualStudy() {
 
     if (
         !sessionStartedAt ||
-        timerMode !== "focus"
+        !timerTaskId
     ) {
 
         return;
@@ -2544,7 +2246,8 @@ function recordActualStudy() {
     var task =
         tasks.find(function(t) {
 
-            return t.id === timerTaskId;
+            return t.id ===
+                timerTaskId;
 
         });
 
@@ -2570,29 +2273,21 @@ function recordActualStudy() {
         );
 
 
-    if (
-        elapsed <= 0
-    ) {
-
-        sessionStartedAt = null;
+    if (elapsed <= 0) {
 
         return;
 
     }
 
 
-    var minutes =
+    elapsed =
         Math.min(
             elapsed,
-            Number(
-                task.remaining
-            ) || 0
+            Number(task.remaining) || 0
         );
 
 
-    if (
-        minutes <= 0
-    ) {
+    if (elapsed <= 0) {
 
         sessionStartedAt = null;
 
@@ -2601,547 +2296,58 @@ function recordActualStudy() {
     }
 
 
-    addStudyMinutes(
-        minutes
-    );
+    task.actualMinutes =
+        (Number(task.actualMinutes) || 0)
+        + elapsed;
 
 
-    addActualTaskMinutes(
-        task,
-        minutes
-    );
+    task.remaining =
+        Math.max(
+            0,
+            task.remaining - elapsed
+        );
 
 
-    task.remaining -=
-        minutes;
+    addStudyMinutes(elapsed);
 
 
     if (
         task.remaining <= 0
     ) {
 
-        task.remaining = 0;
-
         finishTask(task);
 
     }
 
 
-    sessionStartedAt = null;
-
-
-    save();
+    saveAll();
 
     renderAll();
 
 }
 
 
-function stopTimerIfTask(id) {
+function updateTimerDisplay() {
 
-    if (
-        timerTaskId !== id
-    ) {
-        return;
-    }
-
-
-    if (
-        timerInterval
-    ) {
-
-        clearInterval(
-            timerInterval
+    var m =
+        Math.floor(
+            timerSeconds / 60
         );
 
-        timerInterval = null;
 
-    }
-
-
-    sessionStartedAt = null;
-
-    timerTaskId = null;
+    var s =
+        timerSeconds % 60;
 
 
     document.getElementById(
-        "timerTaskName"
+        "timerDisplay"
     ).textContent =
-        "No task selected";
+        String(m).padStart(2, "0")
+        + ":"
+        + String(s).padStart(2, "0");
 
 }
 
-
-/* =========================================================
-   RENDER TASKS
-========================================================= */
-
-function renderTasks() {
-
-    var container =
-        document.getElementById(
-            "taskList"
-        );
-
-
-    var visible =
-        tasks.filter(
-            function(task) {
-
-                return !task.completed;
-
-            }
-        );
-
-
-    if (
-        taskFilter === "priority"
-    ) {
-
-        visible =
-            visible.filter(
-                function(task) {
-
-                    return task.priority;
-
-                }
-            );
-
-    }
-
-
-    if (
-        taskFilter === "remaining"
-    ) {
-
-        visible =
-            visible.filter(
-                function(task) {
-
-                    return task.remaining > 0;
-
-                }
-            );
-
-    }
-
-
-    visible.sort(
-        function(a, b) {
-
-            return (
-                Number(b.priority) -
-                Number(a.priority)
-            );
-
-        }
-    );
-
-
-    if (
-        visible.length === 0
-    ) {
-
-        container.innerHTML =
-            '<p style="color:#999;">No tasks here yet.</p>';
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        visible.map(
-            function(task) {
-
-                var completed =
-                    Math.max(
-                        0,
-                        task.estimated -
-                        task.remaining
-                    );
-
-
-                var percent =
-                    task.estimated > 0
-                        ? Math.min(
-                            100,
-                            (
-                                completed /
-                                task.estimated
-                            ) * 100
-                        )
-                        : 0;
-
-
-                return `
-
-                    <div class="task">
-
-                        <button
-                            class="priority ${task.priority ? "selected" : ""}"
-                            onclick="togglePriority(${task.id})">
-                            ★
-                        </button>
-
-                        <div class="task-main">
-
-                            <div class="task-title">
-                                ${escapeHtml(task.title)}
-                            </div>
-
-                            <div class="task-meta">
-                                ${escapeHtml(task.subject)}
-                                ·
-                                ${task.remaining} min remaining
-                                ·
-                                ${task.actualMinutes || 0} min worked
-                            </div>
-
-                            <div class="progress-bar">
-
-                                <div
-                                    class="progress-fill"
-                                    style="width:${percent}%">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="task-actions">
-
-                            <button
-                                class="secondary"
-                                onclick="openProgressModal(${task.id})">
-                                + Progress
-                            </button>
-
-                            <button
-                                class="primary"
-                                onclick="completeTask(${task.id})">
-                                ✓ Complete
-                            </button>
-
-                            <button
-                                class="secondary"
-                                onclick="openEditModal(${task.id})">
-                                Edit
-                            </button>
-
-                            <button
-                                class="danger"
-                                onclick="deleteTask(${task.id})">
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================================================
-   RENDER PLAN
-========================================================= */
-
-function renderPlan() {
-
-    document.getElementById(
-        "planDate"
-    ).value = planDate;
-
-
-    var ids =
-        plans[planDate] || [];
-
-
-    var planned =
-        ids.map(
-            function(id) {
-
-                return tasks.find(
-                    function(t) {
-
-                        return t.id === id;
-
-                    }
-                );
-
-            }
-        ).filter(Boolean);
-
-
-    var total = 0;
-
-
-    planned.forEach(
-        function(task) {
-
-            if (
-                !task.completed
-            ) {
-
-                total +=
-                    Number(
-                        task.remaining
-                    ) || 0;
-
-            }
-
-        }
-    );
-
-
-    document.getElementById(
-        "plannedTotal"
-    ).textContent =
-        total + " min";
-
-
-    var plannedContainer =
-        document.getElementById(
-            "plannedTasks"
-        );
-
-
-    if (
-        planned.length === 0
-    ) {
-
-        plannedContainer.innerHTML =
-            '<p style="color:#999;">Nothing planned yet.</p>';
-
-    } else {
-
-        plannedContainer.innerHTML =
-            planned.map(
-                function(task) {
-
-                    if (
-                        task.completed
-                    ) {
-
-                        return `
-
-                            <div class="plan-task">
-
-                                <div class="plan-task-top">
-
-                                    <div class="plan-task-info">
-
-                                        <div class="task-title">
-                                            ${escapeHtml(task.title)}
-                                        </div>
-
-                                        <div class="task-meta">
-                                            ${escapeHtml(task.subject)}
-                                        </div>
-
-                                    </div>
-
-                                    <div class="completed-label">
-                                        ✓ Completed
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        `;
-
-                    }
-
-
-                    return `
-
-                        <div class="plan-task">
-
-                            <div class="plan-task-top">
-
-                                <button
-                                    class="priority ${task.priority ? "selected" : ""}"
-                                    onclick="togglePriority(${task.id})">
-                                    ★
-                                </button>
-
-                                <div class="plan-task-info">
-
-                                    <div class="task-title">
-                                        ${escapeHtml(task.title)}
-                                    </div>
-
-                                    <div class="task-meta">
-                                        ${escapeHtml(task.subject)}
-                                        ·
-                                        ${task.remaining} min remaining
-                                        ·
-                                        ${task.actualMinutes || 0} min worked
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="plan-actions">
-
-                                <button
-                                    class="primary"
-                                    onclick="selectTimerTask(${task.id})">
-                                    Start
-                                </button>
-
-                                <button
-                                    class="secondary"
-                                    onclick="openProgressModal(${task.id})">
-                                    Save progress
-                                </button>
-
-                                <button
-                                    class="primary"
-                                    onclick="completeTask(${task.id})">
-                                    ✓ Complete
-                                </button>
-
-                                <button
-                                    class="secondary"
-                                    onclick="moveTomorrow(${task.id})">
-                                    Tomorrow
-                                </button>
-
-                                <button
-                                    class="danger"
-                                    onclick="removeFromPlan(${task.id})">
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("");
-
-    }
-
-
-    /* AVAILABLE */
-
-    var availableContainer =
-        document.getElementById(
-            "availableTasks"
-        );
-
-
-    var available =
-        tasks.filter(
-            function(task) {
-
-                return (
-                    !task.completed &&
-                    ids.indexOf(task.id) === -1
-                );
-
-            }
-        );
-
-
-    available.sort(
-        function(a, b) {
-
-            return (
-                Number(b.priority) -
-                Number(a.priority)
-            );
-
-        }
-    );
-
-
-    if (
-        available.length === 0
-    ) {
-
-        availableContainer.innerHTML =
-            '<p style="color:#999;">No available tasks.</p>';
-
-        return;
-
-    }
-
-
-    availableContainer.innerHTML =
-        available.map(
-            function(task) {
-
-                return `
-
-                    <div class="plan-task">
-
-                        <div class="plan-task-top">
-
-                            <button
-                                class="priority ${task.priority ? "selected" : ""}"
-                                onclick="togglePriority(${task.id})">
-                                ★
-                            </button>
-
-                            <div class="plan-task-info">
-
-                                <div class="task-title">
-                                    ${escapeHtml(task.title)}
-                                </div>
-
-                                <div class="task-meta">
-                                    ${escapeHtml(task.subject)}
-                                    ·
-                                    ${task.remaining} min
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="plan-actions">
-
-                            <button
-                                class="primary"
-                                onclick="addToPlan(${task.id})">
-                                Add to plan
-                            </button>
-
-                            <button
-                                class="secondary"
-                                onclick="openProgressModal(${task.id})">
-                                Save progress
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================================================
-   HOME
-========================================================= */
 
 function renderHome() {
 
@@ -3149,36 +2355,65 @@ function renderHome() {
         todayKey();
 
 
-    /* COMPLETED */
+    var todayTasks =
+        tasks.filter(function(t) {
+
+            return (
+                plans[today] || []
+            ).includes(t.id);
+
+        });
+
+
+    var total =
+        todayTasks.length;
+
+
+    var completed =
+        todayTasks.filter(
+            function(t) {
+
+                return t.completed;
+
+            }
+        ).length;
+
+
+    var percent =
+        total
+            ? Math.round(
+                completed /
+                total *
+                100
+            )
+            : 0;
+
 
     document.getElementById(
-        "statCompleted"
+        "statTasks"
     ).textContent =
-        completedHistory.length;
+        completed +
+        " / " +
+        total;
 
 
-    /* TODAY */
-
-    var todayMinutes =
-        Number(
-            studySessions[today] || 0
-        );
+    document.getElementById(
+        "statPercent"
+    ).textContent =
+        percent + "%";
 
 
     document.getElementById(
         "statToday"
     ).textContent =
         formatMinutes(
-            todayMinutes
+            studySessions[today] || 0
         );
 
 
-    /* WEEK */
+    var d = new Date();
 
-    var weekTotal = 0;
-
-    var now =
-        new Date();
+    var week = 0;
 
 
     for (
@@ -3187,22 +2422,20 @@ function renderHome() {
         i++
     ) {
 
-        var date =
-            new Date(now);
+        var x =
+            new Date(d);
 
 
-        date.setDate(
-            now.getDate() - i
+        x.setDate(
+            d.getDate() - i
         );
 
 
-        var key =
-            localDateKey(date);
-
-
-        weekTotal +=
+        week +=
             Number(
-                studySessions[key] || 0
+                studySessions[
+                    localDateKey(x)
+                ] || 0
             );
 
     }
@@ -3211,176 +2444,199 @@ function renderHome() {
     document.getElementById(
         "statWeek"
     ).textContent =
-        formatMinutes(
-            weekTotal
-        );
-
-
-    /* REMAINING */
-
-    document.getElementById(
-        "statRemaining"
-    ).textContent =
-        tasks.filter(
-            function(task) {
-
-                return !task.completed;
-
-            }
-        ).length;
-
-
-    /* TODAY'S TASKS */
-
-    var todayIds =
-        plans[today] || [];
-
-
-    var todayPlanned =
-        todayIds.map(
-            function(id) {
-
-                return tasks.find(
-                    function(task) {
-
-                        return task.id === id;
-
-                    }
-                );
-
-            }
-        ).filter(Boolean);
-
-
-    var todayCompleted =
-        todayPlanned.filter(
-            function(task) {
-
-                return task.completed;
-
-            }
-        ).length;
-
-
-    var todayTotal =
-        todayPlanned.length;
-
-
-    var percentage =
-        todayTotal > 0
-            ? Math.round(
-                (
-                    todayCompleted /
-                    todayTotal
-                ) * 100
-            )
-            : 0;
+        formatMinutes(week);
 
 
     document.getElementById(
-        "todayProgressText"
-    ).textContent =
-        todayCompleted +
-        " / " +
-        todayTotal +
-        " tasks";
-
-
-    document.getElementById(
-        "todayProgressPercent"
-    ).textContent =
-        percentage + "%";
-
-
-    document.getElementById(
-        "todayProgressBar"
+        "homeProgress"
     ).style.width =
-        percentage + "%";
+        percent + "%";
 
 
-    var todayTasks =
-        document.getElementById(
-            "todayTasks"
-        );
+    document.getElementById(
+        "remainingText"
+    ).textContent =
+        total -
+        completed +
+        " tasks remaining";
 
-
-    if (
-        todayPlanned.length === 0
-    ) {
-
-        todayTasks.innerHTML =
-            '<p style="color:#999;">No tasks planned for today.</p>';
-
-    } else {
-
-        todayTasks.innerHTML =
-            todayPlanned.map(
-                function(task) {
-
-                    return `
-
-                        <div class="task">
-
-                            <div class="task-main">
-
-                                <div class="task-title">
-                                    ${escapeHtml(task.title)}
-                                </div>
-
-                                <div class="task-meta">
-                                    ${escapeHtml(task.subject)}
-                                    ·
-                                    ${
-                                        task.completed
-                                            ? "Completed"
-                                            : task.remaining + " min remaining"
-                                    }
-                                </div>
-
-                            </div>
-
-                            ${
-                                task.completed
-                                    ? '<div class="completed-label">✓</div>'
-                                    : '<button class="primary" onclick="showPage(\'plan\')">Study</button>'
-                            }
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("");
-
-    }
-
-
-    renderWeeklyChart();
 
     renderCalendar();
+
+    renderBarChart();
 
     renderHistory();
 
 }
 
 
-/* =========================================================
-   WEEKLY CHART
-========================================================= */
+function renderCalendar() {
 
-function renderWeeklyChart() {
-
-    var container =
+    var el =
         document.getElementById(
-            "weeklyChart"
+            "calendar"
         );
 
 
-    var now =
-        new Date();
+    var now = new Date();
 
 
-    var values = [];
+    var start =
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            1
+        );
+
+
+    var end =
+        new Date(
+            now.getFullYear(),
+            now.getMonth() + 1,
+            0
+        );
+
+
+    var first =
+        start.getDay();
+
+
+    var days =
+        end.getDate();
+
+
+    var values =
+        Array.from(
+            {
+                length: days
+            },
+            function(_, i) {
+
+                var dt =
+                    new Date(
+                        now.getFullYear(),
+                        now.getMonth(),
+                        i + 1
+                    );
+
+
+                return Number(
+                    studySessions[
+                        localDateKey(dt)
+                    ] || 0
+                );
+
+            }
+        );
+
+
+    var max =
+        Math.max.apply(
+            null,
+            values.concat([1])
+        );
+
+
+    var out =
+        [
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ]
+        .map(function(x) {
+
+            return (
+                '<div class="calendar-head">'
+                + x +
+                "</div>"
+            );
+
+        })
+        .join("");
+
+
+    for (
+        var i = 0;
+        i < first;
+        i++
+    ) {
+
+        out += "<div></div>";
+
+    }
+
+
+    for (
+        var day = 1;
+        day <= days;
+        day++
+    ) {
+
+        var dt =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                day
+            );
+
+
+        var mins =
+            Number(
+                studySessions[
+                    localDateKey(dt)
+                ] || 0
+            );
+
+
+        var opacity =
+            .15 +
+            (
+                .65 *
+                (
+                    mins / max
+                )
+            );
+
+
+        out += `
+        <div
+            class="day"
+            style="background:rgba(199,123,148,${opacity})">
+
+            <div class="day-num">
+                ${day}
+            </div>
+
+            <div class="day-minutes">
+                ${formatMinutes(mins)}
+            </div>
+
+        </div>
+        `;
+
+    }
+
+
+    el.innerHTML = out;
+
+}
+
+
+function renderBarChart() {
+
+    var el =
+        document.getElementById(
+            "barChart"
+        );
+
+
+    var now = new Date();
+
+    var data = [];
 
 
     for (
@@ -3389,355 +2645,99 @@ function renderWeeklyChart() {
         i--
     ) {
 
-        var date =
+        var d =
             new Date(now);
 
 
-        date.setDate(
+        d.setDate(
             now.getDate() - i
         );
 
 
-        var key =
-            localDateKey(date);
+        data.push({
 
-
-        values.push({
+            date: d,
 
             minutes:
                 Number(
-                    studySessions[key] || 0
-                ),
-
-            label:
-                date.toLocaleDateString(
-                    undefined,
-                    {
-                        weekday: "short"
-                    }
-                ).slice(0, 3)
+                    studySessions[
+                        localDateKey(d)
+                    ] || 0
+                )
 
         });
 
     }
 
 
-    var max = 1;
-
-
-    values.forEach(
-        function(value) {
-
-            if (
-                value.minutes > max
-            ) {
-
-                max =
-                    value.minutes;
-
-            }
-
-        }
-    );
-
-
-    container.innerHTML =
-        values.map(
-            function(value) {
-
-                var height =
-                    Math.max(
-                        3,
-                        (
-                            value.minutes /
-                            max
-                        ) * 120
-                    );
-
-
-                return `
-
-                    <div class="chart-day">
-
-                        <div class="chart-value">
-                            ${value.minutes}m
-                        </div>
-
-                        <div
-                            class="chart-bar"
-                            style="height:${height}px">
-                        </div>
-
-                        <div class="chart-label">
-                            ${value.label}
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
-
-}
-
-
-/* =========================================================
-   CALENDAR
-========================================================= */
-
-function renderCalendar() {
-
-    var container =
-        document.getElementById(
-            "calendar"
+    var max =
+        Math.max.apply(
+            null,
+            data
+                .map(function(x) {
+                    return x.minutes;
+                })
+                .concat([1])
         );
 
 
-    var now =
-        new Date();
-
-
-    var year =
-        now.getFullYear();
-
-
-    var month =
-        now.getMonth();
-
-
-    var firstDay =
-        new Date(
-            year,
-            month,
-            1
-        ).getDay();
-
-
-    var daysInMonth =
-        new Date(
-            year,
-            month + 1,
-            0
-        ).getDate();
-
-
-    var headers = [
-        "Sun",
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat"
-    ];
-
-
-    var html =
-        '<div class="calendar">';
-
-
-    headers.forEach(
-        function(day) {
-
-            html +=
-                '<div class="calendar-header">' +
-                day +
-                '</div>';
-
-        }
-    );
-
-
-    for (
-        var i = 0;
-        i < firstDay;
-        i++
-    ) {
-
-        html +=
-            '<div class="calendar-day empty"></div>';
-
-    }
-
-
-    var maxMinutes = 1;
-
-
-    for (
-        var d = 1;
-        d <= daysInMonth;
-        d++
-    ) {
-
-        var date =
-            new Date(
-                year,
-                month,
-                d
-            );
-
-
-        var key =
-            localDateKey(date);
-
-
-        var minutes =
-            Number(
-                studySessions[key] || 0
-            );
-
-
-        if (
-            minutes > maxMinutes
-        ) {
-
-            maxMinutes =
-                minutes;
-
-        }
-
-    }
-
-
-    for (
-        var day = 1;
-        day <= daysInMonth;
-        day++
-    ) {
-
-        var date =
-            new Date(
-                year,
-                month,
-                day
-            );
-
-
-        var key =
-            localDateKey(date);
-
-
-        var minutes =
-            Number(
-                studySessions[key] || 0
-            );
-
-
-        var level = "";
-
-
-        if (
-            minutes > 0
-        ) {
-
-            var ratio =
-                minutes /
-                maxMinutes;
-
-
-            if (
-                ratio <= 0.25
-            ) {
-
-                level = "level1";
-
-            } else if (
-                ratio <= 0.5
-            ) {
-
-                level = "level2";
-
-            } else if (
-                ratio <= 0.75
-            ) {
-
-                level = "level3";
-
-            } else {
-
-                level = "level4";
-
-            }
-
-        }
-
-
-        html += `
-
-            <div class="calendar-day ${level}">
-
-                <strong>
-                    ${day}
-                </strong>
-
-                ${
-                    minutes > 0
-                        ? '<div class="calendar-minutes">' +
-                          minutes +
-                          ' min</div>'
-                        : ""
-                }
-
-            </div>
-
-        `;
-
-    }
-
-
-    html +=
-        "</div>";
-
-
-    container.innerHTML =
-        html;
-
-}
-
-
-/* =========================================================
-   HISTORY
-========================================================= */
-
-function toggleHistory() {
-
-    historyVisible =
-        !historyVisible;
-
-
-    document.getElementById(
-        "history"
-    ).style.display =
-        historyVisible
-            ? "block"
-            : "none";
-
-
-    document.getElementById(
-        "historyToggle"
-    ).textContent =
-        historyVisible
-            ? "Hide"
-            : "Show";
+    el.innerHTML =
+        data
+            .map(function(x) {
+
+                var h =
+                    x.minutes /
+                    max *
+                    130;
+
+
+                return `
+                <div class="bar-wrap">
+
+                    <div class="bar-value">
+                        ${x.minutes}m
+                    </div>
+
+                    <div
+                        class="bar"
+                        style="height:${Math.max(
+                            2,
+                            h
+                        )}px">
+                    </div>
+
+                    <div class="bar-label">
+                        ${x.date.toLocaleDateString(
+                            undefined,
+                            {
+                                weekday: "short"
+                            }
+                        )}
+                    </div>
+
+                </div>
+                `;
+
+            })
+            .join("");
 
 }
 
 
 function renderHistory() {
 
-    var container =
+    var el =
         document.getElementById(
-            "history"
+            "historyList"
         );
 
 
     if (
-        completedHistory.length === 0
+        !completedHistory.length
     ) {
 
-        container.innerHTML =
-            '<p style="color:#999;">No completed activities yet.</p>';
+        el.innerHTML =
+            '<div class="empty">No completed activities yet.</div>';
 
         return;
 
@@ -3746,171 +2746,93 @@ function renderHistory() {
 
     var items =
         completedHistory
-            .map(
-                function(item, index) {
-
-                    return {
-
-                        item: item,
-
-                        index: index
-
-                    };
-
-                }
-            )
+            .slice()
             .reverse();
 
 
-    container.innerHTML =
-        items.map(
-            function(entry) {
+    el.innerHTML =
+        items
+            .map(function(
+                item,
+                reverseIndex
+            ) {
 
-                var item =
-                    entry.item;
-
-
-                var minutes =
-                    Number(
-                        item.actualMinutes
-                    ) || 0;
+                var index =
+                    completedHistory.length -
+                    1 -
+                    reverseIndex;
 
 
                 return `
+                <div class="task">
 
-                    <div class="history-item">
+                    <div class="task-top">
 
-                        <div class="history-info">
+                        <div>
 
-                            <div class="history-title">
-                                ${escapeHtml(item.title)}
+                            <div class="task-title">
+                                ${escapeHtml(
+                                    item.title
+                                )}
                             </div>
 
-                            <div class="history-meta">
-                                ${escapeHtml(item.subject)}
-                                ·
-                                ${minutes} min studied
-                                ·
-                                ${formatDate(item.date)}
+                            <div class="task-meta">
+                                ${escapeHtml(
+                                    item.subject
+                                )}
+                                · ${formatMinutes(
+                                    item.actualMinutes || 0
+                                )}
+                                studied · ${item.date}
                             </div>
 
                         </div>
 
                         <button
                             class="danger"
-                            onclick="deleteHistoryItem(${entry.index})">
+                            onclick="deleteHistoryItem(${index})">
                             Delete
                         </button>
 
                     </div>
 
+                </div>
                 `;
 
-            }
-        ).join("");
+            })
+            .join("");
 
 }
 
 
-/* =========================================================
-   FORMAT
-========================================================= */
+function closeModal(id) {
 
-function formatMinutes(minutes) {
+    document
+        .getElementById(id)
+        .classList.remove("show");
 
-    minutes =
-        Number(minutes) || 0;
-
-
-    if (
-        minutes < 60
-    ) {
-
-        return minutes + "m";
-
-    }
+}
 
 
-    var hours =
-        Math.floor(
-            minutes / 60
-        );
+function escapeHtml(text) {
 
+    return String(text).replace(
+        /[&<>"']/g,
+        function(c) {
 
-    var remaining =
-        minutes % 60;
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            }[c];
 
-
-    if (
-        remaining === 0
-    ) {
-
-        return hours + "h";
-
-    }
-
-
-    return (
-        hours +
-        "h " +
-        remaining +
-        "m"
+        }
     );
 
 }
 
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(text) {
-
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================================================
-   TIMER DISPLAY
-========================================================= */
-
-function updateTimerDisplay() {
-
-    var minutes =
-        Math.floor(
-            timerSeconds / 60
-        )
-        .toString()
-        .padStart(2, "0");
-
-
-    var seconds =
-        (
-            timerSeconds % 60
-        )
-        .toString()
-        .padStart(2, "0");
-
-
-    document.getElementById(
-        "timerDisplay"
-    ).textContent =
-        minutes +
-        ":" +
-        seconds;
-
-}
-
-
-/* =========================================================
-   RENDER EVERYTHING
-========================================================= */
 
 function renderAll() {
 
@@ -3925,17 +2847,14 @@ function renderAll() {
 }
 
 
-/* =========================================================
-   START
-========================================================= */
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
         document.getElementById(
             "planDate"
-        ).value = planDate;
+        ).value =
+            todayKey();
 
 
         renderAll();
